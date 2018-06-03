@@ -2,8 +2,7 @@ body {
   background-color: #171717; }
 
 canvas {
-  display: block;
-  vertical-align: bottom; }
+  display: block; }
 
 #particles-bg {
   position: absolute;
