@@ -14,7 +14,7 @@ canvas {
   background-color: #2e2e2e; }
   .navbar a, .navbar a:focus, .navbar a:active, .navbar a:hover {
     color: #a39393;
-    font-family: quicksand, sans-serif;
+    font-family: "quicksand", sans-serif;
     margin-left: 15px;
     outline: 0; }
   .navbar .navbar-nav > a, .navbar a:focus, .navbar a:active, .navbar a:hover {
