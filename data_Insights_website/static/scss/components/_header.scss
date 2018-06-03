@@ -10,7 +10,7 @@ $a-tags: 'a, a:focus, a:active, a:hover';
         margin-left: 15px;
         outline: 0;
     }
-    .navbar-nav > .active > #{$a-tags} {
-        color: white;
+    .navbar-nav > #{$a-tags} {
+        color: $curious-blue;
     }
 }

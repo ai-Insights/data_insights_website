@@ -1,0 +1,20 @@
+@mixin generate-button($name, $color, $hvr) {
+    .button-#{$name} {
+      color: $color !important;
+      border: solid 0.5px $color;
+      &:hover, &:focus {
+        color: white !important; 
+        transition-delay: -4ms;
+      }
+    }
+    .#{$hvr}:before{
+      background-color: $color;
+    }
+  }
+
+.button {
+    border-radius: 3px; 
+}
+
+@include generate-button('red-sweep-to-bottom', $red, 'hvr-sweep-to-bottom');
+@include generate-button('blue-sweep-to-top', $curious-blue, 'hvr-sweep-to-top');

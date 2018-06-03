@@ -18,5 +18,28 @@ canvas {
     font-family: quicksand, sans-serif;
     margin-left: 15px;
     outline: 0; }
-  .navbar .navbar-nav > .active > a, .navbar a:focus, .navbar a:active, .navbar a:hover {
-    color: white; }
+  .navbar .navbar-nav > a, .navbar a:focus, .navbar a:active, .navbar a:hover {
+    color: #2098d1; }
+
+.button {
+  border-radius: 3px; }
+
+.button-red-sweep-to-bottom {
+  color: #ff0000 !important;
+  border: solid 0.5px #ff0000; }
+  .button-red-sweep-to-bottom:hover, .button-red-sweep-to-bottom:focus {
+    color: white !important;
+    transition-delay: -4ms; }
+
+.hvr-sweep-to-bottom:before {
+  background-color: #ff0000; }
+
+.button-blue-sweep-to-top {
+  color: #2098d1 !important;
+  border: solid 0.5px #2098d1; }
+  .button-blue-sweep-to-top:hover, .button-blue-sweep-to-top:focus {
+    color: white !important;
+    transition-delay: -4ms; }
+
+.hvr-sweep-to-top:before {
+  background-color: #2098d1; }
