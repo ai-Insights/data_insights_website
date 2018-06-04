@@ -17,6 +17,8 @@
     <script src="../../static/js/particles.js"></script>
     <!-- Fonts js-->
     <script src="https://use.edgefonts.net/rationale;quicksand.js"></script>
+    
+    <script src="../../static/js/typed.js"></script>
 
     <title> </title>
 </head>
@@ -71,8 +73,35 @@
         </div>
     </div>
 
+
+    <!-- HEADER -->
+    <div class="row" id="header">
+        <div class="col-12">
+            <span class='heading heading-large'>D<span class='colored-text-curious-blue'>A</span>TA<span class="heading-xlarge">  </span></span>
+            <div id="type-out"></div>
+            <span id="typed"></span>
+            <br>
+            <span class='text-description'>Use a variety of <span class='colored-text-red'>visualization</span> and
+                <span class ='colored-text-curious-blue'>analysis</span> methods to figure out the hidden facts in your <span class="colored-text-curious-blue">DATA</span>.
+            </span>
+            </div>
     </div>
 
+    <script>
+        var options = {
+            strings: ["<span class='heading heading-large'>V<span class='colored-text-red heading-xlarge'>I</span>SUALIZ<span class='colored-text-curious-blue'>A</span>TION</span>", 
+                      "<span class='heading heading-large'><span class='colored-text-red heading-xlarge'>A</span>NAL<span class='colored-text-curious-blue'>Y</span>SIS</span>",
+                      "<span class='heading heading-large'><span class='colored-text-red'><span class='heading-xlarge'>I</span>NSIGHTS</span></span>"],
+            typeSpeed: 60,
+            startDelay: 1000,
+            loop: true,
+            bindInputFocusEvents: true
+          }
+          var typed = new Typed("#type-out", options);
+      </script>
+
+    </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
