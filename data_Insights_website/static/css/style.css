@@ -62,7 +62,11 @@ canvas {
   border: solid 0.5px #ff0000; }
   .button-red-sweep-to-bottom:hover, .button-red-sweep-to-bottom:focus {
     color: white !important;
-    transition-delay: -4ms; }
+    transition-delay: -4ms;
+    outline: 0; }
+  .button-red-sweep-to-bottom:active {
+    vertical-align: top;
+    padding: 8px 13px 6px; }
 
 .button-red-sweep-to-bottom {
   color: #ff0000 !important; }
@@ -74,7 +78,11 @@ canvas {
   border: solid 0.5px #2098d1; }
   .button-blue-sweep-to-top:hover, .button-blue-sweep-to-top:focus {
     color: white !important;
-    transition-delay: -4ms; }
+    transition-delay: -4ms;
+    outline: 0; }
+  .button-blue-sweep-to-top:active {
+    vertical-align: top;
+    padding: 8px 13px 6px; }
 
 .button-blue-sweep-to-top {
   color: #2098d1 !important; }
@@ -86,7 +94,11 @@ canvas {
   border: solid 0.5px #ff0000; }
   .button-red:hover, .button-red:focus {
     color: white !important;
-    transition-delay: -4ms; }
+    transition-delay: -4ms;
+    outline: 0; }
+  .button-red:active {
+    vertical-align: top;
+    padding: 8px 13px 6px; }
 
 .button-red {
   background-color: #ff0000;
@@ -96,7 +108,11 @@ canvas {
   border: solid 0.5px #2098d1; }
   .button-curious-blue:hover, .button-curious-blue:focus {
     color: white !important;
-    transition-delay: -4ms; }
+    transition-delay: -4ms;
+    outline: 0; }
+  .button-curious-blue:active {
+    vertical-align: top;
+    padding: 8px 13px 6px; }
 
 .button-curious-blue {
   background-color: #2098d1;
@@ -109,7 +125,7 @@ canvas {
   font-family: "quicksand", sans-serif;
   font-size: 18px;
   padding: 5px;
-  width: 120px;
+  width: 130px;
   height: 40px;
   text-align: center;
   margin: 20px; }

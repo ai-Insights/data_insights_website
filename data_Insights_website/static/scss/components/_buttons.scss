@@ -4,6 +4,11 @@
       &:hover, &:focus {
         color: white !important; 
         transition-delay: -4ms;
+        outline:0;
+      }
+      &:active {
+        vertical-align: top;
+        padding: 8px 13px 6px;
       }
     }
     @if ($hvr == '') {
@@ -39,7 +44,7 @@
   font-family: $font-stack-quicksand;
   font-size: 18px;
   padding: 5px;
-  width: 120px;
+  width: 130px;
   height: 40px;
   text-align: center;
   margin : 20px
