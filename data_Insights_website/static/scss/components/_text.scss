@@ -6,6 +6,7 @@
 
 @include generate-colored-text('red', $red);
 @include generate-colored-text('curious-blue', $curious-blue);
+@include generate-colored-text('golden-grass', $golden-grass);
 
 #type-out {
     display: inline;
@@ -24,5 +25,19 @@
 
 .text-description {
     font-family: $font-stack-quicksand;
-    font-size: 20px;
+    font-size: 18px;
+}
+
+%quotes {
+    font-family: $font-stack-quicksand;
+    font-size: 14px;
+}
+
+.quote {
+    @extend %quotes;
+    font-style: italic;
+}
+.quote-author{
+    @extend %quotes;
+    color: $curious-blue;
 }
