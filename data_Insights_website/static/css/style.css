@@ -15,6 +15,9 @@ canvas {
 .colored-text-curious-blue {
   color: #2098d1 !important; }
 
+.colored-text-golden-grass {
+  color: #E2A42C !important; }
+
 #type-out {
   display: inline; }
 
@@ -29,7 +32,17 @@ canvas {
 
 .text-description {
   font-family: "quicksand", sans-serif;
-  font-size: 20px; }
+  font-size: 18px; }
+
+.quote, .quote-author {
+  font-family: "quicksand", sans-serif;
+  font-size: 14px; }
+
+.quote {
+  font-style: italic; }
+
+.quote-author {
+  color: #2098d1; }
 
 .navbar {
   margin-top: 8px;
@@ -46,27 +59,63 @@ canvas {
   border-radius: 3px; }
 
 .button-red-sweep-to-bottom {
-  color: #ff0000 !important;
   border: solid 0.5px #ff0000; }
   .button-red-sweep-to-bottom:hover, .button-red-sweep-to-bottom:focus {
     color: white !important;
     transition-delay: -4ms; }
 
+.button-red-sweep-to-bottom {
+  color: #ff0000 !important; }
+
 .hvr-sweep-to-bottom:before {
   background-color: #ff0000; }
 
 .button-blue-sweep-to-top {
-  color: #2098d1 !important;
   border: solid 0.5px #2098d1; }
   .button-blue-sweep-to-top:hover, .button-blue-sweep-to-top:focus {
     color: white !important;
     transition-delay: -4ms; }
 
+.button-blue-sweep-to-top {
+  color: #2098d1 !important; }
+
 .hvr-sweep-to-top:before {
   background-color: #2098d1; }
 
+.button-red {
+  border: solid 0.5px #ff0000; }
+  .button-red:hover, .button-red:focus {
+    color: white !important;
+    transition-delay: -4ms; }
+
+.button-red {
+  background-color: #ff0000;
+  color: white; }
+
+.button-curious-blue {
+  border: solid 0.5px #2098d1; }
+  .button-curious-blue:hover, .button-curious-blue:focus {
+    color: white !important;
+    transition-delay: -4ms; }
+
+.button-curious-blue {
+  background-color: #2098d1;
+  color: white; }
+
+.links {
+  margin-top: 40px; }
+
+.links-item {
+  font-family: "quicksand", sans-serif;
+  font-size: 18px;
+  padding: 5px;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  margin: 20px; }
+
 #header {
-  margin: 150px 270px;
+  margin: 150px;
   text-align: center;
   color: white !important; }
 
@@ -97,3 +146,15 @@ canvas {
   transition: opacity .25s;
   -webkit-animation: 0;
   animation: 0; }
+
+.carousel-indicators li {
+  width: 7px;
+  height: 7px;
+  border-radius: 100%; }
+
+.carousel-indicators {
+  bottom: -35px; }
+
+#quotes-carousel {
+  width: 750px;
+  margin: auto; }

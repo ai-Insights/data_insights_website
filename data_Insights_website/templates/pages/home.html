@@ -17,7 +17,7 @@
     <script src="../../static/js/particles.js"></script>
     <!-- Fonts js-->
     <script src="https://use.edgefonts.net/rationale;quicksand.js"></script>
-    
+
     <script src="../../static/js/typed.js"></script>
 
     <title> </title>
@@ -77,31 +77,76 @@
     <!-- HEADER -->
     <div class="row" id="header">
         <div class="col-12">
-            <span class='heading heading-large'>D<span class='colored-text-curious-blue'>A</span>TA<span class="heading-xlarge">  </span></span>
+            <span class='heading heading-large'>
+                D<span class='colored-text-curious-blue'>A</span>TA
+                <span class="heading-xlarge"> </span>
+            </span>
             <div id="type-out"></div>
             <span id="typed"></span>
             <br>
-            <span class='text-description'>Use a variety of <span class='colored-text-red'>visualization</span> and
-                <span class ='colored-text-curious-blue'>analysis</span> methods to figure out the hidden facts in your <span class="colored-text-curious-blue">DATA</span>.
+            <span class='text-description'>Use a variety of
+                <span class='colored-text-red'>visualization</span> and
+                <span class='colored-text-curious-blue'>analysis</span> methods to figure out the hidden facts in your
+                <span class="colored-text-curious-blue">DATA</span>.
             </span>
+            <br><br>
+
+            <div id="quotes-carousel" class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#quotes-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#quotes-carousel" data-slide-to="1"></li>
+                    <li data-target="#quotes-carousel" data-slide-to="2"></li>
+                    <li data-target="#quotes-carousel" data-slide-to="3"></li>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <span class="quote">"Numbers have an important <span class="colored-text-red">story</span> to tell. They rely on you to give them a clear and convincing voice."</span>
+                        <br><span class="quote-author">―Stephen Few</span>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="quote">"The goal is to turn data into information, and information into <span class="colored-text-red">insight</span>."</span>
+                        <br><span class="quote-author">―Carly Fiorina</span>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="quote">"Visualizations act as a <span class="colored-text-golden-grass">campfire</span> around which we gather to tell stories."</span>
+                        <br><span class="quote-author">―Al Shalloway</span>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="quote">"The <span class="colored-text-curious-blue">greatest</span> value of a picture is when it forces us to notice what we never expected to see."</span>
+                        <br><span class="quote-author">―John Tukey</span>
+                    </div>
+                </div>
             </div>
+
+            <div class="links">
+                <button class="button hvr-wobble-horizontal button-red links-item">Try Out!</button>
+                <button class="button hvr-wobble-horizontal button-curious-blue links-item">Learn More</button>
+            </div>
+
+        </div>
     </div>
 
     <script>
         var options = {
-            strings: ["<span class='heading heading-large'>V<span class='colored-text-red heading-xlarge'>I</span>SUALIZ<span class='colored-text-curious-blue'>A</span>TION</span>", 
-                      "<span class='heading heading-large'><span class='colored-text-red heading-xlarge'>A</span>NAL<span class='colored-text-curious-blue'>Y</span>SIS</span>",
-                      "<span class='heading heading-large'><span class='colored-text-red'><span class='heading-xlarge'>I</span>NSIGHTS</span></span>"],
-            typeSpeed: 60,
-            startDelay: 1000,
+            strings: [
+                "<span class='heading heading-large'>V<span class='colored-text-red heading-xlarge'>I</span>SUALIZ<span class='colored-text-curious-blue'>A</span>TION</span>",
+                "<span class='heading heading-large'><span class='colored-text-red heading-xlarge'>A</span>NAL<span class='colored-text-curious-blue'>Y</span>SIS</span>",
+                "<span class='heading heading-large'><span class='colored-text-red'><span class='heading-xlarge'>I</span>NSIGHTS</span></span>"
+            ],
+            typeSpeed: 70,
+            startDelay: 2000,
             loop: true,
             bindInputFocusEvents: true
-          }
-          var typed = new Typed("#type-out", options);
-      </script>
+        }
+        var typed = new Typed("#type-out", options);
+    </script>
 
     </div>
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
