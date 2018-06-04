@@ -1,0 +1,28 @@
+@mixin generate-colored-text($name, $color) {
+    .colored-text-#{$name} {
+        color: $color !important;
+    }
+}
+
+@include generate-colored-text('red', $red);
+@include generate-colored-text('curious-blue', $curious-blue);
+
+#type-out {
+    display: inline;
+}
+.heading  {
+    font-family: $font-stack-rationale;
+}
+
+.heading-large {
+    font-size: 45px;
+}
+
+.heading-xlarge {
+    font-size: 55px !important;
+}
+
+.text-description {
+    font-family: $font-stack-quicksand;
+    font-size: 20px;
+}
