@@ -1,14 +1,23 @@
 @mixin generate-button($name, $color, $hvr) {
     .button-#{$name} {
-      color: $color !important;
       border: solid 0.5px $color;
       &:hover, &:focus {
         color: white !important; 
         transition-delay: -4ms;
       }
     }
-    .#{$hvr}:before{
-      background-color: $color;
+    @if ($hvr == '') {
+      .button-#{$name} {
+        background-color: $color;
+        color: white;
+      }
+    } @else {
+      .button-#{$name}{
+        color: $color !important;
+      }
+      .#{$hvr}:before{
+        background-color: $color;
+      }
     }
   }
 
@@ -18,3 +27,21 @@
 
 @include generate-button('red-sweep-to-bottom', $red, 'hvr-sweep-to-bottom');
 @include generate-button('blue-sweep-to-top', $curious-blue, 'hvr-sweep-to-top');
+@include generate-button('red', $red, '');
+@include generate-button('curious-blue', $curious-blue, '');
+
+
+.links {
+  margin-top: 40px;
+}
+
+.links-item {
+  font-family: $font-stack-quicksand;
+  font-size: 18px;
+  padding: 5px;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  margin : 20px
+}
+
