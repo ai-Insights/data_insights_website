@@ -1,33 +1,35 @@
 @mixin generate-button($name, $color, $hvr) {
     .button-#{$name} {
-      border: solid 0.5px $color;
-      &:hover, &:focus {
-        color: white !important; 
-        transition-delay: -4ms;
-        outline:0;
-      }
-      &:active {
-        vertical-align: top;
-        padding: 8px 13px 6px;
-      }
+        border: solid 0.5px $color;
+        &:hover,
+        &:focus {
+            color: white !important;
+            transition-delay: -4ms;
+            outline: 0;
+        }
+        &:active {
+            vertical-align: top;
+            padding: 8px 13px 6px;
+        }
     }
-    @if ($hvr == '') {
-      .button-#{$name} {
-        background-color: $color;
-        color: white;
-      }
-    } @else {
-      .button-#{$name}{
-        color: $color !important;
-      }
-      .#{$hvr}:before{
-        background-color: $color;
-      }
+    @if ($hvr=='') {
+        .button-#{$name} {
+            background-color: $color;
+            color: white;
+        }
     }
-  }
+    @else {
+        .button-#{$name} {
+            color: $color !important;
+        }
+        .#{$hvr}:before {
+            background-color: $color;
+        }
+    }
+}
 
 .button {
-    border-radius: 3px; 
+    border-radius: 3px;
 }
 
 @include generate-button('red-sweep-to-bottom', $red, 'hvr-sweep-to-bottom');
@@ -37,16 +39,15 @@
 
 
 .links {
-  margin-top: 40px;
+    margin-top: 40px;
 }
 
 .links-item {
-  font-family: $font-stack-quicksand;
-  font-size: 18px;
-  padding: 5px;
-  width: 130px;
-  height: 40px;
-  text-align: center;
-  margin : 20px
+    font-family: $font-stack-quicksand;
+    font-size: 18px;
+    padding: 5px;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    margin: 20px
 }
-
