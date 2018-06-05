@@ -5,7 +5,7 @@ canvas {
   display: block; }
 
 #particles-bg {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%; }
 
@@ -23,6 +23,9 @@ canvas {
 
 .heading {
   font-family: "rationale", sans-serif; }
+
+.heading-medium {
+  font-size: 35px; }
 
 .heading-large {
   font-size: 45px; }
@@ -130,10 +133,20 @@ canvas {
   text-align: center;
   margin: 20px; }
 
-#header {
-  margin: 150px;
+#header, .what-we-do {
   text-align: center;
   color: white !important; }
+
+#header {
+  margin: 150px; }
+
+.what-we-do {
+  background-color: rgba(46, 46, 46, 0.3) !important;
+  margin: 90px; }
+
+.what-we-do-desc {
+  padding: 30px 90px;
+  margin-bottom: 30px; }
 
 .typed-cursor {
   opacity: 0.7;
