@@ -1,0 +1,22 @@
+
+[all]
+
+use_spaces = True
+
+
+[all.python]
+
+language = python
+files = *.py, data_Insights_website/**/*.py
+default_actions = **: ApplyPatchAction
+
+[all.python.space_and_quotes]
+bears = SpaceConsistencyBear, QuotesBear
+preferred_quotation = '
+
+
+[all.python.yapf]
+
+bears = YapfBear
+blank_line_before_nested_class_or_def = True
+coalesce_brackets = True
