@@ -1,8 +1,8 @@
-
 %row {
     text-align: center;
     color: white !important;
 }
+
 #header {
     @extend %row;
     margin: 150px;
@@ -14,7 +14,7 @@
     margin: 90px;
 }
 
-.what-we-do-desc{
+.what-we-do-desc {
     padding: 30px 90px;
     margin-bottom: 30px;
 }

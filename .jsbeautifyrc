@@ -1,0 +1,21 @@
+{
+    "end_with_newline": true,
+    "indent_char": " ",
+    "indent_size": 4,
+    "preserve_newlines": true,
+    "html": {
+        "allowed_file_extensions": ["htm", "html"],
+        "brace_style": "collapse", 
+        "indent_handlebars": true,
+        "indent_inner_html": false,
+        "unformatted": ["a", "span", "img"],
+        "max_preserve_newlines": 10
+    },
+    "css": {
+        "allowed_file_extensions": ["css", "scss"],
+        "newline_between_rules": true,
+        "selector_separator": " ",
+        "selector_separator_newline": true,
+        "space_around_combinator": true
+    }
+}
