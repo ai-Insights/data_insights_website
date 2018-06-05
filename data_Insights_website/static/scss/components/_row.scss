@@ -1,0 +1,9 @@
+
+%row {
+    text-align: center;
+    color: white !important;
+}
+#header {
+    @extend %row;
+    margin: 150px;
+}
