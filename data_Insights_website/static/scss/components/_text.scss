@@ -11,7 +11,8 @@
 #type-out {
     display: inline;
 }
-.heading  {
+
+.heading {
     font-family: $font-stack-rationale;
 }
 
@@ -41,7 +42,8 @@
     @extend %quotes;
     font-style: italic;
 }
-.quote-author{
+
+.quote-author {
     @extend %quotes;
     color: $curious-blue;
 }
