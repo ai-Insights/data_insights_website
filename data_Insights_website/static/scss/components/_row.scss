@@ -7,3 +7,14 @@
     @extend %row;
     margin: 150px;
 }
+
+.what-we-do {
+    @extend %row;
+    background-color: $mine-shaft-transparent !important;
+    margin: 90px;
+}
+
+.what-we-do-desc{
+    padding: 30px 90px;
+    margin-bottom: 30px;
+}
