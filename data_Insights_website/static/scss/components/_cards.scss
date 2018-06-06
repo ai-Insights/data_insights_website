@@ -1,0 +1,36 @@
+
+.card-list {
+    margin: 0 auto 90px;
+    text-align: center;
+}
+%card{
+    text-align: center;
+    color: white;
+}
+
+@mixin generate-cards ($name, $color, $width, $height, $img-half:false) {
+    .card-#{$name} {
+        @extend %card;
+        background-color: $color;
+        width: $width;
+        height: $height;
+        margin: 0 35px;
+        display: inline-block;
+        .card-#{$name}-text {
+            font-family: $font-stack-quicksand;
+            padding: 30px 20px;
+        }
+    }
+    @if ($img-half != false) {
+        .card-#{$name} {
+            .card-#{$name}-img {
+                @extend %card;
+                height: ($height/2 - 10);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+}
+
+@include generate-cards('desc-small', $mine-shaft-transparent, 250px, 300px, true);
