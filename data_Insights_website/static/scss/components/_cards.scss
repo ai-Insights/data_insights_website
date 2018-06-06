@@ -26,6 +26,7 @@
             .card-#{$name}-img {
                 @extend %card;
                 height: ($height/2 - 10);
+                line-height: ($height/2 - 10);
                 background-repeat: no-repeat;
                 background-size: cover;
             }
@@ -33,4 +34,4 @@
     }
 }
 
-@include generate-cards('desc-small', $mine-shaft-transparent, 250px, 300px, true);
+@include generate-cards('desc-small', $mine-shaft-transparent, 255px, 340px, true);
