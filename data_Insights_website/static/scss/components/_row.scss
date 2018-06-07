@@ -3,13 +3,19 @@
     color: white;
 }
 
-#header {
+#header,
+#what-we-do,
+#get-involved,
+.desc-step {
     @extend %row;
+}
+
+#header {
     margin: 150px 100px;
 }
 
-.what-we-do, #get-involved {
-    @extend %row;
+#what-we-do,
+#get-involved {
     background-color: $mine-shaft-transparent;
     margin: 90px 90px 35px;
 }
@@ -20,7 +26,6 @@
 }
 
 .desc-step {
-    @extend %row;
     margin-top: 35px;
     margin-bottom: 100px;
 }
