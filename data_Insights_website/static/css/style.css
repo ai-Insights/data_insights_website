@@ -151,10 +151,13 @@ canvas {
 #header {
   margin: 150px 100px; }
 
-#what-we-do,
-#get-involved {
+#what-we-do {
   background-color: rgba(46, 46, 46, 0.3);
   margin: 90px 90px 35px; }
+
+#get-involved {
+  background-color: rgba(46, 46, 46, 0.3);
+  margin: 5px 90px 35px; }
 
 .row-desc {
   padding: 30px 90px;
