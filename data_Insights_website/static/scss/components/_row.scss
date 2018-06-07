@@ -8,13 +8,13 @@
     margin: 150px 100px;
 }
 
-.what-we-do {
+.what-we-do, #get-involved {
     @extend %row;
     background-color: $mine-shaft-transparent;
     margin: 90px 90px 35px;
 }
 
-.what-we-do-desc {
+.row-desc {
     padding: 30px 90px;
     margin-bottom: 30px;
 }
