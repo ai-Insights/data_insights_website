@@ -1,6 +1,6 @@
 %row {
     text-align: center;
-    color: white !important;
+    color: white;
 }
 
 #header {
@@ -10,7 +10,7 @@
 
 .what-we-do {
     @extend %row;
-    background-color: $mine-shaft-transparent !important;
+    background-color: $mine-shaft-transparent;
     margin: 90px 90px 35px;
 }
 
