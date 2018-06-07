@@ -1,6 +1,6 @@
 @mixin generate-colored-text($name, $color) {
     .colored-text-#{$name} {
-        color: $color !important;
+        color: $color;
     }
 }
 
@@ -25,12 +25,17 @@
 }
 
 .heading-xlarge {
-    font-size: 55px !important;
+    font-size: 55px;
 }
 
-.text-description {
+.text-description-medium {
     font-family: $font-stack-quicksand;
     font-size: 18px;
+}
+
+.text-description-small {
+    font-family: $font-stack-quicksand;
+    font-size: 16px;
 }
 
 %quotes {

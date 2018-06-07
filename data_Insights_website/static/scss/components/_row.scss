@@ -1,20 +1,35 @@
 %row {
     text-align: center;
-    color: white !important;
+    color: white;
+}
+
+#header,
+#what-we-do,
+#get-involved,
+.desc-step {
+    @extend %row;
 }
 
 #header {
-    @extend %row;
-    margin: 150px;
+    margin: 150px 100px;
 }
 
-.what-we-do {
-    @extend %row;
-    background-color: $mine-shaft-transparent !important;
-    margin: 90px;
+#what-we-do {
+    background-color: $mine-shaft-transparent;
+    margin: 90px 90px 35px;
 }
 
-.what-we-do-desc {
+#get-involved {
+    background-color: $mine-shaft-transparent;
+    margin: 5px 90px 35px;
+}
+
+.row-desc {
     padding: 30px 90px;
     margin-bottom: 30px;
+}
+
+.desc-step {
+    margin-top: 35px;
+    margin-bottom: 100px;
 }
