@@ -14,13 +14,13 @@ canvas {
   height: 2px !important; }
 
 .colored-text-red {
-  color: #ff0000 !important; }
+  color: #ff0000; }
 
 .colored-text-curious-blue {
-  color: #2098d1 !important; }
+  color: #2098d1; }
 
 .colored-text-golden-grass {
-  color: #E2A42C !important; }
+  color: #E2A42C; }
 
 #type-out {
   display: inline; }
@@ -35,7 +35,7 @@ canvas {
   font-size: 45px; }
 
 .heading-xlarge {
-  font-size: 55px !important; }
+  font-size: 55px; }
 
 .text-description-medium {
   font-family: "quicksand", sans-serif;
@@ -143,13 +143,13 @@ canvas {
 
 #header, .what-we-do, .desc-step {
   text-align: center;
-  color: white !important; }
+  color: white; }
 
 #header {
   margin: 150px 100px; }
 
 .what-we-do {
-  background-color: rgba(46, 46, 46, 0.3) !important;
+  background-color: rgba(46, 46, 46, 0.3);
   margin: 90px 90px 35px; }
 
 .what-we-do-desc {
