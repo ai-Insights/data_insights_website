@@ -14,10 +14,14 @@
     margin: 150px 100px;
 }
 
-#what-we-do,
-#get-involved {
+#what-we-do {
     background-color: $mine-shaft-transparent;
     margin: 90px 90px 35px;
+}
+
+#get-involved {
+    background-color: $mine-shaft-transparent;
+    margin: 5px 90px 35px;
 }
 
 .row-desc {
