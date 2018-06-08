@@ -199,21 +199,21 @@ canvas {
   margin: 0 auto 90px;
   text-align: center; }
 
-.card-desc-small, .card-desc-small .card-desc-small-img {
+.card-sm, .card-sm .card-sm-img {
   text-align: center;
   color: white; }
 
-.card-desc-small {
+.card-sm {
   background-color: rgba(46, 46, 46, 0.3);
   width: 255px;
   height: 340px;
   margin: 0 35px;
   display: inline-block; }
-  .card-desc-small .card-desc-small-text {
+  .card-sm .card-sm-text {
     font-family: "quicksand", sans-serif;
     padding: 30px 20px; }
 
-.card-desc-small .card-desc-small-img {
+.card-sm .card-sm-img {
   height: 160px;
   line-height: 160px;
   background-repeat: no-repeat;
