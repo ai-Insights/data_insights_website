@@ -16,19 +16,16 @@
         height: $height;
         margin: 0 35px;
         display: inline-block;
-        .card-#{$name}-text {
+        .card-#{$name}-content {
             font-family: $font-stack-quicksand;
             padding: 30px 20px;
         }
     }
     @if ($img-half != false) {
         .card-#{$name} {
-            .card-#{$name}-img {
-                @extend %card;
+            .card-#{$name}-top {
                 height: ($height/2 - 10);
                 line-height: ($height/2 - 10);
-                background-repeat: no-repeat;
-                background-size: cover;
             }
         }
     }
