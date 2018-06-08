@@ -34,4 +34,5 @@
     }
 }
 
-@include generate-cards('desc-small', $mine-shaft-transparent, 255px, 340px, true);
+
+@include generate-cards('sm', $mine-shaft-transparent, 255px, 340px, true);
