@@ -38,17 +38,7 @@
     font-size: 16px;
 }
 
-%quotes {
-    font-family: $font-stack-quicksand;
-    font-size: 14px;
-}
-
 .quote {
-    @extend %quotes;
     font-style: italic;
 }
 
-.quote-author {
-    @extend %quotes;
-    color: $curious-blue;
-}
