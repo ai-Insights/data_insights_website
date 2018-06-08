@@ -34,7 +34,7 @@ canvas {
 .heading-lg {
   font-size: 45px; }
 
-.heading-xlg {
+.heading-xl {
   font-size: 55px; }
 
 .text-md {
@@ -45,15 +45,8 @@ canvas {
   font-family: "quicksand", sans-serif;
   font-size: 16px; }
 
-.quote, .quote-author {
-  font-family: "quicksand", sans-serif;
-  font-size: 14px; }
-
 .quote {
   font-style: italic; }
-
-.quote-author {
-  color: #2098d1; }
 
 .navbar {
   margin-top: 8px;
@@ -230,5 +223,5 @@ canvas {
   bottom: -35px; }
 
 #quotes-carousel {
-  width: 750px;
+  width: 830px;
   margin: auto; }
