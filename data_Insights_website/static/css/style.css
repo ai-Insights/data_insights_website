@@ -28,32 +28,25 @@ canvas {
 .heading {
   font-family: "rationale", sans-serif; }
 
-.heading-medium {
+.heading-md {
   font-size: 35px; }
 
-.heading-large {
+.heading-lg {
   font-size: 45px; }
 
-.heading-xlarge {
+.heading-xl {
   font-size: 55px; }
 
-.text-description-medium {
+.text-md {
   font-family: "quicksand", sans-serif;
   font-size: 18px; }
 
-.text-description-small {
+.text-sm {
   font-family: "quicksand", sans-serif;
   font-size: 16px; }
 
-.quote, .quote-author {
-  font-family: "quicksand", sans-serif;
-  font-size: 14px; }
-
 .quote {
   font-style: italic; }
-
-.quote-author {
-  color: #2098d1; }
 
 .navbar {
   margin-top: 8px;
@@ -144,6 +137,7 @@ canvas {
 #header,
 #what-we-do,
 #get-involved,
+#footer,
 .desc-step {
   text-align: center;
   color: white; }
@@ -159,6 +153,10 @@ canvas {
   background-color: rgba(46, 46, 46, 0.3);
   margin: 5px 90px 35px; }
 
+#footer {
+  background-color: #2e2e2e;
+  margin: 50px 50px 5px; }
+
 .row-desc {
   padding: 30px 90px;
   margin-bottom: 30px; }
@@ -166,6 +164,10 @@ canvas {
 .desc-step {
   margin-top: 35px;
   margin-bottom: 100px; }
+
+.div-fill {
+  background-repeat: no-repeat;
+  background-size: cover; }
 
 .typed-cursor {
   opacity: 0.7;
@@ -199,25 +201,23 @@ canvas {
   margin: 0 auto 90px;
   text-align: center; }
 
-.card-desc-small, .card-desc-small .card-desc-small-img {
+.card-sm {
   text-align: center;
   color: white; }
 
-.card-desc-small {
+.card-sm {
   background-color: rgba(46, 46, 46, 0.3);
   width: 255px;
   height: 340px;
   margin: 0 35px;
   display: inline-block; }
-  .card-desc-small .card-desc-small-text {
+  .card-sm .card-sm-content {
     font-family: "quicksand", sans-serif;
     padding: 30px 20px; }
 
-.card-desc-small .card-desc-small-img {
+.card-sm .card-sm-top {
   height: 160px;
-  line-height: 160px;
-  background-repeat: no-repeat;
-  background-size: cover; }
+  line-height: 160px; }
 
 .carousel-indicators li {
   width: 7px;
@@ -228,5 +228,5 @@ canvas {
   bottom: -35px; }
 
 #quotes-carousel {
-  width: 750px;
+  width: 830px;
   margin: auto; }

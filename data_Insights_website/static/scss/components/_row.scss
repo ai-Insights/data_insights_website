@@ -6,6 +6,7 @@
 #header,
 #what-we-do,
 #get-involved,
+#footer,
 .desc-step {
     @extend %row;
 }
@@ -24,6 +25,11 @@
     margin: 5px 90px 35px;
 }
 
+#footer {
+    background-color: $mine-shaft;
+    margin: 50px 50px 5px;
+}
+
 .row-desc {
     padding: 30px 90px;
     margin-bottom: 30px;
@@ -32,4 +38,9 @@
 .desc-step {
     margin-top: 35px;
     margin-bottom: 100px;
+}
+
+.div-fill {
+    background-repeat: no-repeat;
+    background-size: cover;
 }
