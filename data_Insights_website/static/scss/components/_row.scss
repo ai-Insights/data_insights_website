@@ -6,6 +6,7 @@
 #header,
 #what-we-do,
 #get-involved,
+#footer,
 .desc-step {
     @extend %row;
 }
@@ -22,6 +23,11 @@
 #get-involved {
     background-color: $mine-shaft-transparent;
     margin: 5px 90px 35px;
+}
+
+#footer {
+    background-color: $mine-shaft;
+    margin: 50px 50px 5px;
 }
 
 .row-desc {
