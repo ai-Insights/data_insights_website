@@ -44,3 +44,18 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.sticky-top {
+    position: fixed;
+    top: 0.25rem;
+}
+
+%container {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.docs-container {
+    @extend %container;
+    margin-top: 6rem !important;
+}

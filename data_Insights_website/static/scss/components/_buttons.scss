@@ -19,6 +19,9 @@
         }
     }
     @else {
+        .button-#{$name}.active {
+            color: white !important;
+        }
         .button-#{$name} {
             color: $color !important;
         }
@@ -30,6 +33,10 @@
 
 .button {
     border-radius: 3px;
+}
+
+.active-btn {
+    background-color: $curious-blue;
 }
 
 @include generate-button('red-sweep-to-bottom', $red, 'hvr-sweep-to-bottom');

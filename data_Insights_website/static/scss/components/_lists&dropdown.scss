@@ -1,0 +1,72 @@
+li.list-group-item {
+    background: rgba(0, 0, 0, 0) !important;
+    border-bottom: 0.15rem solid rgba(255, 255, 255, 0.5);
+    line-height: 4rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+li.list-group-item > span {
+    color: white;
+    display: flex;
+    padding-left: 0.2rem;
+}
+li.list-group-item > i {
+    position: absolute;
+    right: 1.3rem;
+    top: 42%;
+}
+ul.list-group > li:first-child {
+    border-top: 0.15rem solid rgba(255, 255, 255, 0.5);
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: $mine-shaft;
+    min-width: 5rem;
+    max-width: 16.5rem !important;
+    box-sizing: border-box;
+    left: 2rem;
+}
+
+/* put borders on the top and bottom of  all the list link elements*/
+
+div.dropdown-content > a:first-child {
+    border-top: 0.15rem solid rgba(255, 255, 255, 0.5);
+}
+div.dropdown-content > a {
+    border-bottom: 0.15rem solid rgba(255, 255, 255, 0.5);
+}
+
+/* styling the dropdown contents by inheriting from ms-text */
+
+div.dropdown-content > a.ms-text {
+    line-height: 3rem !important;
+    padding-top: 1rem;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {
+    background-color: black;
+}
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

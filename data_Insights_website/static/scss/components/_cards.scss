@@ -3,22 +3,25 @@
     margin: 0 auto 90px;
     text-align: center;
 }
+.lg-card-header {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
 %card{
     text-align: center;
-    color: white;
+    color: white !important;
 }
-
-@mixin generate-cards ($name, $color, $width, $height, $img-half:false) {
+@mixin generate-cards ($name, $bg-color, $width, $height, $img-half:false) {
     .card-#{$name} {
         @extend %card;
-        background-color: $color;
+        background-color: $bg-color;
         width: $width;
         height: $height;
-        margin: 0 35px;
+        margin: 0 4rem;
         display: inline-block;
         .card-#{$name}-content {
             font-family: $font-stack-quicksand;
-            padding: 30px 20px;
+            padding: 1rem 2rem;
         }
     }
     @if ($img-half != false) {
@@ -32,4 +35,5 @@
 }
 
 
-@include generate-cards('sm', $mine-shaft-transparent, 255px, 340px, true);
+@include generate-cards('sm', $mine-shaft-transparent,  255px, 340px, true);
+@include generate-cards('lg', $mine-shaft-transparent, 100%, null);

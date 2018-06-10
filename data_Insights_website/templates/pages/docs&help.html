@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <!-- Hover CSS-->
+    <link rel="stylesheet" href="../../static/css/hover-min.css">
+    <!-- Website's CSS-->
+
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <!-- Particles.js -->
+    <script src="../../static/js/particles.min.js"></script>
+    <!-- Fonts js-->
+    <script src="https://use.edgefonts.net/rationale;quicksand.js"></script>
+    <!--Icons from font awsome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="../../static/js/typed.min.js"></script>
+
+    <title> </title>
+</head>
+
+<body>
+
+    <!-- Particles background -->
+    <script>
+        particlesJS.load('particles-bg', 'particles-configs/particlesjs-config.json', function() {
+            console.log('callback - particles.js config loaded');
+        });
+
+    </script>
+    <div id="particles-bg"></div>
+
+    <!-- Page content-->
+    <div class="container-fluid sticky-top" id="page-content">
+
+        <!--Navigation bar-->
+        <div class="navbar navbar-expand-sm">
+            <!--Logo-->
+            <a href="#" class="navbar-brand">
+                <img src="../../static/img/logo.png" alt="">
+            </a>
+
+            <button class="navbar-toggler" type='button' data-toggle='collapse' data-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--Navbar items-->
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link hvr-overline-from-center">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link hvr-overline-from-center">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#get-involved" class="nav-link hvr-overline-from-center">Get Involved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#meet-community" class="nav-link hvr-overline-from-center">Our Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link hvr-sweep-to-bottom  button-red-sweep-to-bottom button" role=button>Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link hvr-sweep-to-top button-blue-sweep-to-top button active active-btn">Docs &amp; Help</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container docs-container ">
+        <div class="card text-center card-lg">
+            <div class="card-header d-flex justify-content-center lg-card-header">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" onclick="openNow(event, 'learn')" href="#">Learning algorithms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="openNow(event, 'visuals')" href="#" >visualisations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " onclick="openNow(event, 'stats')" href="#"  >statistical values</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Learning algorithms-->
+            <div id="learn" class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-4 col-4">
+                            <ul class="list-group list-borderless">
+                                <li class="list-group-item dropdown">
+                                    <span> Cras justo odio </span>
+                                    <i class="fas fa-plus"></i>
+                                    <div class="dropdown-content ">
+                                        <a class="ms-text" href="#">Lorem ipsum dolor sit amet, consectetur tu est </a>
+                                        <a class="ms-text" href="#">Link 2</a>
+                                        <a class="ms-text" href="#">Link 3</a>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <span> Dapibus ac facilisis </span> </li>
+                                <li class="list-group-item">
+                                    <span> Morbi leo risus </span></li>
+                                <li class="list-group-item">
+                                    <span>Porta ac consectetur </span> </li>
+                                <li class="list-group-item">
+                                    <span>Vestibulum at eros</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-8">
+                            <div class="card-title">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem tempore dolores fuga voluptatum
+                            </div>
+                            <p id="info">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt maiores ad, odio modi consequatur, reiciendis qui repellat distinctio eos ducimus provident reprehenderit voluptatem neque illo voluptate veniam fuga et! Dolorum. Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Dolorum sed, maiores hic maxime nulla provident sint at, voluptatem voluptate in explicabo odit doloribus molestiae optio ipsa incidunt itaque, repellat ratione.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--visuals-->
+            <div id="visuals" class="card-body" style="display: none;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-4 col-4">
+                            <ul class="list-group list-borderless">
+                                <li class="list-group-item container">
+                                    <span class="row">
+                                       <div class="col-lg-4 img-card">
+                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h5 class="ms-title" >Bar Chart</h5>
+                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
+                                        </div> </span>
+                                </li>
+                                <li class="list-group-item container">
+                                    <span class="row">
+                                       <div class="col-lg-4 img-card">
+                                            <img src="/img/doughnut.png" alt="line chart" class="ms-img"> 
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h5 class="ms-title" >Doughnut Chart</h5>
+                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
+                                        </div> </span>
+                                </li>
+                                <li class="list-group-item container">
+                                    <span class="row">
+                                       <div class="col-lg-4 img-card">
+                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h5 class="ms-title" >Scatter plot</h5>
+                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
+                                        </div> </span>
+                                </li>
+                                <li class="list-group-item container">
+                                    <span class="row">
+                                       <div class="col-lg-4 img-card">
+                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h5 class="ms-title" >Area Chart</h5>
+                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
+                                        </div> </span>
+                                </li>
+                                <li class="list-group-item container">
+                                    <span class="row">
+                                       <div class="col-lg-4 img-card">
+                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h5 class="ms-title" >Bar Chart</h5>
+                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
+                                        </div> </span>
+                                </li>
+            
+                            </ul>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-8">
+                            <div class="card-title">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem tempore dolores fuga voluptatum
+                            </div>
+                            <img src="/img/line.png" alt="line chart" class="img-card-lg">
+                            <p id="info" class="md-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt maiores ad, odio modi consequatur, reiciendis qui repellat distinctio eos ducimus provident reprehenderit voluptatem neque illo voluptate veniam fuga et! Dolorum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum sed, maiores hic maxime nulla provident sint at, voluptatem voluptate in explicabo odit doloribus molestiae optio ipsa incidunt itaque, repellat ratione.
+                            </p>
+                            <button class="btn btn-outline">Check It Out</button>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- statistics algorithms-->
+            <div id="stats" class="card-body" style="display: none;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-4 col-4">
+                            <ul class="list-group list-borderless">
+                                <li class="list-group-item dropdown">
+                                    <span> Cras justo odio </span></li>
+                                <li class="list-group-item">
+                                    <span> Dapibus ac facilisis </span> </li>
+                                <li class="list-group-item">
+                                    <span> Morbi leo risus </span></li>
+                                <li class="list-group-item">
+                                    <span>Porta ac consectetur </span> </li>
+                                <li class="list-group-item">
+                                    <span>Vestibulum at eros</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-8 col-sm-8 col-8">
+                            <div class="card-title">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem tempore dolores fuga voluptatum
+                            </div>
+                            <p id="info">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt maiores ad, odio modi consequatur, reiciendis qui repellat distinctio eos ducimus provident reprehenderit voluptatem neque illo voluptate veniam fuga et! Dolorum. Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Dolorum sed, maiores hic maxime nulla provident sint at, voluptatem voluptate in explicabo odit doloribus molestiae optio ipsa incidunt itaque, repellat ratione.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="../../static/js/tabs.js"></script>
+</body>
+
+</html>
