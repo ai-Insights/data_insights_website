@@ -207,7 +207,7 @@ h2.ms-title {
 #about,
 #get-involved,
 #footer,
-.desc-step {
+#data-collection .desc-step {
   text-align: center;
   color: white; }
 
@@ -225,6 +225,9 @@ h2.ms-title {
 #footer {
   background-color: #2e2e2e;
   margin: 50px 50px 5px; }
+
+#data-collection {
+  margin: 100px 30px; }
 
 .row-desc {
   padding: 30px 90px;
@@ -335,6 +338,25 @@ ul.list-group > li:first-child {
 .dropdown {
   position: relative;
   display: inline-block; }
+
+#data-input .list-group-item {
+  margin-bottom: 5px !important;
+  font-family: "quicksand", sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(46, 46, 46, 0.3) !important;
+  outline: 0; }
+
+#data-input .list-group-item.active {
+  z-index: 2;
+  color: white;
+  background-color: rgba(46, 46, 46, 0.8) !important;
+  border-color: #2e2e2e !important; }
+
+#data-input .list-group-item:nth-child(even) i {
+  color: #ff0000; }
+
+#data-input .list-group-item:nth-child(odd) i {
+  color: #2098d1; }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {

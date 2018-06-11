@@ -7,6 +7,7 @@
 #about,
 #get-involved,
 #footer,
+#data-collection
 .desc-step {
     @extend %row;
 }
@@ -28,6 +29,10 @@
 #footer {
     background-color: $mine-shaft;
     margin: 50px 50px 5px;
+}
+
+#data-collection {
+    margin: 100px 30px;
 }
 
 .row-desc {
