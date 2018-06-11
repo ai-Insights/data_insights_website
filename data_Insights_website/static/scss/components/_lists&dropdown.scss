@@ -23,6 +23,28 @@ ul.list-group > li:first-child {
     display: inline-block;
 }
 
+#data-input {
+
+    .list-group-item {
+        margin-bottom: 5px !important;
+        font-family: $font-stack-quicksand;
+        color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(46, 46, 46, 0.3) !important;
+        outline: 0;
+    }
+    .list-group-item.active {
+        z-index: 2;
+        color: white;
+        background-color:rgba(46, 46, 46, 0.8) !important;
+        border-color: #2e2e2e !important;
+    }
+    .list-group-item:nth-child(even) i {
+        color: $red;
+    }
+    .list-group-item:nth-child(odd) i {
+        color: $curious-blue;
+    }
+}
 /* Dropdown Content (Hidden by Default) */
 
 .dropdown-content {
