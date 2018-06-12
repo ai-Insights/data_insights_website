@@ -1,6 +1,6 @@
 li.list-group-item {
     background: rgba(0, 0, 0, 0) !important;
-    border-bottom: 0.15rem solid rgba(255, 255, 255, 0.5);
+    border-bottom: 0.15rem solid $white-transparent;
     line-height: 4rem;
     font-size: 1.25rem;
     cursor: pointer;
@@ -16,7 +16,7 @@ li.list-group-item > i {
     top: 42%;
 }
 ul.list-group > li:first-child {
-    border-top: 0.15rem solid rgba(255, 255, 255, 0.5);
+    border-top: 0.15rem solid $white-transparent;
 }
 .dropdown {
     position: relative;
@@ -26,7 +26,7 @@ ul.list-group > li:first-child {
 #upload {
     width: 100%;
     height: 245px;
-    color: rgba(255, 255, 255, 0.5);
+    color: $white-transparent;
     border: 2px dashed $mine-shaft;
     line-height: 245px;
     text-align: center
@@ -41,7 +41,7 @@ ul.list-group > li:first-child {
     .list-group-item {
         margin-bottom: 5px !important;
         font-family: $font-stack-quicksand;
-        color: rgba(255, 255, 255, 0.5);
+        color: $white-transparent;
         background-color: $mine-shaft-transparent !important;
         outline: 0;
     }
@@ -49,7 +49,7 @@ ul.list-group > li:first-child {
         z-index: 2;
         color: white;
         background-color:rgba(46, 46, 46, 0.8) !important;
-        border-color: #2e2e2e !important;
+        border-color: $mine-shaft !important;
     }
     .list-group-item:nth-child(even) i {
         color: $red;
@@ -73,10 +73,10 @@ ul.list-group > li:first-child {
 /* put borders on the top and bottom of  all the list link elements*/
 
 div.dropdown-content > a:first-child {
-    border-top: 0.15rem solid rgba(255, 255, 255, 0.5);
+    border-top: 0.15rem solid $white-transparent;
 }
 div.dropdown-content > a {
-    border-bottom: 0.15rem solid rgba(255, 255, 255, 0.5);
+    border-bottom: 0.15rem solid $white-transparent;
 }
 
 /* styling the dropdown contents by inheriting from ms-text */
