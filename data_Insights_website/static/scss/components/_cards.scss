@@ -11,14 +11,14 @@
     text-align: center;
     color: white !important;
 }
-@mixin generate-cards ($name, $bg-color, $width, $height, $img-half:false) {
+@mixin generate-cards ($name, $bg-color, $width, $height, $display:inline-block, $img-half:false) {
     .card-#{$name} {
         @extend %card;
         background-color: $bg-color;
         width: $width;
         height: $height;
         margin: 0 4rem;
-        display: inline-block;
+        display: $display;
         .card-#{$name}-content {
             font-family: $font-stack-quicksand;
             padding: 1rem 2rem;
@@ -35,5 +35,11 @@
 }
 
 
-@include generate-cards('sm', $mine-shaft-transparent,  255px, 340px, true);
-@include generate-cards('lg', $mine-shaft-transparent, 100%, null);
+@include generate-cards('sm', $mine-shaft-transparent,  255px, 340px, inline-block, true);
+@include generate-cards('lg', $mine-shaft-transparent, 100%, 100%, block);
+.card-lg{
+    margin-left: auto;
+}
+.li-col{
+    padding-left: 0rem;
+}

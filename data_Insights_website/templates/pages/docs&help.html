@@ -24,7 +24,7 @@
     <title> </title>
 </head>
 
-<body>
+<body style="overflow: hidden;">
 
     <!-- Particles background -->
     <script>
@@ -36,7 +36,7 @@
     <div id="particles-bg"></div>
 
     <!-- Page content-->
-    <div class="container-fluid sticky-top" id="page-content">
+    <div class="container-fluid" id="page-content">
 
         <!--Navigation bar-->
         <div class="navbar navbar-expand-sm">
@@ -46,7 +46,7 @@
             </a>
 
             <button class="navbar-toggler" type='button' data-toggle='collapse' data-target="#nav">
-                <span class="navbar-toggler-icon"></span>
+                <a class="navbar-toggler-icon"></a>
             </button>
 
             <!--Navbar items-->
@@ -74,55 +74,87 @@
             </div>
         </div>
     </div>
-    <div class="container docs-container ">
+    <div class="container-fluid docs-container ">
         <div class="card text-center card-lg">
             <div class="card-header d-flex justify-content-center lg-card-header">
                 <ul class="nav nav-pills card-header-pills">
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="openNow(event, 'learn')" href="#">Learning algorithms</a>
+                        <a class="nav-link active" onclick="openNow(event, 'learn', 'card-body','nav-link')" href="#">Learning algorithms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="openNow(event, 'visuals')" href="#" >visualisations</a>
+                        <a class="nav-link" onclick="openNow(event, 'visuals', 'card-body','nav-link')" href="#">visualisations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " onclick="openNow(event, 'stats')" href="#"  >statistical values</a>
+                        <a class="nav-link " onclick="openNow(event, 'stats', 'card-body','nav-link')" href="#">statistical values</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Learning algorithms-->
             <div id="learn" class="card-body">
-                <div class="container">
+                <div class="container-fluid">
+                    <div class="row" style="flex-direction: row;">
+                        <ul id="breadCrum" style="list-style-type: none;">
+                            <li><a onclick="breadCrumOpen(event, 'nav-link')" href="">All</a></li>
+                        </ul>
+                    </div>
                     <div class="row">
-                        <div class="col-lg-4 col-sm-4 col-4">
-                            <ul class="list-group list-borderless">
+                        <div class="col-lg-3 col-sm-3 col-3">
+                            <ul class="list-group main1">
                                 <li class="list-group-item dropdown">
-                                    <span> Cras justo odio </span>
-                                    <i class="fas fa-plus"></i>
-                                    <div class="dropdown-content ">
-                                        <a class="ms-text" href="#">Lorem ipsum dolor sit amet, consectetur tu est </a>
-                                        <a class="ms-text" href="#">Link 2</a>
-                                        <a class="ms-text" href="#">Link 3</a>
-                                    </div>
+                                    <a onclick="openNow(event, 'learn-1', 'main1','list-group-item')"> Cras justo odio </a>
+                                    <i class="fas fa-ellipsis-h"></i>
                                 </li>
+                                <li class="list-group-item">
+                                    <a> Dapibus ac facilisis </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
+                                <li class="list-group-item">
+                                    <a> Morbi leo risus </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
+                                <li class="list-group-item">
+                                    <a>Porta ac consectetur </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
+                                <li class="list-group-item">
+                                    <a>Vestibulum at eros</a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
+                            </ul>
+                            <ul id="learn-1" class="list-group sub-menu" style="display: none;">
 
                                 <li class="list-group-item">
-                                    <span> Dapibus ac facilisis </span> </li>
+                                    <a onclick="openNow(event, 'learn-1-content', 'learn-main','list-group-item')"> Dapibus ac facilisis </a>
+                                </li>
                                 <li class="list-group-item">
-                                    <span> Morbi leo risus </span></li>
+                                    <a> Morbi leo risus </a>
+                                </li>
                                 <li class="list-group-item">
-                                    <span>Porta ac consectetur </span> </li>
+                                    <a>Porta ac consectetur </a>
+                                </li>
                                 <li class="list-group-item">
-                                    <span>Vestibulum at eros</span></li>
+                                    <a>Vestibulum at eros</a>
+                                </li>
                             </ul>
                         </div>
-                        <div class="col-lg-8 col-sm-8 col-8">
+                        <div id="learn-1-main" class="col-lg-9 col-sm-9 col-9 learn-main">
                             <div class="card-title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem tempore dolores fuga voluptatum
+                                Lorem ipsum dolor sit amet, consectetur
                             </div>
                             <p id="info">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt maiores ad, odio modi consequatur, reiciendis qui repellat distinctio eos ducimus provident reprehenderit voluptatem neque illo voluptate veniam fuga et! Dolorum. Lorem ipsum dolor sit
                                 amet, consectetur adipisicing elit. Dolorum sed, maiores hic maxime nulla provident sint at, voluptatem voluptate in explicabo odit doloribus molestiae optio ipsa incidunt itaque, repellat ratione.
+                            </p>
+
+                        </div>
+                        <div id="learn-1-content" class="col-lg-9 col-sm-9 col-9" style="display: none;">
+                            <div class="card-title">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem tempore dolores fuga voluptatum
+                            </div>
+                            <p id="info">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt maiores ad, odio modi consequatur, reiciendis qui repellat distinctio 
+                                amet, consectetur adipisicing elit. 
                             </p>
 
                         </div>
@@ -131,73 +163,78 @@
             </div>
             <!--visuals-->
             <div id="visuals" class="card-body" style="display: none;">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-4 col-4">
+                        <div class="col-lg-3 col-sm-3 col-3">
                             <ul class="list-group list-borderless">
-                                <li class="list-group-item container">
-                                    <span class="row">
-                                       <div class="col-lg-4 img-card">
-                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-4 img-card">
+                                            <img src="../../static/img/bar.png" class="ms-img">
                                         </div>
-                                        <div class="col-lg-8">
-                                            <h5 class="ms-title" >Bar Chart</h5>
-                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                                        </div> </span>
-                                </li>
-                                <li class="list-group-item container">
-                                    <span class="row">
-                                       <div class="col-lg-4 img-card">
-                                            <img src="/img/doughnut.png" alt="line chart" class="ms-img"> 
+                                        <div class="col-lg-8 li-col">
+                                            <a class="li-viz-text">Bar Chart</a>
+                                            <i class="fas fa-ellipsis-h"></i>
                                         </div>
-                                        <div class="col-lg-8">
-                                            <h5 class="ms-title" >Doughnut Chart</h5>
-                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                                        </div> </span>
+                                    </div>
                                 </li>
-                                <li class="list-group-item container">
-                                    <span class="row">
-                                       <div class="col-lg-4 img-card">
-                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-4 img-card">
+                                            <img src="../../static/img/plot.png" class="ms-img">
                                         </div>
-                                        <div class="col-lg-8">
-                                            <h5 class="ms-title" >Scatter plot</h5>
-                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                                        </div> </span>
-                                </li>
-                                <li class="list-group-item container">
-                                    <span class="row">
-                                       <div class="col-lg-4 img-card">
-                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                        <div class="col-lg-8 li-col">
+                                            <a class="li-viz-text">Doughnut Chart</a>
+                                            <i class="fas fa-ellipsis-h"></i>
                                         </div>
-                                        <div class="col-lg-8">
-                                            <h5 class="ms-title" >Area Chart</h5>
-                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                                        </div> </span>
+                                    </div>
                                 </li>
-                                <li class="list-group-item container">
-                                    <span class="row">
-                                       <div class="col-lg-4 img-card">
-                                            <img src="/img/bar.png" alt="line chart" class="ms-img"> 
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-4 img-card">
+                                            <img src="../../static/img/scatter.png" class="ms-img">
                                         </div>
-                                        <div class="col-lg-8">
-                                            <h5 class="ms-title" >Bar Chart</h5>
-                                            <p class="ms-text">Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                                        </div> </span>
+                                        <div class="col-lg-8 li-col">
+                                            <a class="li-viz-text">Scatter plot</a>
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </div>
+                                    </div>
                                 </li>
-            
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-4 img-card">
+                                            <img src="/img/bar.png" class="ms-img">
+                                        </div>
+                                        <div class="col-lg-8 li-col">
+                                            <a class="li-viz-text">Area Chart</a>
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-lg-4 img-card">
+                                            <img src="/img/bar.png" alt="line chart" class="ms-img">
+                                        </div>
+                                        <div class="col-lg-8 li-col">
+                                            <a class="li-viz-text">Bar Chart</a>
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
-                        <div class="col-lg-8 col-sm-8 col-8">
+                        <div class="col-lg-9 col-sm-9 col-9">
                             <div class="card-title">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem tempore dolores fuga voluptatum
                             </div>
                             <img src="/img/line.png" alt="line chart" class="img-card-lg">
                             <p id="info" class="md-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt maiores ad, odio modi consequatur, reiciendis qui repellat distinctio eos ducimus provident reprehenderit voluptatem neque illo voluptate veniam fuga et! Dolorum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum sed, maiores hic maxime nulla provident sint at, voluptatem voluptate in explicabo odit doloribus molestiae optio ipsa incidunt itaque, repellat ratione.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt maiores ad, odio modi consequatur, reiciendis qui repellat distinctio eos ducimus provident reprehenderit voluptatem neque illo voluptate veniam fuga et! Dolorum. Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Dolorum sed, maiores hic maxime nulla provident sint at, voluptatem voluptate in explicabo odit doloribus molestiae optio ipsa incidunt itaque, repellat ratione.
                             </p>
                             <button class="btn btn-outline">Check It Out</button>
-            
+
                         </div>
                     </div>
                 </div>
@@ -205,23 +242,33 @@
 
             <!-- statistics algorithms-->
             <div id="stats" class="card-body" style="display: none;">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-4 col-4">
+                        <div class="col-lg-3 col-sm-3 col-3">
                             <ul class="list-group list-borderless">
                                 <li class="list-group-item dropdown">
-                                    <span> Cras justo odio </span></li>
+                                    <a> Cras justo odio </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
                                 <li class="list-group-item">
-                                    <span> Dapibus ac facilisis </span> </li>
+                                    <a> Dapibus ac facilisis </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
                                 <li class="list-group-item">
-                                    <span> Morbi leo risus </span></li>
+                                    <a> Morbi leo risus </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
                                 <li class="list-group-item">
-                                    <span>Porta ac consectetur </span> </li>
+                                    <a>Porta ac consectetur </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
                                 <li class="list-group-item">
-                                    <span>Vestibulum at eros</span></li>
+                                    <a>Vestibulum at eros</a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
                             </ul>
                         </div>
-                        <div class="col-lg-8 col-sm-8 col-8">
+                        <div class="col-lg-9 col-sm-9 col-9">
                             <div class="card-title">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem tempore dolores fuga voluptatum
                             </div>
