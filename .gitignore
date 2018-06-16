@@ -1,0 +1,37 @@
+### Python
+*.py[cod]
+__pycache__/
+*$py.class
+.python-version
+.venv
+venv/
+ENV/
+
+### Django environ
+.env
+
+### coala
+*.orig
+
+### VisualStudioCode 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### Linux
+# KDE directory preferences
+.directory
+.Trash-*
+.nfs*
+
+### Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+*.lnk
+
+### macOs
+*.DS_Store
