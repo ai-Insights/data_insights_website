@@ -7,8 +7,9 @@ __pycache__/
 venv/
 ENV/
 
-### Django environ
+### Django
 .env
+staticfiles/
 
 ### coala
 *.orig
