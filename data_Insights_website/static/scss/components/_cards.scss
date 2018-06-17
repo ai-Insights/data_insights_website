@@ -1,0 +1,45 @@
+
+.card-list {
+    margin: 0 auto 90px;
+    text-align: center;
+}
+.lg-card-header {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+%card{
+    text-align: center;
+    color: white !important;
+}
+@mixin generate-cards ($name, $bg-color, $width, $height, $display:inline-block, $img-half:false) {
+    .card-#{$name} {
+        @extend %card;
+        background-color: $bg-color;
+        width: $width;
+        height: $height;
+        margin: 0 4rem;
+        display: $display;
+        .card-#{$name}-content {
+            font-family: $font-stack-quicksand;
+            padding: 1rem 2rem;
+        }
+    }
+    @if ($img-half != false) {
+        .card-#{$name} {
+            .card-#{$name}-top {
+                height: ($height/2 - 10);
+                line-height: ($height/2 - 10);
+            }
+        }
+    }
+}
+
+
+@include generate-cards('sm', $mine-shaft-transparent,  255px, 340px, inline-block, true);
+@include generate-cards('lg', $mine-shaft-transparent, 100%, 100%, block);
+.card-lg{
+    margin-left: auto;
+}
+.li-col{
+    padding-left: 0rem;
+}

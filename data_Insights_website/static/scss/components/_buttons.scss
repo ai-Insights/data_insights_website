@@ -1,0 +1,60 @@
+@mixin generate-button($name, $color, $hvr) {
+    .button-#{$name} {
+        border: solid 0.5px $color;
+        &:hover,
+        &:focus {
+            color: white !important;
+            transition-delay: -4ms;
+            outline: 0;
+        }
+        &:active {
+            vertical-align: top;
+            padding: 8px 13px 6px;
+        }
+    }
+    @if ($hvr=='') {
+        .button-#{$name} {
+            background-color: $color;
+            color: white;
+        }
+    }
+    @else {
+        .button-#{$name}.active {
+            color: white !important;
+        }
+        .button-#{$name} {
+            color: $color !important;
+        }
+        .#{$hvr}:before {
+            background-color: $color;
+        }
+    }
+}
+
+.button {
+    border-radius: 3px;
+}
+
+.active-btn {
+    background-color: $curious-blue;
+}
+
+@include generate-button('red-sweep-to-bottom', $red, 'hvr-sweep-to-bottom');
+@include generate-button('blue-sweep-to-top', $curious-blue, 'hvr-sweep-to-top');
+@include generate-button('red', $red, '');
+@include generate-button('curious-blue', $curious-blue, '');
+
+
+.links {
+    margin-top: 40px;
+}
+
+.links-item {
+    font-family: $font-stack-quicksand;
+    font-size: 18px;
+    padding: 5px;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    margin: 0 20px
+}

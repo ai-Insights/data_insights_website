@@ -1,0 +1,117 @@
+%li-chart {
+    position: absolute;
+    right: 1.3rem;
+    top: 42%;
+}
+
+li.list-group-item {
+    background: rgba(0, 0, 0, 0) !important;
+    line-height: 2rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    width: 20rem;
+}
+
+li.list-group-item a {
+    color: white;
+    display: flex;
+    padding-left: 0.2rem;
+}
+
+li.list-group-item > i {
+    position: absolute;
+    right: 1.3rem;
+    top: 42%;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#upload {
+    width: 100%;
+    height: 245px;
+    color: $white-transparent;
+    border: 2px dashed $mine-shaft;
+    line-height: 245px;
+    text-align: center
+}
+
+#upload.dragover {
+    border-color: $curious-blue;
+    color: white;
+}
+
+#data-input {
+
+    .list-group-item {
+        margin-bottom: 5px !important;
+        font-family: $font-stack-quicksand;
+        color: $white-transparent;
+        background-color: $mine-shaft-transparent !important;
+        outline: 0;
+    }
+    .list-group-item.active {
+        z-index: 2;
+        color: white;
+        background-color: rgba(46, 46, 46, 0.8) !important;
+        border-color: $mine-shaft !important;
+    }
+    .list-group-item:nth-child(even) i {
+        color: $red;
+    }
+    .list-group-item:nth-child(odd) i {
+        color: $curious-blue;
+    }
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: $mine-shaft;
+    min-width: 5rem;
+    max-width: 16.5rem !important;
+    box-sizing: border-box;
+    left: 2rem;
+}
+
+/* put borders on the top and bottom of  all the list link elements*/
+
+div.dropdown-content > a:first-child {
+    border-top: 0.15rem solid $white-transparent;
+}
+
+div.dropdown-content > a {
+    border-bottom: 0.15rem solid $white-transparent;
+}
+
+/* styling the dropdown contents by inheriting from ms-text */
+
+div.dropdown-content > a.ms-text {
+    line-height: 3rem !important;
+    padding-top: 1rem;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    li.list-group-item a:hover {
+        color: $curious-blue;
+    }
+    li.list-group-item i {
+        @extend %li-chart;
+    }
+    ul.list-group {
+        height: calc(100vh - 300px);
+    }
+    .li-viz-text {
+        @extend %li-chart;
+        right: auto;
+    }
+}

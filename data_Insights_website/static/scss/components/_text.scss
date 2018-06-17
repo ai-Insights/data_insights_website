@@ -1,0 +1,104 @@
+@mixin generate-colored-text($name, $color) {
+    .colored-text-#{$name} {
+        color: $color;
+    }
+}
+
+@include generate-colored-text('red', $red);
+@include generate-colored-text('curious-blue', $curious-blue);
+@include generate-colored-text('golden-grass', $golden-grass);
+
+#type-out {
+    display: inline;
+}
+
+.heading {
+    font-family: $font-stack-rationale;
+}
+
+.heading-md {
+    font-size: 35px;
+}
+
+.heading-lg {
+    font-size: 45px;
+}
+
+.heading-xl {
+    font-size: 55px;
+}
+
+.text-md {
+    font-family: $font-stack-quicksand;
+    font-size: 18px;
+}
+
+.text-sm {
+    font-family: $font-stack-quicksand;
+    font-size: 16px;
+}
+
+.quote {
+    font-style: italic;
+}
+
+.ms-text {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    line-height: 1.5rem;
+    font-weight: 400;
+    text-align: left !important;
+    padding-left: 2rem;
+}
+.md-text {
+    font-size: 1rem;
+    line-height: 1.8rem;
+    font-weight: 300;
+    text-align: center !important;
+}
+.ms-title {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+}
+h5.ms-title {
+    margin-top: 1rem;
+    text-align: left;
+}
+h2.ms-title {
+    margin: 2rem;
+    font-size: 2rem;
+}
+.ms-text {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    line-height: 1.5rem;
+    font-weight: 400;
+    text-align: left !important;
+    padding-left: 2rem;
+}
+.md-text {
+    font-size: 1rem;
+    line-height: 1.8rem;
+    font-weight: 300;
+    text-align: center !important;
+}
+.ms-title {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+}
+h5.ms-title {
+    margin-top: 1rem;
+    text-align: left;
+}
+h2.ms-title {
+    margin: 2rem;
+    font-size: 2rem;
+}

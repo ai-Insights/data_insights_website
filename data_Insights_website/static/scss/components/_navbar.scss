@@ -1,0 +1,16 @@
+$a-tags: 'a, a:focus, a:active, a:hover';
+
+.navbar {
+    margin-top: 8px;
+    background-color: $mine-shaft;
+
+    #{$a-tags} {
+        color: $dusty-gray;
+        font-family: $font-stack-quicksand;
+        margin-left: 15px;
+        outline: 0;
+    }
+    .navbar-nav > #{$a-tags} {
+        color: $curious-blue;
+    }
+}
