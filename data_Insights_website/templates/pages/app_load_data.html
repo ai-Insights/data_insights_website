@@ -1,0 +1,54 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block initjs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css" integrity="sha256-0Z6mOrdLEtgqvj7tidYQnCYWG3G2GAIpatAWKhDx+VM=" crossorigin="anonymous" />
+{% endblock %}
+
+{% block content %} 
+    {% include 'includes/navigationbar.html' %} 
+    {% include 'includes/particles-bg.html' %}
+    <div class="container-fluid">
+        <div class="row" id='data-collection'>
+            <div class="col-lg-3">
+                <div class="list-group" id="data-input" role='tablist'>
+                    <a href="#upload-div" class="list-group-item list-group-item-action active" id="upload-list" data-toggle='list' role 'tab'>
+                        <i class="fas fa-cloud-upload-alt"></i>  Upload File
+                    </a>
+                    <a href="#paste" class="list-group-item list-group-item-action" id="paste-list" data-toggle='list' role 'tab'>
+                        <i class="fas fa-paste"></i>  Paste data
+                    </a>
+                    <a href="#url" class="list-group-item list-group-item-action" id="url-list" data-toggle='list' role 'tab'>
+                        <i class="fas fa-link"></i>  URL
+                    </a>
+                    <a href="#quandl" class="list-group-item list-group-item-action" id="quandl-list" data-toggle='list' role 'tab'>Quandl name</a>
+                    <a href="#samples" class="list-group-item list-group-item-action " id="sample-list" data-toggle='list' role 'tab'>Use our samples</a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="tab-content" id="input-options">
+                    <div class="tab-pane fade show active" id="upload-div" role='tabpanel' aria-labelledby="upload-list">
+                        <form  action="{% url 'collect_data' %}" class="dropzone needsclick dz-clickable" method='post' enctype="multipart/form-data">
+                            {% csrf_token %} 
+                            <div1 class="dz-message needsclick">
+                            <span class="text-md"> Drop files here or click to upload.</span><br>
+                            <span class="note needsclick text-sm"><i>(Only csv, xls, tsv files and json object are supported.)</i></span>                           
+                          </div1>   
+                        </form>
+                    </div>
+                    <div class="tab-pane fade show" id="paste" role='tabpanel' aria-labelledby="paste-list">
+                    </div>
+                    <div class="tab-pane fade show" id="url" role='tabpanel' aria-labelledby="url-list">
+                    </div>
+                    <div class="tab-pane fade show" id="quandl" role='tabpanel' aria-labelledby="quandl-list">
+                    </div>
+                    <div class="tab-pane fade show" id="samples" role='tabpanel' aria-labelledby="samples-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'includes/footer.html' %}
+{% endblock %}
