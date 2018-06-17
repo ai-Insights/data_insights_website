@@ -29,18 +29,20 @@ li.list-group-item > i {
     display: inline-block;
 }
 
-#upload {
-    width: 100%;
-    height: 245px;
-    color: $white-transparent;
-    border: 2px dashed $mine-shaft;
-    line-height: 245px;
-    text-align: center
+#upload-div {
+    text-align: center;
 }
 
-#upload.dragover {
-    border-color: $curious-blue;
-    color: white;
+.dropzone.dz-clickable .dz-message {
+    cursor: pointer;
+}
+
+.dropzone {
+    padding: 54px 54px !important;
+    border: 2px dashed $mine-shaft !important;
+    border-radius: 5px;
+    color: $white-transparent;
+    background: $mine-shaft-transparent !important;
 }
 
 #data-input {

@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block initjs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+{% endblock %}
+
+{% block content %} 
+    {% include 'includes/navigationbar.html' %} 
+    {% include 'includes/particles-bg.html' %}
+    {% include 'includes/footer.html' %}
+{% endblock %}

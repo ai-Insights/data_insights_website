@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block initjs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+{% endblock %}
+
+{% block content %} 
+    {% include 'includes/navigationbar.html' %} 
+    {% include 'includes/particles-bg.html' %}
+    <div class="container-fluid">
+        <div class="row" id='data-collection'>
+            <div class="col-lg-3">
+                <div class="list-group" id="data-input" role='tablist'>
+                    <a href="#upload" class="list-group-item list-group-item-action active" id="upload-list" data-toggle='list' role 'tab'>
+                        <i class="fas fa-cloud-upload-alt"></i>  Upload File
+                    </a>
+                    <a href="#paste" class="list-group-item list-group-item-action" id="paste-list" data-toggle='list' role 'tab'>
+                        <i class="fas fa-paste"></i>  Paste data
+                    </a>
+                    <a href="#url" class="list-group-item list-group-item-action" id="url-list" data-toggle='list' role 'tab'>
+                        <i class="fas fa-link"></i>  URL
+                    </a>
+                    <a href="#quandl" class="list-group-item list-group-item-action" id="quandl-list" data-toggle='list' role 'tab'>Quandl name</a>
+                    <a href="#samples" class="list-group-item list-group-item-action " id="sample-list" data-toggle='list' role 'tab'>Use our samples</a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="tab-content" id="input-options">
+                    <div class="tab-pane fade show active" id="upload" role='tabpanel' aria-labelledby="upload-list">
+                        <span class="text-md">Drop file here or click to upload.</span>
+                    </div>
+                    <div class="tab-pane fade show" id="paste" role='tabpanel' aria-labelledby="paste-list">
+                        Paste file here.
+                    </div>
+                    <div class="tab-pane fade show" id="url" role='tabpanel' aria-labelledby="url-list">
+                        Provide url to the data.
+                    </div>
+                    <div class="tab-pane fade show" id="quandl" role='tabpanel' aria-labelledby="quandl-list">
+                        Provide Quandl name of the data set.
+                    </div>
+                    <div class="tab-pane fade show" id="samples" role='tabpanel' aria-labelledby="samples-list">
+                        Select from our samples.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'includes/footer.html' %}
+{% endblock %}
