@@ -37,7 +37,9 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_PARTY_APPS = []
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'data_Insights_website.docs'
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
