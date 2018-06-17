@@ -3,6 +3,7 @@
 __pycache__/
 *$py.class
 .python-version
+.pytest_cache/
 .venv
 venv/
 ENV/
@@ -10,6 +11,7 @@ ENV/
 ### Django
 .env
 staticfiles/
+data_Insights_website/media/
 
 ### coala
 *.orig
