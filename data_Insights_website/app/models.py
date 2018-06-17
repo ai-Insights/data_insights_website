@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+
+class LoadedData(models.Model):
+    data = models.FileField()
