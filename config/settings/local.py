@@ -59,8 +59,11 @@ TEMPLATES = [{
 
 MEDIA_ROOT = str(APPS_DIR('media'))
 MEDIA_URL = '/media/'
-STATIC_ROOT = str(APPS_DIR('static'))
+STATIC_ROOT = str(APPS_DIR('staticfiles'))
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    str(APPS_DIR.path('static')),
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
