@@ -34,6 +34,22 @@
 .button {
     border-radius: 3px;
 }
+div.buttons > button {
+    width: 4rem;
+    padding: 0.5rem;
+    outline: none;
+    margin-left: 1rem;
+}
+div.buttons > button#yes{
+    background-color: $curious-blue;
+    border: none;
+    outline: none;
+}
+div.buttons > button#no{
+    background-color: $red;
+    border: none;
+    outline: none;
+}
 
 .active-btn {
     background-color: $curious-blue;

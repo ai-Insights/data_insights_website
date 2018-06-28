@@ -7,9 +7,12 @@
 li.list-group-item {
     background: rgba(0, 0, 0, 0) !important;
     line-height: 2rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     cursor: pointer;
-    width: 20rem;
+    width: 18rem;
+}
+li.list-group-item:hover{
+    color: $curious-blue;
 }
 
 li.list-group-item a {
@@ -21,9 +24,15 @@ li.list-group-item a {
 li.list-group-item > i {
     position: absolute;
     right: 1.3rem;
+    opacity: 0.3;
     top: 42%;
 }
-
+li.list-group-item > i.fa-circle{
+    font-size: 0.5rem;
+    opacity: 1;
+    color: $curious-blue;
+    display: none;
+}
 .dropdown {
     position: relative;
     display: inline-block;
@@ -67,9 +76,7 @@ li.list-group-item > i {
         color: $curious-blue;
     }
 }
-
 /* Dropdown Content (Hidden by Default) */
-
 .dropdown-content {
     display: none;
     position: relative;
@@ -116,4 +123,17 @@ div.dropdown-content > a.ms-text {
         @extend %li-chart;
         right: auto;
     }
+}
+ul.list-group {
+    height: calc(100vh - 20rem) !important;
+    background: $black-transparent;
+    border-radius: 1rem;
+    padding-top: 2rem;
+    padding-left: 1rem;
+    box-sizing: border-box;
+    width: 20rem;
+    color: $dusty-gray;
+    font-weight: 600; 
+    overflow: auto;
+    white-space: nowrap;
 }

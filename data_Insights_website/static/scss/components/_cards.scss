@@ -37,9 +37,106 @@
 
 @include generate-cards('sm', $mine-shaft-transparent,  255px, 340px, inline-block, true);
 @include generate-cards('lg', $mine-shaft-transparent, 100%, 100%, block);
+@include generate-cards('faqs', $mine-shaft-transparent, 38rem, null, block);
+@include generate-cards('faqs-answer', $mine-shaft-transparent, 40rem, 30rem, null);
+.card-faqs{
+    box-sizing: border-box;
+    padding: 1.5rem;
+    padding-top: 2.5rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+div > i.fa-plus-circle{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    margin: 0.5rem;
+    font-size: 1.8rem;
+    color: $curious-blue;
+}
+div > i.fa-minus-circle{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    margin: 0.5rem;
+    font-size: 1.8rem;
+    color: $red;
+}
+div.card-faqs a{
+    color: white;
+    text-decoration: none;
+}
+div.row.flex-wrap{
+    padding-left: 2.5rem;
+    padding-right: 2rem;
+}
 .card-lg{
     margin-left: auto;
 }
+.card-body{
+    padding-left: 0rem !important;
+    height: calc(100vh - 16rem);
+}
+li.card-faqs-answer{
+    margin-right: 5rem;
+    margin-left: 0rem;
+    box-sizing: border-box;
+    padding: 2rem;
+    line-height: 1.5rem;
+    font-size: 0.8rem;
+}
+.card-faqs-list{
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    height: calc(100vh - 20rem);
+    width: 100%;
+}
+.card-faqs-list > div.visit{
+    background: $black-transparent;
+    border: 0.2rem solid $mine-shaft;
+}
+hr{
+    border: 0.1rem solid black;
+    width: 80%;
+    align-self: center;
+    margin-bottom: 2rem;
+}
+#question{
+    font-weight: 600;
+}
+strong{
+    color: $curious-blue;
+    font-size: 2rem;
+    margin: 1rem;
+}
 .li-col{
     padding-left: 0rem;
+}
+img{
+    width: 100%;
+    object-fit: fill;
+}
+.card-img{
+    display: inline-block;
+    background-size: cover;
+    width: 60vw;
+    max-width: 80vw;
+    max-height: 40vh;
+    box-sizing: border-box;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.vizCol{
+    overflow: auto;
+    height: calc(100vh - 20rem);
+}
+.tryOutCard{
+    margin-bottom: 2rem;
+}
+button{
+    position: relative;
+    bottom: 0rem;
 }
