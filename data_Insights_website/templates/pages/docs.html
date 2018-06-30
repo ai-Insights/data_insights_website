@@ -5,8 +5,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 {% endblock %}
 
-{% block content %} 
+{% block content %}
     {% include 'includes/navigationbar.html' %} 
     {% include 'includes/particles-bg.html' %}
+    <div class="container-fluid docs-container ">
+        <div class="card text-center card-lg">
+            <div class="card-header d-flex justify-content-center lg-card-header">
+                <ul class="nav nav-pills card-header-pills">
+                    {% for titleObject in object_list %}
+                        <p>hello</p>
+                        <li class="nav-item">
+                            <a class="nav-link active" onclick="openNow(event, '{{ titleObject.pointsTo }}', 'card-body','nav-link')" href="#">HELLO{{ titleObject.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
     {% include 'includes/footer.html' %}
 {% endblock %}

@@ -3,6 +3,7 @@ from django.db import models
 
 class DocumentationGroup(models.Model):
     title = models.CharField(max_length=50)
+    pointsTo = models.CharField(max_length=50, default='learn')
 
 class DocumentationSubGroup(models.Model):
     title = models.CharField(max_length=50)
