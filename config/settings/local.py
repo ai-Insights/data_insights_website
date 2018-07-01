@@ -2,7 +2,7 @@ from .base import *
 from .base import env
 
 DEBUG = True
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', default='nzgmg7lgxf+#yl*d6qq7hf4lce6ab@9+%18(i^2^=+($64t_wp')
 ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
