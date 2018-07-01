@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Dispertion = require('../../modules/stats/dispersion')
+var Dispertion = require('../../lib/stats/dispersion')
 
 describe('Dispersion()', function() {
     it('', function() {

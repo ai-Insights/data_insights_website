@@ -1,5 +1,5 @@
 var assert = require('assert');
-var centralTendency = require("../../modules/stats/central_tendency");
+var centralTendency = require("../../lib/stats/central_tendency");
 
 describe('Mean()', function () {
     it('Should return null for empty array -> Mean([])', function () {
