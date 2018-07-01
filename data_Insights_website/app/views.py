@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import UploadFileForm
 from .models import LoadedData
 
 
 def loaded_data(request):
-    return render(request, 'pages/app_load_success.html')
+    return HttpResponse("File successfully uploaded")
 
 def collect_data(request):
     if request.method == 'POST':
@@ -17,3 +17,6 @@ def collect_data(request):
     else:
         form = UploadFileForm()
     return render(request, 'pages/app_load_data.html', {'form': form})
+
+def viz(request):
+    return render(request, 'pages/viz.html')
