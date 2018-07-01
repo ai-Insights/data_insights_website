@@ -432,14 +432,18 @@ li.list-group-item > i.fa-circle {
   position: relative;
   display: inline-block; }
 
+#input-options {
+  height: 100% !important; }
+
 #upload-div {
-  text-align: center; }
+  text-align: center;
+  height: 100% !important; }
 
 .dropzone.dz-clickable .dz-message {
   cursor: pointer; }
 
 .dropzone {
-  padding: 54px 54px !important;
+  height: 100% !important;
   border: 2px dashed #2e2e2e !important;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.5);
