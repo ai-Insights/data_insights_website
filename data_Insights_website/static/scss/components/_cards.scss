@@ -76,7 +76,7 @@ div.row.flex-wrap{
 }
 .card-body{
     padding-left: 0rem !important;
-    height: calc(100vh - 16rem);
+    height: calc(100vh - 12rem);
 }
 li.card-faqs-answer{
     margin-right: 5rem;
@@ -139,4 +139,9 @@ img{
 button{
     position: relative;
     bottom: 0rem;
+}
+.learn-main{
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    height: calc(100vh - 20rem);
 }
