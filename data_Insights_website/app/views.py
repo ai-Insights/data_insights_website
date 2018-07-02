@@ -1,22 +1,49 @@
-from django.shortcuts import render, redirect, HttpResponse
-from .forms import UploadFileForm
-from .models import LoadedData
+import pandas
+from pandas.errors import ParserError
+from django.views import View
+from django.shortcuts import render, redirect, reverse
+from .forms import DataFileForm
+from .models import DataFile
 
 
-def loaded_data(request):
-    return HttpResponse("File successfully uploaded")
-
-def collect_data(request):
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        print('posting')
+class DataFileView(View):
+    form_class = DataFileForm
+    template_name = 'pages/app_load_data.html'
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+    
+    def post(self, request, *arg, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
-            instance = LoadedData(data=request.FILES['file'])
-            instance.save()
-            return redirect('loaded_data')
-    else:
-        form = UploadFileForm()
-    return render(request, 'pages/app_load_data.html', {'form': form})
+            data = form.cleaned_data['data']
+            instance = DataFile(data=form.cleaned_data['data'])
+            if '.csv' in data.name:
+                try:
+                    df = pandas.read_csv(data)
+                    instance.save()
+                    return redirect(reverse('data', kwargs={'data_id': instance.pk}))
+                except ParserError:
+                    print("File can't be parsed")
+            elif any(ext in data.name for ext in ['.xls', '.xlsx']):
+                try:
+                    df = pandas.read_excel(data)
+                    instance.save()
+                    return redirect('data')
+                except ParserError:
+                    print("File can't be parsed")
+            elif '.tsv' in data.name:
+                try:
+                    df = pandas.read_table(data)
+                    instance.save()
+                    return redirect('data')
+                except ParserError:
+                    print("File can't be parsed")
+            else:
+                print('File format not supported')
+        return render(request, self.template_name, {'form': form})
 
-def viz(request):
-    return render(request, 'pages/viz.html')
+
+def AppView(request, data_id):
+    return render(request, 'pages/app_load_success.html')
+

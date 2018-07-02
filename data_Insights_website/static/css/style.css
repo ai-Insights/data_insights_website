@@ -152,6 +152,20 @@ div.buttons > button#no {
   background-color: #2098d1;
   color: white; }
 
+.button-green {
+  border: solid 0.5px #41c753; }
+  .button-green:hover, .button-green:focus {
+    color: white !important;
+    transition-delay: -4ms;
+    outline: 0; }
+  .button-green:active {
+    vertical-align: top;
+    padding: 8px 13px 6px; }
+
+.button-green {
+  background-color: #41c753;
+  color: white; }
+
 .links {
   margin-top: 40px; }
 
@@ -163,6 +177,11 @@ div.buttons > button#no {
   height: 40px;
   text-align: center;
   margin: 0 20px; }
+
+.submit-button {
+  padding: 0.610rem 1.20rem;
+  font-family: "quicksand", sans-serif;
+  font-weight: 700; }
 
 #header,
 #about,
@@ -437,14 +456,60 @@ li.list-group-item > i.fa-circle {
   position: relative;
   display: inline-block; }
 
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.inputfile + label {
+  max-width: 80%;
+  font-size: 1.25rem;
+  /* 20px */
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.625rem 1.25rem;
+  font-family: "quicksand", sans-serif; }
+
+.inputfile + label svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  /* 4px */
+  margin-right: 0.25em;
+  /* 4px */ }
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: #2098d1; }
+
+.inputfile + label * {
+  pointer-events: none; }
+
+.inputfile + label {
+  cursor: pointer;
+  /* "hand" cursor */ }
+
+.inputfile-1 + label {
+  color: #f1e5e6;
+  background-color: #2098d1; }
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+  background-color: #42aee2; }
+
 #upload-div {
-  text-align: center; }
-
-.dropzone.dz-clickable .dz-message {
-  cursor: pointer; }
-
-.dropzone {
-  padding: 54px 54px !important;
+  padding: 5rem 1.15rem;
+  text-align: center;
   border: 2px dashed #2e2e2e !important;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.5);

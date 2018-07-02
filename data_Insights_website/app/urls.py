@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views
+from django.views.generic import TemplateView
+from .views import *
 
 urlpatterns = [
-    path('', views.collect_data, name='collect_data'),
-    path('loaded_data', views.loaded_data, name='loaded_data'),
-    path('viz', views.viz, name="viz")
+    path('', DataFileView.as_view(), name='DataFileView'),
+    path('viz', TemplateView.as_view(template_name="pages/viz.html")),
+    path('data/<int:data_id>', AppView, name="data")
 ]
