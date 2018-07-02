@@ -38,21 +38,16 @@ li.list-group-item > i.fa-circle{
     display: inline-block;
 }
 
-#input-options {
-    height: 100% !important;
-}
 #upload-div {
     text-align: center;
-    height: 100% !important;
 }
 
 .dropzone.dz-clickable .dz-message {
     cursor: pointer;
 }
 
-
 .dropzone {
-    height: 100% !important;
+    padding: 54px 54px !important;
     border: 2px dashed $mine-shaft !important;
     border-radius: 5px;
     color: $white-transparent;

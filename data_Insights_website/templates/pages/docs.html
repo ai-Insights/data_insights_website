@@ -1,12 +1,238 @@
-{% extends 'base.html'%}
-{% load static %}
+{% extends 'base.html'%} {% load static %} {% block initjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+{% endblock %} {% block content %} {% include 'includes/navigationbar.html' %} {% include 'includes/particles-bg.html' %}
+<div class="container-fluid docs-container ">
+    <div class="card text-center card-lg">
+        <div class="card-header d-flex justify-content-center lg-card-header">
+            <ul class="nav nav-pills card-header-pills">
+                {% for titleObject in my_nav_pills %} {% if titleObject.id == 1 %}
+                <li class="nav-item">
+                    <a class="nav-link active" onclick="openNow(event, '{{ titleObject.pointsTo }}', 'card-body','nav-link')" href="#">{{ titleObject.title }}</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" onclick="openNow(event, '{{ titleObject.pointsTo }}', 'card-body','nav-link')" href="#">{{ titleObject.title }}</a>
+                </li>
+                {% endif %} {% endfor %}
+            </ul>
+        </div>
+        <!-- Learning algorithms -->
+        <div id="learn" class="card-body">
+            <div class="container-fluid">
+                <div class="row" style="flex-direction: row;">
+                    <ul id="breadCrum" style="list-style-type: none; flex-direction: row !important;">
+                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-3">
+                        <ul class="list-group main1">
+                            {%for list in learn_main_list%}
+                            <li class="list-group-item">
+                                <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main1','list-group-item')"> {{list.title}} </a>
+                                <i class="fas fa-ellipsis-h"></i>
+                            </li>
+                            {%endfor%}
+                        </ul>
+                        {% regroup learn_list by parent as new_list%} {%for name in new_list%}
+                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
+                            {%for newName in name.list %}
+                            <li class="list-group-item">
+                                
+                                {%if newName.description != ''%}
+                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'learn-main','list-group-item')">
+                                    {{newName.title}} </a>
+                                <i class="fas fa-circle"></i>
+                                {%else%}
+                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
+                                    {{newName.title}} </a>
+                                <i class="fas fa-ellipsis-h"></i>
+                                {%endif%}
+                            </li>
+                            {%endfor%}
+                        </ul>
+                        {%endfor%}
+                    </div>
+                    <div id="learn-1-main" class="col-lg-9 col-sm-9 col-9 learn-main">
+                        {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'learn'%}
+                        <div class="heading-md">{{titleObject.title}}
+                        </div>
+                        <p id="info" class="text-sm">{{titleObject.description}}
+                        </p>
+                        {%endif%} {%endfor%}
+                    </div>
+                    {%for name in learn_list%} {%if name.description != ''%}
+                    <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body learn-main" style="display: none;">
+                        <div class="heading-md">
+                            {{name.title}}
+                        </div>
+                        <p id="info" class="text-sm">
+                            {{name.description}}
+                        </p>
+                    </div>
+                    {%endif%} {%endfor%}
+                </div>
+            </div>
+        </div>
+        <!--visuals-->
+        <div id="visuals" class="card-body" style="display: none;">
+            <div class="container-fluid">
+                <div class="row" style="flex-direction: row;">
+                    <ul id="breadCrum" style="list-style-type: none; flex-direction: row !important;">
+                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-3">
+                        <ul class="list-group main1">
+                            {%for list in visual_main_list%}
+                                <li class="list-group-item">
+                                    <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main1','list-group-item')"> {{list.title}} </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
+                            {%endfor%}
+                        </ul>
+                        {% regroup visual_list by parent as new_visual_list%} {%for name in new_visual_list%}
+                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
+                            {%for newName in name.list %}
+                            <li class="list-group-item visual-list">
+                                {%if newName.description != ''%}
+                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'visual-main','list-group-item')">
+                                    {{newName.title}} </a>
+                                <i class="fas fa-circle"></i>
+                                {%else%}
+                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
+                                    {{newName.title}} </a>
+                                <i class="fas fa-ellipsis-h"></i>
+                                {%endif%}
+                            </li>
+                            {%endfor%}
+                        </ul>
+                        {%endfor%}
+                    </div>
+                    <div id="visuals-1-main" class="col-lg-9 col-sm-9 col-9 visual-main">
+                        {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'visuals'%}
+                        <div class="heading-md">{{titleObject.title}}
+                        </div>
+                        <p id="info" class="text-sm">{{titleObject.description}}
+                        </p>
+                        {%endif%} {%endfor%}
+                    </div>
+                    {%for name in visual_list%} {%if name.description != ''%}
+                    <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body visual-main" style="display: none;">
+                        <div class="heading-md">
+                            {{name.title}}
+                        </div>
+                        <div class="tryOutCard">
+                            <img class="card-img" src="{{name.image}}" alt="">
+                        </div>
+                        <p id="info" class="text-sm">
+                            {{name.description}}
+                        </p>
+                    </div>
+                    {%endif%} {%endfor%}
+                </div>
+            </div>
+        </div>
+        <!-- statistics algorithms-->
+        <div id="stats" class="card-body" style="display: none;">
+            <div class="container-fluid">
+                <div class="row" style="flex-direction: row;">
+                    <ul id="breadCrum" style="list-style-type: none; flex-direction: row !important;">
+                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-3">
+                        <ul class="list-group main1">
+                            {%for list in stat_main_list%}
+                            <li class="list-group-item">
+                                <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main1','list-group-item')"> {{list.title}} </a>
+                                <i class="fas fa-ellipsis-h"></i>
+                            </li>
+                            {%endfor%}
+                        </ul>
+                        {% regroup stat_list by parent as new_stat_list%} {%for name in new_stat_list%}
+                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
+                            {%for newName in name.list %}
+                            <li class="list-group-item">
+                                
+                                {%if newName.description != ''%}
+                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'stats-main','list-group-item')">
+                                    {{newName.title}} </a>
+                                <i class="fas fa-circle"></i>
+                                {%else%}
+                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
+                                    {{newName.title}} </a>
+                                <i class="fas fa-ellipsis-h"></i>
+                                {%endif%}
+                            </li>
+                            {%endfor%}
+                        </ul>
+                        {%endfor%}
+                    </div>
+                    <div id="stats-1-main" class="col-lg-9 col-sm-9 col-9 stats-main">
+                        {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'stats'%}
+                        <div class="heading-md">{{titleObject.title}}
+                        </div>
+                        <p id="info" class="text-sm">{{titleObject.description}}
+                        </p>
+                        {%endif%} {%endfor%}
+                    </div>
+                    {%for name in stat_list%} {%if name.description != ''%}
+                    <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body stats-main" style="display: none;">
+                        <div class="heading-md">
+                            {{name.title}}
+                        </div>
+                        <p id="info" class="text-sm">
+                            {{name.description}}
+                        </p>
+                    </div>
+                    {%endif%} {%endfor%}
+                </div>
+                </div>
+            </div>
+        </div>
+        <!--Frequently asked questions-->
+        <div id="faqs" class="card-body" style="display: none;">
+            <div class="container-fluid">
+                <div class="row before-click">
+                    {%for faqs in QA%}
+                    <div class="card card-faqs" id="{{faqs.questionPtr}}">
+                        <i class="fas fa-plus-circle"></i>
+                        <a href="#" onclick="openNow(event, 'after-click', 'before-click', 'card-faqs')">{{faqs.question}}</a>
+                    </div>
+                    {%endfor%}
+                </div>
+                <div id="after-click" class="container-fluid" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-6 card-faqs-list">
+                        </div>
 
-{% block initjs %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-{% endblock %}
-
-{% block content %} 
-    {% include 'includes/navigationbar.html' %} 
-    {% include 'includes/particles-bg.html' %}
-    {% include 'includes/footer.html' %}
-{% endblock %}
+                        <div class="col-lg-6 col-sm-6 col-6 faqs-main">
+                            {%for faqs in QA %}
+                            <ul class="faqs-body" id="content-{{faqs.questionPtr}}" style="display: none">
+                                <li class="card answer card-faqs-answer">
+                                    <p id="question">
+                                        <strong>Q</strong>{{faqs.question}}
+                                    </p>
+                                    <p id="answer">
+                                        <strong>A</strong>{{faqs.answer}}
+                                    </p>
+                                    <hr>
+                                    <div class="buttons">
+                                        <p>Did this help you?</p>
+                                        <button id="yes" role="button">Yes</button>
+                                        <button id="no" role="button">No</button>
+                                    </div>
+                                </li>
+                            </ul>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/tabs.js' %}"></script> {% include 'includes/footer.html' %} {% endblock %}
