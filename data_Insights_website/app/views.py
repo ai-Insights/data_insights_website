@@ -45,5 +45,18 @@ class DataFileView(View):
 
 
 def AppView(request, data_id):
-    return render(request, 'pages/app_load_success.html')
+    data = DataFile.objects.get(pk=data_id)
+    if '.csv' in data.data.name:
+        df = pandas.read_csv(data.data)
+    elif any(ext in data.data.name for ext in ['.xls', 'xlsx']):
+        df = pandas.read_excel(data.data)
+    else:
+        df = pandas.read_table(data.data)
+    json = df.to_json(orient='records')
+    columns = [{'field': f, 'title': f} for f in df.columns]
+    ctx = {
+        'data': json,
+        'columns': columns
+    }
+    return render(request, 'pages/app_load_success.html', ctx)
 

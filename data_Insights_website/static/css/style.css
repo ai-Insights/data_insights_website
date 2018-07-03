@@ -232,6 +232,14 @@ div.buttons > button#no {
 .docs-container {
   margin-top: 1.5rem !important; }
 
+.dataTable {
+  background-color: #2e2e2e;
+  color: white;
+  text-align: center; }
+
+.tableborder {
+  border-color: #171717; }
+
 .typed-cursor {
   opacity: 0.7;
   font-size: 40px;

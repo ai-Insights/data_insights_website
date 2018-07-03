@@ -5,27 +5,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css" integrity="sha256-0Z6mOrdLEtgqvj7tidYQnCYWG3G2GAIpatAWKhDx+VM=" crossorigin="anonymous" />
-{% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="{% static 'js/bootstrap-table.min.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-table.min.css'%}">
+    {% endblock %}
 
 {% block content %} 
     {% include 'includes/navigationbar.html' %} 
     {% include 'includes/particles-bg.html' %}
     <div class="container-fluid">
-        <div class="row" id='data-collection'>
-            <div class="col-lg-3">
-                <div class="list-group" id="data-input" role='tablist'>
-                    <a href="#upload-div" class="list-group-item list-group-item-action active" id="upload-list" data-toggle='list' role 'tab'>
-                        <i class="fas fa-cloud-upload-alt"></i>  Your data.
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="tab-content" id="input-options">
-                    <div class="tab-pane fade show active" id="upload-div" role='tabpanel' aria-labelledby="upload-list">
-                    </div>
-                </div>
-            </div>
+        <div class="row dataTable">
+            <table id="datatable"></table>
         </div>
     </div>
+
+    <script>
+            $('#datatable').bootstrapTable({
+              striped: true,
+              search: true,
+              showRefresh: true,
+              showToggle: true,
+              toolbarAlign: 'right',
+              paginationHAlign: 'left',
+              align: 'center',
+              cellStyle: function cellStyle(value, row, index, field) {
+                return {
+                  classes: 'text-nowrap tableborder',
+                };
+              },
+              pagination: true,
+              showColumns: true,
+              showToggle: true,
+              sortStable: true,
+              showExport: true,
+              sortable: true,
+              toolbar: true,
+              pageSize: 15,
+              pageList: [10, 15, 20, 25, 50, 100, 150, 200, 'ALL'],
+              columns: {{ columns|safe }},  // here is where we use the column content from our Django View
+              data: {{ data|safe }}, // here is where we use the data content from our Django View. we escape the content with the safe tag so the raw JSON isn't shown.
+            });
+    </script>
     {% include 'includes/footer.html' %}
 {% endblock %}
