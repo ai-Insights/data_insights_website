@@ -1,7 +1,8 @@
 from django import forms
 
-class UploadFileForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    file = forms.FileField()
-    def is_valid(self):
-        return True
+from .models import DataFile
+
+class DataFileForm(forms.ModelForm):
+    class Meta:
+        model = DataFile
+        fields = ['data']

@@ -64,3 +64,13 @@
     @extend %container;
     margin-top: 1.5rem !important;
 }
+
+.dataTable {
+    background-color:  $mine-shaft;
+    color: white;
+    text-align: center;
+}
+
+.tableborder {
+    border-color: $cod-gray;
+}

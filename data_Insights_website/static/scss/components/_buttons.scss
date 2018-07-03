@@ -59,6 +59,7 @@ div.buttons > button#no{
 @include generate-button('blue-sweep-to-top', $curious-blue, 'hvr-sweep-to-top');
 @include generate-button('red', $red, '');
 @include generate-button('curious-blue', $curious-blue, '');
+@include generate-button('green', rgb(65, 199, 83), '');
 
 
 .links {
@@ -73,4 +74,10 @@ div.buttons > button#no{
     height: 40px;
     text-align: center;
     margin: 0 20px
+}
+
+.submit-button {
+    padding: 0.610rem 1.20rem;
+    font-family: $font-stack-quicksand;
+    font-weight: 700;
 }
