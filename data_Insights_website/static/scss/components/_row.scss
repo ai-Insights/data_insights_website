@@ -28,7 +28,6 @@
 
 #footer {
     background-color: $mine-shaft;
-    margin: 0px 0px 5px;
 }
 
 #data-collection {
@@ -68,9 +67,20 @@
 .dataTable {
     background-color:  $mine-shaft;
     color: white;
-    text-align: center;
+    font-family: $font-stack-quicksand;
 }
 
-.tableborder {
-    border-color: $cod-gray;
+.table-responsive {
+    width: 60% !important;
+}
+
+
+th {
+    border-color: $curious-blue !important;
+}
+
+
+.card-view .title{
+    color: white !important;
+    font-family: $font-stack-quicksand
 }

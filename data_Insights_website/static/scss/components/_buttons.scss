@@ -5,11 +5,9 @@
         &:focus {
             color: white !important;
             transition-delay: -4ms;
-            outline: 0;
         }
         &:active {
             vertical-align: top;
-            padding: 8px 13px 6px;
         }
     }
     @if ($hvr=='') {

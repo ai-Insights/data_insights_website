@@ -30,7 +30,6 @@ class Command(BaseCommand):
 
         groupfaqs = DocumentationGroup(
             title='Q/A',
-            description='',
             pointsTo='faqs'
         )
         groupfaqs.save()

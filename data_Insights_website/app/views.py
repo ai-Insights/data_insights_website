@@ -54,9 +54,19 @@ def AppView(request, data_id):
         df = pandas.read_table(data.data)
     json = df.to_json(orient='records')
     columns = [{'field': f, 'title': f} for f in df.columns]
+
+    #stats
+    df_num = df.columns.to_series().groupby(df.dtypes).groups
+    cols = {k.name: v for k, v in df_num.items()}
+
+    df_num = df[cols.get('float64', []).append(cols.get('int64', []))].to_json()
+    cols = (cols.get('float64', []).append(cols.get('int64', []))).tolist()
+
     ctx = {
         'data': json,
-        'columns': columns
+        'columns': columns,
+        'num_cols': cols,
+        'num_data': df_num
     }
     return render(request, 'pages/app_load_success.html', ctx)
 

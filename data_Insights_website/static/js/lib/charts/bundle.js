@@ -200,8 +200,6 @@ var spline = function(xAxis, yAxis) {
 var bestFitLine = function (xAxis, yAxis ){
     var xCentralTendency = _centralTendency.Mean(xAxis);
     var yCentralTendency = _centralTendency.Mean(yAxis);
-    console.log(xCentralTendency);
-    console.log(yCentralTendency);
     var gx = -Infinity;
     var lx = +Infinity;
     var m = 0; var n = 0; var p = 0; var z =0;
@@ -1172,15 +1170,21 @@ module.exports = {
 
 var Mean = function (distribution) {
     var size = distribution.length;
-    var _mean = (acc, cur) => acc + cur;
-    var _geometriMean = (acc, cur) => acc * cur;
-    var _rootMeanSquare = (acc, cur) => acc + Math.pow(cur, 2);
-    var mean = distribution.reduce(_mean)/size;
-    var meanDiff = distribution.map(el => el - mean);
+    if (size == 0 ) {
+        return null;
+    }
+    var mean = 0; var geometricMean = 1; var rootMeanSquare = 0;
+    for (var i = 0; i < size; ++i ){
+        mean += distribution[i];
+        geometricMean *= distribution[i];
+        rootMeanSquare += Math.pow(distribution[i], 2);
+    }
+    var mean = (mean/size).toFixed(5);
+    var meanDiff = distribution.map(el => (el - mean).toFixed(5));
     return {
         'mean': mean,
-        'geometricMean': Math.pow(distribution.reduce(_geometriMean), 1/size),
-        'rootMeanSquare': Math.pow(distribution.reduce(_rootMeanSquare)/size, 1/2),
+        'geometricMean': (Math.pow(geometricMean, 1/size)).toFixed(5),
+        'rootMeanSquare': Math.pow(rootMeanSquare/size, 1/2).toFixed(5),
         'meanDiff': meanDiff
     }
 }
@@ -1188,6 +1192,10 @@ var Mean = function (distribution) {
 
 var ModeMedian = function(distribution) {
     var size = distribution.length;
+    var sorted_distribution;
+    if (typeof distribution[0] === 'string') {
+        sorted_distribution = distribution.sort();
+    }
     var sorted_distribution = distribution.sort((x, y) => x-y);
 
     var mode = [sorted_distribution[0], 1];
@@ -1206,6 +1214,11 @@ var ModeMedian = function(distribution) {
             frequencies[frequencies.length - 1][1] += 1;
             mode = frequencies[frequencies.length -1][1] > mode[1] ? frequencies[frequencies.length -1]: mode;
         }
+    }
+    if (frequencies.length/distribution.length > 0.85 && typeof distribution[0] === number) {
+        frequencies = 'It might not be appropriate to consider this random variable' +
+                      ' as categorical in your analysis: ' + (frequencies.length*100/distribution.length).toFixed(2) +
+                      '% values are unique.' ;
     }
     return {
         'mode': {value: mode[0], frequency: mode[1]},

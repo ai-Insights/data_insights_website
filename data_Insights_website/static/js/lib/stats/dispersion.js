@@ -1,10 +1,7 @@
-var _centralTendency = require('./central_tendency');
 
-
-var Dispersion = function(distribution) {
+var Dispersion = function(distribution, centralTendency) {
 
     var size = distribution.length;
-    var centralTendency = _centralTendency.Mean(distribution);
 
     var variance = 0;
     var meanDeviation = 0;
@@ -92,10 +89,6 @@ var Dispersion = function(distribution) {
         'DP': Math.pow(testStatisticKurt, 2) + Math.pow(testStatisticSkew, 2),
     }
 }
-
-
-console.log(Dispersion([61, 61, 61, 61, 61, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 67, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 73, 73, 73, 73, 73, 73, 73, 73]));
-
 
 module.exports = {
     'Dispersion': Dispersion

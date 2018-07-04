@@ -1,5 +1,5 @@
 body {
-  background-color: #171717;
+  background-color: #000;
   overflow-x: hidden; }
 
 canvas {
@@ -26,7 +26,8 @@ canvas {
   display: inline; }
 
 .heading {
-  font-family: "rationale", sans-serif; }
+  font-family: "rationale", sans-serif;
+  color: white; }
 
 .heading-md {
   font-size: 35px; }
@@ -59,10 +60,10 @@ p.text-sm {
   .navbar a, .navbar a:focus, .navbar a:active, .navbar a:hover {
     color: #a39393;
     font-family: "quicksand", sans-serif;
-    margin-left: 15px;
+    margin-left: 15px !important;
     outline: 0; }
   .navbar .navbar-nav > a, .navbar a:focus, .navbar a:active, .navbar a:hover {
-    color: #2098d1; }
+    color: white !important; }
 
 .button {
   border-radius: 3px; }
@@ -90,11 +91,9 @@ div.buttons > button#no {
   border: solid 0.5px #ff0000; }
   .button-red-sweep-to-bottom:hover, .button-red-sweep-to-bottom:focus {
     color: white !important;
-    transition-delay: -4ms;
-    outline: 0; }
+    transition-delay: -4ms; }
   .button-red-sweep-to-bottom:active {
-    vertical-align: top;
-    padding: 8px 13px 6px; }
+    vertical-align: top; }
 
 .button-red-sweep-to-bottom.active {
   color: white !important; }
@@ -109,11 +108,9 @@ div.buttons > button#no {
   border: solid 0.5px #2098d1; }
   .button-blue-sweep-to-top:hover, .button-blue-sweep-to-top:focus {
     color: white !important;
-    transition-delay: -4ms;
-    outline: 0; }
+    transition-delay: -4ms; }
   .button-blue-sweep-to-top:active {
-    vertical-align: top;
-    padding: 8px 13px 6px; }
+    vertical-align: top; }
 
 .button-blue-sweep-to-top.active {
   color: white !important; }
@@ -128,11 +125,9 @@ div.buttons > button#no {
   border: solid 0.5px #ff0000; }
   .button-red:hover, .button-red:focus {
     color: white !important;
-    transition-delay: -4ms;
-    outline: 0; }
+    transition-delay: -4ms; }
   .button-red:active {
-    vertical-align: top;
-    padding: 8px 13px 6px; }
+    vertical-align: top; }
 
 .button-red {
   background-color: #ff0000;
@@ -142,11 +137,9 @@ div.buttons > button#no {
   border: solid 0.5px #2098d1; }
   .button-curious-blue:hover, .button-curious-blue:focus {
     color: white !important;
-    transition-delay: -4ms;
-    outline: 0; }
+    transition-delay: -4ms; }
   .button-curious-blue:active {
-    vertical-align: top;
-    padding: 8px 13px 6px; }
+    vertical-align: top; }
 
 .button-curious-blue {
   background-color: #2098d1;
@@ -156,11 +149,9 @@ div.buttons > button#no {
   border: solid 0.5px #41c753; }
   .button-green:hover, .button-green:focus {
     color: white !important;
-    transition-delay: -4ms;
-    outline: 0; }
+    transition-delay: -4ms; }
   .button-green:active {
-    vertical-align: top;
-    padding: 8px 13px 6px; }
+    vertical-align: top; }
 
 .button-green {
   background-color: #41c753;
@@ -203,8 +194,7 @@ div.buttons > button#no {
   margin: 5px 90px 35px; }
 
 #footer {
-  background-color: #2e2e2e;
-  margin: 0px 0px 5px; }
+  background-color: #2e2e2e; }
 
 #data-collection {
   margin: 100px 30px; }
@@ -235,10 +225,17 @@ div.buttons > button#no {
 .dataTable {
   background-color: #2e2e2e;
   color: white;
-  text-align: center; }
+  font-family: "quicksand", sans-serif; }
 
-.tableborder {
-  border-color: #171717; }
+.table-responsive {
+  width: 60% !important; }
+
+th {
+  border-color: #2098d1 !important; }
+
+.card-view .title {
+  color: white !important;
+  font-family: "quicksand", sans-serif; }
 
 .typed-cursor {
   opacity: 0.7;
