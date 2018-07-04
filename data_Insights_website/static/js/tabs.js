@@ -1,14 +1,23 @@
+var elt;
 function openNow(evt, idOfType, affect, effect_on) {
     // Declare all variables
-    var i, tabcontent, tablinks, breadCrumContent;
+    var i, tabcontent, tablinks, breadCrumContent;  
+    if(effect_on == 'nav-link'){elt = idOfType;}
     // Get all elements with class=affect and hide them
-    tabcontent = document.getElementsByClassName(affect);
+    if(effect_on == 'nav-link'){
+        tabcontent = document.getElementsByClassName(affect);
+        tablinks = document.getElementsByClassName(effect_on);
+    }else{
+        var content = document.getElementById(elt);
+        tabcontent = content.getElementsByClassName(affect);
+        tablinks = content.getElementsByClassName(effect_on);
+    }
+    
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
     console.log("lets try here");
     // Get all elements with class="tablinks" and remove the classes "active" and the indicator display is turned to "none"
-    tablinks = document.getElementsByClassName(effect_on);
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
         indicator = tablinks[i].children;
@@ -64,13 +73,14 @@ function openNow(evt, idOfType, affect, effect_on) {
             for(i=0; i<indicator.length; i++){
                 if(indicator[i].classList.contains('fa-circle')){
                     indicator[i].style.display = "block";
+                    indicator[i].parent.firstChild.className += " activated";
                 }
             }
         }
     } else {
         breadCrumContent = evt.currentTarget.innerHTML;
         if(idOfType != "after-click"){
-            addBreadCrum(breadCrumContent, 'bread');
+            addBreadCrum(breadCrumContent, 'bread', elt+'-bread');
         }
     }
 }
@@ -86,9 +96,10 @@ function breadCrumOpen(activeButton) {
     }
 }
 
-function addBreadCrum(htmlText, targetClass) {
+function addBreadCrum(htmlText, targetClass, eltm) {
     var list, newList, newListChild, i, check = false;
-    list = document.getElementById('breadCrum');
+    console.log(eltm);
+    list = document.getElementById(eltm);
     listAnchors = document.getElementsByClassName('bread');
     for (i = 0; i < listAnchors.length; i++) {
         if (listAnchors[i].classList.contains('active')) {
