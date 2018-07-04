@@ -20,7 +20,7 @@
         <div id="learn" class="card-body">
             <div class="container-fluid">
                 <div class="row" style="flex-direction: row;">
-                    <ul id="breadCrum" style="list-style-type: none; flex-direction: row !important;">
+                    <ul id="learn-bread" style="list-style-type: none; flex-direction: row !important;">
                         <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
                     </ul>
                 </div>
@@ -78,16 +78,16 @@
         <div id="visuals" class="card-body" style="display: none;">
             <div class="container-fluid">
                 <div class="row" style="flex-direction: row;">
-                    <ul id="breadCrum" style="list-style-type: none; flex-direction: row !important;">
+                    <ul id="visuals-bread" style="list-style-type: none; flex-direction: row !important;">
                         <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
                     </ul>
                 </div>
                 <div class="row">
                     <div class="col-lg-3 col-sm-3 col-3">
-                        <ul class="list-group main1">
+                        <ul class="list-group main2">
                             {%for list in visual_main_list%}
                                 <li class="list-group-item">
-                                    <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main1','list-group-item')"> {{list.title}} </a>
+                                    <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main2','list-group-item')"> {{list.title}} </a>
                                     <i class="fas fa-ellipsis-h"></i>
                                 </li>
                             {%endfor%}
@@ -138,16 +138,16 @@
         <div id="stats" class="card-body" style="display: none;">
             <div class="container-fluid">
                 <div class="row" style="flex-direction: row;">
-                    <ul id="breadCrum" style="list-style-type: none; flex-direction: row !important;">
+                    <ul id="stats-bread" style="list-style-type: none; flex-direction: row !important;">
                         <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
                     </ul>
                 </div>
                 <div class="row">
                     <div class="col-lg-3 col-sm-3 col-3">
-                        <ul class="list-group main1">
+                        <ul class="list-group main3">
                             {%for list in stat_main_list%}
                             <li class="list-group-item">
-                                <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main1','list-group-item')"> {{list.title}} </a>
+                                <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main3','list-group-item')"> {{list.title}} </a>
                                 <i class="fas fa-ellipsis-h"></i>
                             </li>
                             {%endfor%}
