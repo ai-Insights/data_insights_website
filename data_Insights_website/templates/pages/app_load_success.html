@@ -3,11 +3,9 @@
 
 {% block initjs %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css" integrity="sha256-0Z6mOrdLEtgqvj7tidYQnCYWG3G2GAIpatAWKhDx+VM=" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-    <script src="{% static 'js/bootstrap-table.min.js'%}"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap-table.min.css'%}">
+    <script src="{% static 'js/bootstrap-table.min.js'%}"></script>
+    <script src="{% static 'js/lib/stats/bundle.js'%}"></script>
     {% endblock %}
 
 {% block content %} 
@@ -15,27 +13,48 @@
     {% include 'includes/particles-bg.html' %}
     <div class="container-fluid">
         <div class="row dataTable">
-            <table id="datatable"></table>
+            <div class='table-responsive' style="display: inline-block">
+                <table id="datatable"></table>
+            </div>
+        </div>
+
+        <div class="row dataTable">
+             <div class='table-responsive'>
+                <table id="stats"></table>
+            </div>
         </div>
     </div>
 
     <script>
+    $(window).resize(function () {
+        $('#datatable').bootstrapTable('resetView');
+    });
             $('#datatable').bootstrapTable({
               striped: true,
               search: true,
               showRefresh: true,
               showToggle: true,
               toolbarAlign: 'right',
-              paginationHAlign: 'left',
-              align: 'center',
-              cellStyle: function cellStyle(value, row, index, field) {
-                return {
-                  classes: 'text-nowrap tableborder',
-                };
+              paginationHAlign: 'right',
+              icons:{
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-list-alt',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus',
+                detailClose: 'fa fa-minus'
               },
+              align: 'center',
+              showFullScreen: true,
               pagination: true,
               showColumns: true,
               showToggle: true,
+              rowStyle: function rowStyle(row, index) {
+                return {
+                  classes: 'text-nowrap',
+                  css: {"border-color": "#171717",
+                        "font-family":"'quicksand', sans-serif"}
+                };
+              },
               sortStable: true,
               showExport: true,
               sortable: true,
@@ -45,6 +64,104 @@
               columns: {{ columns|safe }},  // here is where we use the column content from our Django View
               data: {{ data|safe }}, // here is where we use the data content from our Django View. we escape the content with the safe tag so the raw JSON isn't shown.
             });
+    </script>
+
+    <script>
+        data = {{ num_data|safe }};
+        columns = {{ num_cols|safe }};
+        console.log(data);
+        console.log(columns);
+        var mean_row= {'stats': 'Mean'};
+        var geometricMean_row = {'stats': 'Geormetric Mean'};
+        var rootMeanSquare_row = {'stats': 'Root Mean Square'};
+        var mode_row = {'stats': 'Mode'};
+        var median_row = {'stats': 'Median'};
+        var variance_row = {'stats': 'Variance'};
+        var std_row = {'stats': 'Std deviation'};
+        var skew_row = {'stats': 'Skewness'};
+        var kurtosis_row = {'stats': 'Kurtosis'};
+        var excessKurtosis_row = {'stats': 'Excess kurtosis'};
+        var skurtorsis_row = {'stats': 'Sample Excess kurtosis'};
+        var ses_row = {'stats': 'SES'};
+        var sek_row = {'stats': 'SEK'};
+
+        cols = [{
+            field: 'stats',
+            title: 'Descriptive statistics'
+        }]
+        for(var i = 0; i < columns.length; ++i ) {
+            var dist = [];
+            var column = columns[i];
+            var j = 0;
+            while ( data[column][j] != undefined ) {
+                dist.push(data[column][j]);
+                ++j;
+            }
+            mean = stats.centralTendency.Mean(dist);
+            median = stats.centralTendency.Median(dist);
+            dispersion = stats.dispersion.Dispersion(dist, mean);
+
+
+            mean_row[column] = mean.mean;
+            geometricMean_row[column] = mean.geometricMean;
+            rootMeanSquare_row[column] = mean.rootMeanSquare;
+            mode_row[column] = median.mode.value + ' (' + median.mode.frequency + ')';
+            median_row[column] = median.median.value;
+
+            variance_row[column] = dispersion.variance.toFixed(5);
+            std_row[column] = dispersion.stdDeviation.toFixed(5);
+            skew_row[column] = dispersion.skew.value.toFixed(5);
+            kurtosis_row[column] = dispersion.kurtosis.value.toFixed(5);
+            excessKurtosis_row[column] = dispersion.excessKurtosis.toFixed(5);
+            skurtorsis_row[column] = dispersion.sampleExcessKurtosis.toFixed(5);
+            ses_row[column] = dispersion.SES.toFixed(5);
+            sek_row[column] = dispersion.SEK.toFixed(5);
+
+            cols.push({
+                field: column,
+                title: column
+            })
+            
+        }
+        var result = [mean_row, geometricMean_row, rootMeanSquare_row, mode_row, median_row,
+                      variance_row, std_row, skew_row, kurtosis_row, excessKurtosis_row,
+                      skurtorsis_row, ses_row, sek_row];
+
+
+        $('#stats').bootstrapTable({
+              striped: true,
+              search: true,
+              showRefresh: true,
+              icons:{
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-list-alt',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus',
+                detailClose: 'fa fa-minus'
+              },
+              showToggle: true,
+              toolbarAlign: 'right',
+              paginationHAlign: 'right',
+              pagination: true,
+              showColumns: true,
+              showFullScreen: true,
+              showToggle: true,
+              sortStable: true,
+              showExport: true,
+              sortable: true,
+              idField: 'stats',
+              rowStyle: function rowStyle(row, index) {
+                return {
+                  classes: 'text-nowrap',
+                  css: {"border-color": "#171717",
+                        "font-family":"'quicksand', sans-serif"}
+                };
+              },
+              pageSize: 20,
+              columns: cols,  // here is where we use the column content from our Django View
+              data: result, // here is where we use the data content from our Django View. we escape the content with the safe tag so the raw JSON isn't shown.
+            });
+
     </script>
     {% include 'includes/footer.html' %}
 {% endblock %}
