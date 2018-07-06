@@ -11,7 +11,7 @@ class DataFileView(View):
     template_name = 'pages/app_load_data.html'
     def get(self, request, *args, **kwargs):
         form = self.form_class()
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'app_menu':0})
     
     def post(self, request, *arg, **kwargs):
         form = self.form_class(request.POST, request.FILES)
@@ -41,7 +41,7 @@ class DataFileView(View):
                     print("File can't be parsed")
             else:
                 print('File format not supported')
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, "app_menu": 0})
 
 
 def AppView(request, data_id):
@@ -66,7 +66,9 @@ def AppView(request, data_id):
         'data': json,
         'columns': columns,
         'num_cols': cols,
-        'num_data': df_num
+        'num_data': df_num,
+
+        'app_menu': 0,
     }
     return render(request, 'pages/app_load_success.html', ctx)
 

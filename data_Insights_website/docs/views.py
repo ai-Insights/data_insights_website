@@ -22,4 +22,7 @@ class DocsView(ListView):
         context['stat_leaf_list'] = DocumentationEntryStat.objects.exclude(description='').order_by('parent')
         context['stat_list'] = DocumentationEntryStat.objects.all().exclude(parent=None).order_by('-parent')
         # And so on for more models
+
+        context['app_menu'] = 1
+        context['docs_menu'] = 0
         return context
