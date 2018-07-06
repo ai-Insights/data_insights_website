@@ -1,10 +1,11 @@
-var elt;
+var elt='learn';
 function openNow(evt, idOfType, affect, effect_on) {
     // Declare all variables
     var i, tabcontent, tablinks, breadCrumContent;  
     if(effect_on == 'nav-link'){elt = idOfType;}
     // Get all elements with class=affect and hide them
-    if(effect_on == 'nav-link'){
+    if(effect_on == 'nav-link' || elt=='learn'){
+        var content = document.getElementById(elt);
         tabcontent = document.getElementsByClassName(affect);
         tablinks = document.getElementsByClassName(effect_on);
     }else{
@@ -16,7 +17,6 @@ function openNow(evt, idOfType, affect, effect_on) {
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-    console.log("lets try here");
     // Get all elements with class="tablinks" and remove the classes "active" and the indicator display is turned to "none"
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
@@ -31,7 +31,6 @@ function openNow(evt, idOfType, affect, effect_on) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     elementToDisplay = document.getElementById(idOfType);
     if(idOfType == "after-click"){
-        console.log('Yeso');
         var docFrag = document.createDocumentFragment();
         tabcontain = document.querySelector('.' + affect);
         parentId = document.getElementById(idOfType);
@@ -58,12 +57,15 @@ function openNow(evt, idOfType, affect, effect_on) {
         elementId = evt.currentTarget.parentNode.id;
         toHide = document.querySelectorAll(".faqs-body");
         for(var i; i< toHide.length; i++){
-            console.log(toHide[i]);
             toHide[i].style.display = "none";
         }
         elementToDisplay.querySelector("#"+"content-"+elementId).style.display = "block";
     }
-    elementToDisplay.style.display = "block";
+    if(elementToDisplay == null){
+        content.querySelector('.error').style.display = 'block';
+    }else{
+        elementToDisplay.style.display = "block";
+    }
     evt.currentTarget.className += " active";
     if (evt.currentTarget.classList.contains('nav-link') || elementToDisplay.classList.contains('sub-body')) {
         if(elementToDisplay.classList.contains('sub-body')){
@@ -73,32 +75,52 @@ function openNow(evt, idOfType, affect, effect_on) {
             for(i=0; i<indicator.length; i++){
                 if(indicator[i].classList.contains('fa-circle')){
                     indicator[i].style.display = "block";
-                    indicator[i].parent.firstChild.className += " activated";
+                    indicator[i].parentNode.firstChild.className += " activated";
                 }
             }
         }
     } else {
         breadCrumContent = evt.currentTarget.innerHTML;
         if(idOfType != "after-click"){
-            addBreadCrum(breadCrumContent, 'bread', elt+'-bread');
+            ulForBreadCrum = content.querySelectorAll('ul');
+            for(var i=0; i<ulForBreadCrum.length; i++){
+                if(ulForBreadCrum[i].contains(evt.currentTarget)){
+                    classname = ulForBreadCrum[i].classList[1];
+                }
+            }
+            addBreadCrum(breadCrumContent, 'bread', elt+'-bread', classname);
         }
     }
 }
 
-function breadCrumOpen(activeButton) {
-    var i, tabLink;
+function breadCrumOpen(evt, toDisplay) {
+    var i, todisplay, tohide, childses, ulOfChildses;
     // This function lets the 'all' breadcrum to take you back to the page pointed to by the active button
-    tabLink = document.getElementsByClassName(activeButton);
-    for (i = 0; i < tabLink.length; i++) {
-        if (tabLink[i].classList.contains('active')) {
-            tabLink[i].click();
+    todisplay = document.querySelector('.'+toDisplay);
+    tohide = todisplay.parentNode.children;
+    for(var i = 0; i<tohide.length; i++){
+        tohide[i].style.display = 'none';
+    }
+    todisplay.style.display = 'block';
+    childses=evt.currentTarget.parentNode;
+    ulOfChildses = childses.parentNode;
+    if(evt.currentTarget.innerHTML.toUpperCase() != 'All'.toUpperCase()){
+        while(childses.nextSibling){
+            //remove anyother breadcrum after the currently clicked
+            ulOfChildses.removeChild(childses.nextSibling);
+        }
+        ulOfChildses.removeChild(childses);
+    }else{
+        while(childses.nextSibling){
+            //remove anyother breadcrum after the currently clicked
+            ulOfChildses.removeChild(childses.nextSibling);
         }
     }
+    return false;
 }
 
-function addBreadCrum(htmlText, targetClass, eltm) {
+function addBreadCrum(htmlText, targetClass, eltm, pointsTo) {
     var list, newList, newListChild, i, check = false;
-    console.log(eltm);
     list = document.getElementById(eltm);
     listAnchors = document.getElementsByClassName('bread');
     for (i = 0; i < listAnchors.length; i++) {
@@ -112,10 +134,10 @@ function addBreadCrum(htmlText, targetClass, eltm) {
     //creating the link
     newListChild = document.createElement('a');
     newListChild.innerHTML ='>  ' + htmlText.toUpperCase();
-    newListChild.setAttribute('href', '');
+    newListChild.setAttribute('href', '#');
     newListChild.setAttribute('class', 'bread active');
     if (newListChild.innerHTML != "All") {
-        newListChild.onclick = breadCrumOpen(targetClass);
+        newListChild.setAttribute('onclick', "breadCrumOpen(event, '"+pointsTo+"')");
         newList.appendChild(newListChild);
     }else{
         while (list.firstChild) {
@@ -123,5 +145,4 @@ function addBreadCrum(htmlText, targetClass, eltm) {
         }
     }
     list.appendChild(newList);
-    console.log('success');
 }

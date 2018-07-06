@@ -7,7 +7,7 @@
             <ul class="nav nav-pills card-header-pills">
                 {% for titleObject in my_nav_pills %} {% if titleObject.id == 1 %}
                 <li class="nav-item">
-                    <a class="nav-link active" onclick="openNow(event, '{{ titleObject.pointsTo }}', 'card-body','nav-link')" href="#">{{ titleObject.title }}</a>
+                    <a class="active nav-link" onclick="openNow(event, '{{ titleObject.pointsTo }}', 'card-body','nav-link')" href="#">{{ titleObject.title }}</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 <div class="row" style="flex-direction: row;">
                     <ul id="learn-bread" style="list-style-type: none; flex-direction: row !important;">
-                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
+                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main1')" href="#">ALL</a></li>
                     </ul>
                 </div>
                 <div class="row">
@@ -34,8 +34,14 @@
                             </li>
                             {%endfor%}
                         </ul>
+                        <ul class="list-group error" style="display: none;">
+                            <li class="list-group-item">
+                                <p><strong style="color: red; font-size: 1rem;">Error Fetching database</strong></p>
+                                <p><strong style="color: red; font-size: 1rem;">Database empty</strong></p>
+                            </li>
+                        </ul>
                         {% regroup learn_list by parent as new_list%} {%for name in new_list%}
-                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
+                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu-{{forloop.counter}}" style="display: none;">
                             {%for newName in name.list %}
                             <li class="list-group-item">
                                 
@@ -79,7 +85,7 @@
             <div class="container-fluid">
                 <div class="row" style="flex-direction: row;">
                     <ul id="visuals-bread" style="list-style-type: none; flex-direction: row !important;">
-                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
+                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main2')" href="#">ALL</a></li>
                     </ul>
                 </div>
                 <div class="row">
@@ -91,6 +97,12 @@
                                     <i class="fas fa-ellipsis-h"></i>
                                 </li>
                             {%endfor%}
+                        </ul>
+                        <ul class="list-group error" style="display: none;">
+                            <li class="list-group-item">
+                                <p><strong style="color: red; font-size: 1rem;">Error Fetching database</strong></p>
+                                <p><strong style="color: red; font-size: 1rem;">Database empty</strong></p>
+                            </li>
                         </ul>
                         {% regroup visual_list by parent as new_visual_list%} {%for name in new_visual_list%}
                         <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
@@ -139,7 +151,7 @@
             <div class="container-fluid">
                 <div class="row" style="flex-direction: row;">
                     <ul id="stats-bread" style="list-style-type: none; flex-direction: row !important;">
-                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'nav-link')" href="">ALL</a></li>
+                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main3')" href="#">ALL</a></li>
                     </ul>
                 </div>
                 <div class="row">
@@ -151,6 +163,12 @@
                                 <i class="fas fa-ellipsis-h"></i>
                             </li>
                             {%endfor%}
+                        </ul>
+                        <ul class="list-group error" style="display: none;">
+                            <li class="list-group-item">
+                                <p style="color: red; font-size: 1rem;">Error Fetching database</p>
+                                <p style="color: red; font-size: 1rem;">Database empty</p>
+                            </li>
                         </ul>
                         {% regroup stat_list by parent as new_stat_list%} {%for name in new_stat_list%}
                         <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
