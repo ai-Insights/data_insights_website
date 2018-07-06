@@ -25,12 +25,24 @@
                  <li class="nav-item">
                     <a href="#meet-community" class="nav-link hvr-overline-from-center">Our Community</a>
                 </li> -->
+            {% if app_menu != 0 %}
             <li class="nav-item">
                 <a href="{% url 'DataFileView' %}" class="nav-link hvr-sweep-to-bottom button-red-sweep-to-bottom button" role=button>Use It Now</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a href='#' class="nav-link button-red-sweep-to-bottom  active button" style='background-color: #ff0000' role=button>The App</a>
+            </li>
+            {% endif %}
+            {% if docs_menu == 0 %}
+            <li class="nav-item">
+                <a href="{% url 'docs'%}" class="nav-link active button-blue-sweep-to-top button" style='margin-right: 20px !important; background-color: #2098d1'>Docs &amp; Help</a>
+            </li>
+            {% else %}
             <li class="nav-item">
                 <a href="{% url 'docs'%}" class="nav-link hvr-sweep-to-top button-blue-sweep-to-top button" style='margin-right: 20px !important'>Docs &amp; Help</a>
             </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
