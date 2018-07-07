@@ -84,3 +84,8 @@ th {
     color: white !important;
     font-family: $font-stack-quicksand
 }
+.main {
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    height: calc(100vh - 20rem);
+}

@@ -7,7 +7,7 @@
             <ul class="nav nav-pills card-header-pills">
                 {% for titleObject in my_nav_pills %} {% if titleObject.id == 1 %}
                 <li class="nav-item">
-                    <a class="active nav-link" onclick="openNow(event, '{{ titleObject.pointsTo }}', 'card-body','nav-link')" href="#">{{ titleObject.title }}</a>
+                    <a class="nav-link active" onclick="openNow(event, '{{ titleObject.pointsTo }}', 'card-body','nav-link')" href="#">{{ titleObject.title }}</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -16,204 +16,207 @@
                 {% endif %} {% endfor %}
             </ul>
         </div>
-        <!-- Learning algorithms -->
-        <div id="learn" class="card-body">
-            <div class="container-fluid">
-                <div class="row" style="flex-direction: row;">
-                    <ul id="learn-bread" style="list-style-type: none; flex-direction: row !important;">
-                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main1')" href="#">ALL</a></li>
-                    </ul>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-sm-3 col-3">
-                        <ul class="list-group main1">
-                            {%for list in learn_main_list%}
-                            <li class="list-group-item">
-                                <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main1','list-group-item')"> {{list.title}} </a>
-                                <i class="fas fa-ellipsis-h"></i>
-                            </li>
-                            {%endfor%}
+        <div class="body">
+            <!-- Learning algorithms -->
+            <div id="learn" class="card-body">
+                <div class="container-fluid">
+                    <div class="row" style="flex-direction: row;">
+                        <ul id="learn-bread" style="list-style-type: none; flex-direction: row !important;">
+                            <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main1')" href="#">ALL</a></li>
                         </ul>
-                        <ul class="list-group error" style="display: none;">
-                            <li class="list-group-item">
-                                <p><strong style="color: red; font-size: 1rem;">Error Fetching database</strong></p>
-                                <p><strong style="color: red; font-size: 1rem;">Database empty</strong></p>
-                            </li>
-                        </ul>
-                        {% regroup learn_list by parent as new_list%} {%for name in new_list%}
-                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu-{{forloop.counter}}" style="display: none;">
-                            {%for newName in name.list %}
-                            <li class="list-group-item">
-                                
-                                {%if newName.description != ''%}
-                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'learn-main','list-group-item')">
-                                    {{newName.title}} </a>
-                                <i class="fas fa-circle"></i>
-                                {%else%}
-                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
-                                    {{newName.title}} </a>
-                                <i class="fas fa-ellipsis-h"></i>
-                                {%endif%}
-                            </li>
-                            {%endfor%}
-                        </ul>
-                        {%endfor%}
                     </div>
-                    <div id="learn-1-main" class="col-lg-9 col-sm-9 col-9 learn-main">
-                        {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'learn'%}
-                        <div id="docs-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-3 col-3">
+                            <ul class="list-group main1">
+                                {%for list in learn_main_list%}
+                                <li class="list-group-item">
+                                    <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main1','list-group-item')"> {{list.title}} </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
+                                {%endfor%}
+                            </ul>
+                            <ul class="list-group error" style="display: none;">
+                                <li class="list-group-item">
+                                    <p>
+                                        <strong style="color: red; font-size: 1rem;">Error Fetching database</strong>
+                                    </p>
+                                    <p>
+                                        <strong style="color: red; font-size: 1rem;">Database empty</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                            {% regroup learn_list by parent as new_list%} {%for name in new_list%}
+                            <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu-{{forloop.counter}}" style="display: none;">
+                                {%for newName in name.list %}
+                                <li class="list-group-item">
+
+                                    {%if newName.description != ''%}
+                                    <a onclick="openNow(event, '{{newName.pointsTo}}', 'learn-main','list-group-item')">
+                                    {{newName.title}} </a>
+                                    <i class="fas fa-circle"></i>
+                                    {%else%}
+                                    <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
+                                    {{newName.title}} </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                    {%endif%}
+                                </li>
+                                {%endfor%}
+                            </ul>
+                            {%endfor%}
+                        </div>
+                        <div id="learn-1-main" class="col-lg-9 col-sm-9 col-9 learn-main main">
+                            {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'learn'%}
                             <div class="heading-md">{{titleObject.title}}
                             </div>
                             <p id="info" class="text-sm">{{titleObject.description}}
                             </p>
                             {%endif%} {%endfor%}
                         </div>
-                    </div>
-                    {%for name in learn_list%} {%if name.description != ''%}
-                    <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body learn-main" style="display: none;">
-                        <div class="heading-md">
-                            {{name.title}}
+                        {%for name in learn_list%} {%if name.description != ''%}
+                        <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body learn-main main" style="display: none;">
+                            <div class="heading-md">
+                                {{name.title}}
+                            </div>
+                            <p id="info" class="text-sm">
+                                {{name.description}}
+                            </p>
                         </div>
-                        <p id="info" class="text-sm">
-                            {{name.description}}
-                        </p>
+                        {%endif%} {%endfor%}
                     </div>
-                    {%endif%} {%endfor%}
                 </div>
             </div>
-        </div>
-        <!--visuals-->
-        <div id="visuals" class="card-body" style="display: none;">
-            <div class="container-fluid">
-                <div class="row" style="flex-direction: row;">
-                    <ul id="visuals-bread" style="list-style-type: none; flex-direction: row !important;">
-                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main2')" href="#">ALL</a></li>
-                    </ul>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-sm-3 col-3">
-                        <ul class="list-group main2">
-                            {%for list in visual_main_list%}
+            <!--visuals-->
+            <div id="visuals" class="card-body" style="display: none;">
+                <div class="container-fluid">
+                    <div class="row" style="flex-direction: row;">
+                        <ul id="visuals-bread" style="list-style-type: none; flex-direction: row !important;">
+                            <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main2')" href="#">ALL</a></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-3 col-3">
+                            <ul class="list-group main2">
+                                {%for list in visual_main_list%}
                                 <li class="list-group-item">
                                     <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main2','list-group-item')"> {{list.title}} </a>
                                     <i class="fas fa-ellipsis-h"></i>
                                 </li>
-                            {%endfor%}
-                        </ul>
-                        <ul class="list-group error" style="display: none;">
-                            <li class="list-group-item">
-                                <p><strong style="color: red; font-size: 1rem;">Error Fetching database</strong></p>
-                                <p><strong style="color: red; font-size: 1rem;">Database empty</strong></p>
-                            </li>
-                        </ul>
-                        {% regroup visual_list by parent as new_visual_list%} {%for name in new_visual_list%}
-                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
-                            {%for newName in name.list %}
-                            <li class="list-group-item visual-list">
-                                {%if newName.description != ''%}
-                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'visual-main','list-group-item')">
+                                {%endfor%}
+                            </ul>
+                            <ul class="list-group error" style="display: none;">
+                                <li class="list-group-item">
+                                    <p>
+                                        <strong style="color: red; font-size: 1rem;">Error Fetching database</strong>
+                                    </p>
+                                    <p>
+                                        <strong style="color: red; font-size: 1rem;">Database empty</strong>
+                                    </p>
+                                </li>
+                            </ul>
+                            {% regroup visual_list by parent as new_visual_list%} {%for name in new_visual_list%}
+                            <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
+                                {%for newName in name.list %}
+                                <li class="list-group-item visual-list">
+                                    {%if newName.description != ''%}
+                                    <a onclick="openNow(event, '{{newName.pointsTo}}', 'visual-main','list-group-item')">
                                     {{newName.title}} </a>
-                                <i class="fas fa-circle"></i>
-                                {%else%}
-                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
+                                    <i class="fas fa-circle"></i>
+                                    {%else%}
+                                    <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
                                     {{newName.title}} </a>
-                                <i class="fas fa-ellipsis-h"></i>
-                                {%endif%}
-                            </li>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                    {%endif%}
+                                </li>
+                                {%endfor%}
+                            </ul>
                             {%endfor%}
-                        </ul>
-                        {%endfor%}
-                    </div>
-                    <div id="visuals-1-main" class="col-lg-9 col-sm-9 col-9 visual-main">
-                        {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'visuals'%}
-                        <div id="docs-content">
+                        </div>
+                        <div id="visuals-1-main" class="col-lg-9 col-sm-9 col-9 visual-main main">
+                            {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'visuals'%}
                             <div class="heading-md">{{titleObject.title}}
                             </div>
                             <p id="info" class="text-sm">{{titleObject.description}}
                             </p>
+                            {%endif%} {%endfor%}
+                        </div>
+                        {%for name in visual_list%} {%if name.description != ''%}
+                        <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body visual-main" style="display: none;">
+                            <div class="heading-md">
+                                {{name.title}}
+                            </div>
+                            <div class="tryOutCard">
+                                <img class="card-img" src="{{name.image}}" alt="">
+                            </div>
+                            <p id="info" class="text-sm">
+                                {{name.description}}
+                            </p>
                         </div>
                         {%endif%} {%endfor%}
                     </div>
-                    {%for name in visual_list%} {%if name.description != ''%}
-                    <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body visual-main" style="display: none;">
-                        <div class="heading-md">
-                            {{name.title}}
-                        </div>
-                        <div class="tryOutCard">
-                            <img class="card-img" src="{{name.image}}" alt="">
-                        </div>
-                        <p id="info" class="text-sm">
-                            {{name.description}}
-                        </p>
-                    </div>
-                    {%endif%} {%endfor%}
                 </div>
             </div>
-        </div>
-        <!-- statistics algorithms-->
-        <div id="stats" class="card-body" style="display: none;">
-            <div class="container-fluid">
-                <div class="row" style="flex-direction: row;">
-                    <ul id="stats-bread" style="list-style-type: none; flex-direction: row !important;">
-                        <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main3')" href="#">ALL</a></li>
-                    </ul>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-sm-3 col-3">
-                        <ul class="list-group main3">
-                            {%for list in stat_main_list%}
-                            <li class="list-group-item">
-                                <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main3','list-group-item')"> {{list.title}} </a>
-                                <i class="fas fa-ellipsis-h"></i>
-                            </li>
-                            {%endfor%}
+            <!-- statistics algorithms-->
+            <div id="stats" class="card-body" style="display: none;">
+                <div class="container-fluid">
+                    <div class="row" style="flex-direction: row;">
+                        <ul id="stats-bread" style="list-style-type: none; flex-direction: row !important;">
+                            <li class="list-inline-item"><a class="bread" onclick="breadCrumOpen(event, 'main3')" href="#">ALL</a></li>
                         </ul>
-                        <ul class="list-group error" style="display: none;">
-                            <li class="list-group-item">
-                                <p style="color: red; font-size: 1rem;">Error Fetching database</p>
-                                <p style="color: red; font-size: 1rem;">Database empty</p>
-                            </li>
-                        </ul>
-                        {% regroup stat_list by parent as new_stat_list%} {%for name in new_stat_list%}
-                        <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
-                            {%for newName in name.list %}
-                            <li class="list-group-item">
-                                
-                                {%if newName.description != ''%}
-                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'stats-main','list-group-item')">
-                                    {{newName.title}} </a>
-                                <i class="fas fa-circle"></i>
-                                {%else%}
-                                <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
-                                    {{newName.title}} </a>
-                                <i class="fas fa-ellipsis-h"></i>
-                                {%endif%}
-                            </li>
-                            {%endfor%}
-                        </ul>
-                        {%endfor%}
                     </div>
-                    <div id="stats-1-main" class="col-lg-9 col-sm-9 col-9 stats-main">
-                        {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'stats'%}
-                        <div id="docs-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-3 col-3">
+                            <ul class="list-group main3">
+                                {%for list in stat_main_list%}
+                                <li class="list-group-item">
+                                    <a class="breadTab" onclick="openNow(event, '{{list.pointsTo}}', 'main3','list-group-item')"> {{list.title}} </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </li>
+                                {%endfor%}
+                            </ul>
+                            <ul class="list-group error" style="display: none;">
+                                <li class="list-group-item">
+                                    <p style="color: red; font-size: 1rem;">Error Fetching database</p>
+                                    <p style="color: red; font-size: 1rem;">Database empty</p>
+                                </li>
+                            </ul>
+                            {% regroup stat_list by parent as new_stat_list%} {%for name in new_stat_list%}
+                            <ul id="{{name.grouper.pointsTo}}" class="list-group sub-menu" style="display: none;">
+                                {%for newName in name.list %}
+                                <li class="list-group-item">
+
+                                    {%if newName.description != ''%}
+                                    <a onclick="openNow(event, '{{newName.pointsTo}}', 'stats-main','list-group-item')">
+                                    {{newName.title}} </a>
+                                    <i class="fas fa-circle"></i>
+                                    {%else%}
+                                    <a onclick="openNow(event, '{{newName.pointsTo}}', 'sub-menu','list-group-item')">
+                                    {{newName.title}} </a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                    {%endif%}
+                                </li>
+                                {%endfor%}
+                            </ul>
+                            {%endfor%}
+                        </div>
+                        <div id="stats-1-main" class="col-lg-9 col-sm-9 col-9 stats-main main">
+                            {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'stats'%}
                             <div class="heading-md">{{titleObject.title}}
                             </div>
                             <p id="info" class="text-sm">{{titleObject.description}}
                             </p>
+                            {%endif%} {%endfor%}
+                        </div>
+                        {%for name in stat_list%} {%if name.description != ''%}
+                        <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body stats-main" style="display: none;">
+                            <div class="heading-md">
+                                {{name.title}}
+                            </div>
+                            <p id="info" class="text-sm">
+                                {{name.description}}
+                            </p>
                         </div>
                         {%endif%} {%endfor%}
                     </div>
-                    {%for name in stat_list%} {%if name.description != ''%}
-                    <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body stats-main" style="display: none;">
-                        <div class="heading-md">
-                            {{name.title}}
-                        </div>
-                        <p id="info" class="text-sm">
-                            {{name.description}}
-                        </p>
-                    </div>
-                    {%endif%} {%endfor%}
-                </div>
                 </div>
             </div>
         </div>
@@ -258,5 +261,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="{% static 'js/tabs.js' %}"></script> {% include 'includes/footer.html' %} {% endblock %}
