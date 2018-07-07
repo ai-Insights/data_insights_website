@@ -8,74 +8,120 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='DocumentationEntryLearning',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
-                ('icon', models.ImageField(blank=True, upload_to='')),
+                ('icon', models.ImageField(
+                    blank=True, upload_to='')),
                 ('description', models.TextField(blank=True)),
-                ('image', models.ImageField(blank=True, upload_to='')),
+                ('image', models.ImageField(
+                    blank=True, upload_to='')),
                 ('source', models.URLField(blank=True)),
-                ('pointsTo', models.CharField(max_length=50, unique=True)),
-                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='subcategories', to='docs.DocumentationEntryLearning')),
-            ],
-        ),
+                ('pointsTo', models.CharField(
+                    max_length=50, unique=True)),
+                ('parent', models.ForeignKey(
+                    blank=True,
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='subcategories',
+                    to='docs.DocumentationEntryLearning')),
+            ], ),
         migrations.CreateModel(
             name='DocumentationEntryStat',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
-                ('icon', models.ImageField(blank=True, upload_to='')),
+                ('icon', models.ImageField(
+                    blank=True, upload_to='')),
                 ('description', models.TextField(blank=True)),
-                ('image', models.ImageField(blank=True, upload_to='')),
+                ('image', models.ImageField(
+                    blank=True, upload_to='')),
                 ('source', models.URLField(blank=True)),
-                ('pointsTo', models.CharField(max_length=50, unique=True)),
-                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='subcategories', to='docs.DocumentationEntryStat')),
-            ],
-        ),
+                ('pointsTo', models.CharField(
+                    max_length=50, unique=True)),
+                ('parent', models.ForeignKey(
+                    blank=True,
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='subcategories',
+                    to='docs.DocumentationEntryStat')),
+            ], ),
         migrations.CreateModel(
             name='DocumentationEntryVisual',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
-                ('icon', models.ImageField(blank=True, upload_to='')),
+                ('icon', models.ImageField(
+                    blank=True, upload_to='')),
                 ('description', models.TextField(blank=True)),
-                ('image', models.ImageField(blank=True, upload_to='')),
+                ('image', models.ImageField(
+                    blank=True, upload_to='')),
                 ('source', models.URLField(blank=True)),
-                ('pointsTo', models.CharField(max_length=50, unique=True)),
-                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='subcategories', to='docs.DocumentationEntryVisual')),
-            ],
-        ),
+                ('pointsTo', models.CharField(
+                    max_length=50, unique=True)),
+                ('parent', models.ForeignKey(
+                    blank=True,
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='subcategories',
+                    to='docs.DocumentationEntryVisual')),
+            ], ),
         migrations.CreateModel(
             name='DocumentationGroup',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
-                ('description', models.TextField(default='Welcome to the docs page, if you are seeing this then it means there is no information here for us to display, Kindly click on the taps on your left to explore other options')),
-                ('pointsTo', models.CharField(default='learn', max_length=50)),
-            ],
-        ),
+                ('description', models.TextField(
+                    default='Welcome to the docs page, if you are seeing this then it means there is no information here for us to display, Kindly click on the taps on your left to explore other options'
+                )),
+                ('pointsTo', models.CharField(
+                    default='learn', max_length=50)),
+            ], ),
         migrations.CreateModel(
             name='DocumentationSubGroup',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
                 ('short_description', models.TextField()),
-                ('parent_group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='docs.DocumentationGroup')),
-            ],
-        ),
+                ('parent_group', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='docs.DocumentationGroup')),
+            ], ),
         migrations.CreateModel(
             name='Faq',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('question', models.TextField()),
                 ('answer', models.TextField()),
                 ('questionPtr', models.CharField(max_length=50)),
-            ],
-        ),
+            ], ),
     ]

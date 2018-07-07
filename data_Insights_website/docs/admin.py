@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-
 admin.site.register(DocumentationGroup)
 admin.site.register(DocumentationSubGroup)
 admin.site.register(DocumentationEntryLearning)
