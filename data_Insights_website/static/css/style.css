@@ -425,6 +425,11 @@ button {
   overflow-x: hidden;
   height: calc(100vh - 20rem); }
 
+.learn-main,
+.visual-main,
+.stats-main {
+  padding-left: 2rem !important; }
+
 .dropdown-content a li.list-group-item i, .dropdown-content a .li-viz-text {
   position: absolute;
   right: 1.3rem;
@@ -585,6 +590,9 @@ ul.list-group {
   font-weight: 600;
   overflow: auto;
   white-space: nowrap; }
+
+.activated {
+  color: #2098d1; }
 
 .carousel-indicators li {
   width: 7px;
