@@ -132,7 +132,7 @@ li.list-group-item > i.fa-circle{
     min-width: 5rem;
     max-width: 16.5rem !important;
     box-sizing: border-box;
-    left: 2rem;
+    z-index: 1;
 }
 
 /* put borders on the top and bottom of  all the list link elements*/
@@ -187,4 +187,19 @@ ul.list-group {
 }
 .activated{
     color: $curious-blue;
+}
+.nav-pills .nav-item .nav-link.active {
+    background-color: #007bff;
+    color: #FFFFFF !important;
+}
+.nav-pills .nav-item .nav-link {
+    border: 1px solid #007bff;
+    border-radius: 0;
+    color: #007bff;
+    font-weight: 600;
+    margin-left: -1px;
+    padding: 10px 25px;
+}
+div.body a {
+    color: #007bff !important;
 }
