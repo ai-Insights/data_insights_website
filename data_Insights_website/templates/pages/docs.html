@@ -61,11 +61,13 @@
                     </div>
                     <div id="learn-1-main" class="col-lg-9 col-sm-9 col-9 learn-main">
                         {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'learn'%}
-                        <div class="heading-md">{{titleObject.title}}
+                        <div id="docs-content">
+                            <div class="heading-md">{{titleObject.title}}
+                            </div>
+                            <p id="info" class="text-sm">{{titleObject.description}}
+                            </p>
+                            {%endif%} {%endfor%}
                         </div>
-                        <p id="info" class="text-sm">{{titleObject.description}}
-                        </p>
-                        {%endif%} {%endfor%}
                     </div>
                     {%for name in learn_list%} {%if name.description != ''%}
                     <div id="{{name.pointsTo}}" class="col-lg-9 col-sm-9 col-9 sub-body learn-main" style="display: none;">
@@ -124,10 +126,12 @@
                     </div>
                     <div id="visuals-1-main" class="col-lg-9 col-sm-9 col-9 visual-main">
                         {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'visuals'%}
-                        <div class="heading-md">{{titleObject.title}}
+                        <div id="docs-content">
+                            <div class="heading-md">{{titleObject.title}}
+                            </div>
+                            <p id="info" class="text-sm">{{titleObject.description}}
+                            </p>
                         </div>
-                        <p id="info" class="text-sm">{{titleObject.description}}
-                        </p>
                         {%endif%} {%endfor%}
                     </div>
                     {%for name in visual_list%} {%if name.description != ''%}
@@ -191,10 +195,12 @@
                     </div>
                     <div id="stats-1-main" class="col-lg-9 col-sm-9 col-9 stats-main">
                         {%for titleObject in my_nav_pills %} {%if titleObject.pointsTo == 'stats'%}
-                        <div class="heading-md">{{titleObject.title}}
+                        <div id="docs-content">
+                            <div class="heading-md">{{titleObject.title}}
+                            </div>
+                            <p id="info" class="text-sm">{{titleObject.description}}
+                            </p>
                         </div>
-                        <p id="info" class="text-sm">{{titleObject.description}}
-                        </p>
                         {%endif%} {%endfor%}
                     </div>
                     {%for name in stat_list%} {%if name.description != ''%}

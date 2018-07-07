@@ -8,16 +8,20 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='DataFile',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('data', models.FileField(upload_to=data_Insights_website.app.models.data_directory_path_with_uuid)),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
+                ('data',
+                 models.FileField(upload_to=data_Insights_website.app.models.
+                                  data_directory_path_with_uuid)),
                 ('uploaded', models.DateTimeField(auto_now_add=True)),
-            ],
-        ),
+            ], ),
     ]
