@@ -63,14 +63,15 @@ class DataFileView(View):
 
 def AppView(request, data_id):
     data = DataFile.objects.get(pk=data_id)
+    header = data.header.tobytes().decode('utf8') if isinstance(data.header, memoryview) else data.header
     if '.csv' in data.clean_data.name:
-        df = pandas.read_csv(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_csv(data.clean_data, header=None)
+        df = pandas.read_csv(data.clean_data) if header == '1' else pandas.read_csv(data.clean_data, header=None)
     elif any(ext in data.clean_data.name for ext in ['.xls', 'xlsx']):
-        df = pandas.read_excel(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_excel(data.clean_data, header=None)
+        df = pandas.read_excel(data.clean_data) if header == '1' else pandas.read_excel(data.clean_data, header=None)
     else:
-        df = pandas.read_table(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_table(data.clean_data, header=None)
+        df = pandas.read_table(data.clean_data) if header == '1' else pandas.read_table(data.clean_data, header=None)
     
-    has_header = data.header.tobytes().decode('utf8')
+    has_header = header
 
     imputer_median = Imputer(missing_values=np.nan, strategy='median', axis=0)
     imputer_mean = Imputer(missing_values=np.nan, strategy='mean', axis=0)
@@ -98,12 +99,14 @@ def AppView(request, data_id):
                 if str(columnIndex) == str(column):
                     df[columnIndex] = df[columnIndex].fillna(value)
         
+        header = data.header.tobytes().decode('utf8') if isinstance(data.header, memoryview) else data.header
+
         if '.csv' in data.clean_data.name:
-            df.to_csv(data.clean_data.path, index=False) if data.header.tobytes().decode('utf8') == '1' else df.to_csv(data.clean_data.path, header=False, index=False)
+            df.to_csv(data.clean_data.path, index=False) if header == '1' else df.to_csv(data.clean_data.path, header=False, index=False)
         elif any(ext in data.clean_data.name for ext in ['.xls', 'xlsx']):
-            df.to_excel(data.clean_data.path, index=False) if data.header.tobytes().decode('utf8') == '1' else df.to_excel(data.clean_data.path, header=False, index=False)
+            df.to_excel(data.clean_data.path, index=False) if header == '1' else df.to_excel(data.clean_data.path, header=False, index=False)
         else:
-            df.to_table(data.clean_data.path, index=False) if data.header.tobytes().decode('utf8') == '1' else df.read_table(data.clean_data.path, header=False, index=False)
+            df.to_table(data.clean_data.path, index=False) if header == '1' else df.read_table(data.clean_data.path, header=False, index=False)
         
         data.save()
         
