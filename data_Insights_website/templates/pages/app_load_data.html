@@ -1,7 +1,8 @@
 {% extends 'base.html'%} {% load static %} {% block initjs %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css" integrity="sha256-0Z6mOrdLEtgqvj7tidYQnCYWG3G2GAIpatAWKhDx+VM=" crossorigin="anonymous" /> {% endblock %} {% block content %} {% include 'includes/navigationbar.html' %} {% include 'includes/particles-bg.html' %}
+
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}"> {% endblock %} {% block content %} {% include 'includes/navigationbar.html' %} {% include 'includes/particles-bg.html' %}
 <div class="container-fluid">
     <div class="row" id='data-collection'>
         <div class="col-lg-3">
@@ -33,6 +34,20 @@
                                 </svg> <span>Choose a file&hellip;</span>
                             </label>
                         </div>
+
+                <div style='display: inline-block !important'>
+                
+                    <div class="col-xs-2">
+                        <label for="has_header">Does you data has a header?</label>
+                        <select id="has_header" name='has_header' class="selectpicker form-control">
+                            <optgroup>
+                                <option value='1' selected>Yes</option>
+                                <option value="0">No</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <br/> <br/>
                         
                         <input type="submit" class='button submit-button hvr-wobble-horizontal button-green' value="Submit" />
                     </form>

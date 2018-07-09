@@ -11,3 +11,5 @@ def data_directory_path_with_uuid(instance, filename):
 class DataFile(models.Model):
     data = models.FileField(upload_to=data_directory_path_with_uuid)
     uploaded = models.DateTimeField(auto_now_add=True)
+    clean_data = models.FileField(upload_to=data_directory_path_with_uuid)
+    header = models.CharField(default='1', max_length=5)
