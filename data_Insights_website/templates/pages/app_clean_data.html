@@ -12,9 +12,10 @@
     <div class="row">
         <div class="col-lg-3" style='color: white; font-family: "quicksand", sans-serif;'>
             
-            <div style="background-color: #2e2e2e; padding: 15px; border-radius: 5px; margin-top: 50px">
+            <div style="background-color: #2e2e2e; padding: 15px; border-radius: 5px; margin-top: {% if dfcolumns|length > 0 %} 200px {% else %} 300px {% endif %}">
             
                 <div style="text-align: center; background-color: #171717; padding: 5px; margin-bottom: 20px;"> <span class="text-md" ><i class="fas fa-cogs" style="color: #2098d1"></i> Data wrangling</span></div>
+                {% if dfcolumns|length > 0 %}
                 <form action='{{request.path}}' method='post'>
                     {% csrf_token %}
                     <div class="form-group">
@@ -53,12 +54,15 @@
                     </div>
                     <input type="submit" class='button submit-button hvr-wobble-horizontal button-green' value="Clean Data" />
                 </form>
+                {% else %}
+                <div style='text-align: center'><span class="text-sm"><i class="fas fa-check-circle" style='color: #ff0000'></i> Great data succesfully parsed. <br> No missing value.</span></div> 
+                {% endif %}
                 <br><br>
                 <div style="text-align: center;"><button class="button submit-button hvr-wobble-horizontal button-red" id='proceed'>Proceed</button></div>
             </div> 
         </div>
         <div class="col-lg-9">
-            <div class='table-responsive' style='color: white; width: 100% !important'>
+            <div class='table-responsive' style='color: white; width: 100% !important; margin-top: 80px; margin-bottom: 120px'>
                 <table id="datatable"></table>
             </div>
         </div>
