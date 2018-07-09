@@ -63,59 +63,90 @@ class DataFileView(View):
 
 def AppView(request, data_id):
     data = DataFile.objects.get(pk=data_id)
+    header = data.header.tobytes().decode('utf8') if isinstance(
+        data.header, memoryview) else data.header
     if '.csv' in data.clean_data.name:
-        df = pandas.read_csv(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_csv(data.clean_data, header=None)
+        df = pandas.read_csv(
+            data.clean_data) if header == '1' else pandas.read_csv(
+                data.clean_data, header=None)
     elif any(ext in data.clean_data.name for ext in ['.xls', 'xlsx']):
-        df = pandas.read_excel(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_excel(data.clean_data, header=None)
+        df = pandas.read_excel(
+            data.clean_data) if header == '1' else pandas.read_excel(
+                data.clean_data, header=None)
     else:
-        df = pandas.read_table(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_table(data.clean_data, header=None)
-    
-    has_header = data.header.tobytes().decode('utf8')
+        df = pandas.read_table(
+            data.clean_data) if header == '1' else pandas.read_table(
+                data.clean_data, header=None)
+
+    has_header = header
 
     imputer_median = Imputer(missing_values=np.nan, strategy='median', axis=0)
     imputer_mean = Imputer(missing_values=np.nan, strategy='mean', axis=0)
     if request.method == 'POST':
-        
-        missing_mean = request.POST.getlist("missing_mean")
-        missing_median = request.POST.getlist("missing_median")
-        missing_value = request.POST.getlist("missing_value")
+
+        missing_mean = request.POST.getlist('missing_mean')
+        missing_median = request.POST.getlist('missing_median')
+        missing_value = request.POST.getlist('missing_value')
         value = request.POST.get('uvalue')
 
         print(value)
-    
+
         for column in missing_mean:
             for columnIndex in df.columns.tolist():
                 if str(columnIndex) == str(column):
-                    df[[columnIndex]] = imputer_mean.fit_transform(df[[columnIndex]])
-        
+                    df[[columnIndex]] = imputer_mean.fit_transform(df[
+                        [columnIndex]])
+
         for column in missing_median:
             for columnIndex in df.columns.tolist():
                 if str(columnIndex) == str(column):
-                    df[[columnIndex]] = imputer_mean.fit_transform(df[[columnIndex]])
-        
+                    df[[columnIndex]] = imputer_mean.fit_transform(df[
+                        [columnIndex]])
+
         for column in missing_value:
             for columnIndex in df.columns.tolist():
                 if str(columnIndex) == str(column):
                     df[columnIndex] = df[columnIndex].fillna(value)
-        
+
+        header = data.header.tobytes().decode('utf8') if isinstance(
+            data.header, memoryview) else data.header
+
         if '.csv' in data.clean_data.name:
-            df.to_csv(data.clean_data.path, index=False) if data.header.tobytes().decode('utf8') == '1' else df.to_csv(data.clean_data.path, header=False, index=False)
+            df.to_csv(
+                data.clean_data.path,
+                index=False) if header == '1' else df.to_csv(
+                    data.clean_data.path, header=False, index=False)
         elif any(ext in data.clean_data.name for ext in ['.xls', 'xlsx']):
-            df.to_excel(data.clean_data.path, index=False) if data.header.tobytes().decode('utf8') == '1' else df.to_excel(data.clean_data.path, header=False, index=False)
+            df.to_excel(
+                data.clean_data.path,
+                index=False) if header == '1' else df.to_excel(
+                    data.clean_data.path, header=False, index=False)
         else:
-            df.to_table(data.clean_data.path, index=False) if data.header.tobytes().decode('utf8') == '1' else df.read_table(data.clean_data.path, header=False, index=False)
-        
+            df.to_table(
+                data.clean_data.path,
+                index=False) if header == '1' else df.read_table(
+                    data.clean_data.path, header=False, index=False)
+
         data.save()
-        
+
     json = df.to_json(orient='records')
     #columns with missing values
-    columns = [column for column in df.columns if df[column].isnull().sum() > 0]
-    ncolumns = [column for column in columns if any(column_dtype == df[column].dtype.__str__() for column_dtype in ['float64', 'int64'])]
+    columns = [
+        column for column in df.columns if df[column].isnull().sum() > 0
+    ]
+    ncolumns = [
+        column for column in columns
+        if any(column_dtype == df[column].dtype.__str__()
+               for column_dtype in ['float64', 'int64'])
+    ]
     ctx = {
         'data': json,
-        'dfcolumns':columns,
+        'dfcolumns': columns,
         'numeric_dfcolumns': ncolumns,
-        'columns': [{'field': f, 'title': f} for f in df.columns],
+        'columns': [{
+            'field': f,
+            'title': f
+        } for f in df.columns],
         'app_menu': 0
     }
     return render(request, 'pages/app_clean_data.html', ctx)
@@ -124,12 +155,18 @@ def AppView(request, data_id):
 def DataView(request, data_id):
     data = DataFile.objects.get(pk=data_id)
     if '.csv' in data.clean_data.name:
-        df = pandas.read_csv(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_csv(data.clean_data, header=None)
+        df = pandas.read_csv(data.clean_data) if data.header.tobytes().decode(
+            'utf8') == '1' else pandas.read_csv(
+                data.clean_data, header=None)
     elif any(ext in data.clean_data.name for ext in ['.xls', 'xlsx']):
-        df = pandas.read_excel(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_excel(data.clean_data, header=None)
+        df = pandas.read_excel(data.clean_data) if data.header.tobytes(
+        ).decode('utf8') == '1' else pandas.read_excel(
+            data.clean_data, header=None)
     else:
-        df = pandas.read_table(data.clean_data) if data.header.tobytes().decode('utf8') == '1' else pandas.read_table(data.clean_data, header=None)
-    
+        df = pandas.read_table(data.clean_data) if data.header.tobytes(
+        ).decode('utf8') == '1' else pandas.read_table(
+            data.clean_data, header=None)
+
     json = df.to_json(orient='records')
     columns = [{'field': f, 'title': f} for f in df.columns]
 
@@ -141,7 +178,7 @@ def DataView(request, data_id):
     for column in df_num.columns:
         if df_num[column].isnull().sum() > 0:
             df_num.drop(column)
-    
+
     ctx = {
         'data': json,
         'columns': columns,

@@ -22,6 +22,7 @@
                         <label for="missing_mean">Fill missing value with mean</label>
                         <select id="missing_mean" name='missing_mean' class="selectpicker form-control" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
                             <optgroup label='Columns with missing values'>
+                                <option value="" selected hidden disabled>Select Column</option>
                                 {% for column in numeric_dfcolumns %}
                                     <option value={{column}}>{{column}}</option>
                                 {%endfor%}
@@ -31,6 +32,7 @@
                     <div class="form-group">
                         <label for="id_missing_median">Fill missing value with median</label>
                         <select id="id_missing_median" name="missing_median" class="selectpicker form-control" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
+                            <option value="" selected hidden disabled>Select Column</option>
                             <optgroup label='Columns with missing values'>
                                 {% for column in numeric_dfcolumns %}
                                     <option value={{column}}>{{column}}</option>
@@ -41,6 +43,7 @@
                     <div class="form-group">
                         <label for="id_missing_value">Fill missing value with value</label>
                         <select id="id_missing_value" name="missing_value" class="selectpicker" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
+                            <option value="" selected hidden disabled>Select Column</option>
                             <optgroup label='Columns with missing values'>
                                 {% for column in dfcolumns %}
                                     <option value={{column}}>{{column}}</option>
