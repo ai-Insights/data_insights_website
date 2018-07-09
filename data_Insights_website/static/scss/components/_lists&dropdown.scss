@@ -203,3 +203,16 @@ ul.list-group {
 div.body a {
     color: #007bff !important;
 }
+
+.dropdown .dropdown-menu {
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    background-color: #171717 !important;
+}
+
+.bd-deselect-all .bs-select-all {
+    font-size: 12px !important;
+    font-family: $font-stack-rationale !important;
+}

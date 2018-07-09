@@ -1,0 +1,114 @@
+{% extends 'base.html'%} {% load static %} {% block initjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+<link rel="stylesheet" href="{% static 'css/bootstrap-table.min.css'%}">
+<script src="{% static 'js/bootstrap-table.min.js'%}"></script>
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
+{% endblock %} {% block content %} {% include 'includes/navigationbar.html' %}
+{% include 'includes/particles-bg.html'%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3" style='color: white; font-family: "quicksand", sans-serif;'>
+            
+            <div style="background-color: #2e2e2e; padding: 15px; border-radius: 5px; margin-top: 50px">
+            
+                <div style="text-align: center; background-color: #171717; padding: 5px; margin-bottom: 20px;"> <span class="text-md" ><i class="fas fa-cogs" style="color: #2098d1"></i> Data wrangling</span></div>
+                <form action='{{request.path}}' method='post'>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="missing_mean">Fill missing value with mean</label>
+                        <select id="missing_mean" name='missing_mean' class="selectpicker form-control" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
+                            <optgroup label='Columns with missing values'>
+                                {% for column in numeric_dfcolumns %}
+                                    <option value={{column}}>{{column}}</option>
+                                {%endfor%}
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_missing_median">Fill missing value with median</label>
+                        <select id="id_missing_median" name="missing_median" class="selectpicker form-control" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
+                            <optgroup label='Columns with missing values'>
+                                {% for column in numeric_dfcolumns %}
+                                    <option value={{column}}>{{column}}</option>
+                                {%endfor%}
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_missing_value">Fill missing value with value</label>
+                        <select id="id_missing_value" name="missing_value" class="selectpicker" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
+                            <optgroup label='Columns with missing values'>
+                                {% for column in dfcolumns %}
+                                    <option value={{column}}>{{column}}</option>
+                                {%endfor%}
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="uvalue">Value</label>
+                        <input type="text" default="0" id="uvalue" name='uvalue' style="background-color: #171717; border: 0.5px #171716; color: white; padding-left: 10px;">
+                    </div>
+                    <input type="submit" class='button submit-button hvr-wobble-horizontal button-green' value="Clean Data" />
+                </form>
+                <br><br>
+                <div style="text-align: center;"><button class="button submit-button hvr-wobble-horizontal button-red" id='proceed'>Proceed</button></div>
+            </div> 
+        </div>
+        <div class="col-lg-9">
+            <div class='table-responsive' style='color: white; width: 100% !important'>
+                <table id="datatable"></table>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('proceed').onclick = function() {
+            location.href = ("{{request.path}}" + '/proceed')
+        }
+        $(window).resize(function() {
+            $('#datatable').bootstrapTable('resetView');
+        });
+        $('#datatable').bootstrapTable({
+            striped: true,
+            search: true,
+            showRefresh: true,
+            showToggle: true,
+            toolbarAlign: 'right',
+            paginationHAlign: 'right',
+            icons: {
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-list-alt',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus',
+                detailClose: 'fa fa-minus'
+            },
+            align: 'center',
+            showFullScreen: true,
+            pagination: true,
+            showColumns: true,
+            showToggle: true,
+            rowStyle: function rowStyle(row, index) {
+                return {
+                    classes: 'text-nowrap',
+                    css: {
+                        "border-color": "#171717",
+                        "font-family": "'quicksand', sans-serif"
+                    }
+                };
+            },
+            sortStable: true,
+            showExport: true,
+            sortable: true,
+            toolbar: true,
+            pageSize: 15,
+            pageList: [10, 15, 20, 25, 50, 100, 150, 200, 'ALL'],
+            columns: {{columns | safe}}, // here is where we use the column content from our Django View
+            data: {{ data | safe}}, // here is where we use the data content from our Django View. we escape the content with the safe tag so the raw JSON isn't shown.
+        });
+
+    </script>
+
+</div>
+{% include 'includes/footer.html' %} {% endblock %}
