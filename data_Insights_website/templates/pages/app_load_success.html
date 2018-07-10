@@ -108,7 +108,7 @@
             geometricMean_row[column] = mean.geometricMean;
             rootMeanSquare_row[column] = mean.rootMeanSquare;
             mode_row[column] = median.mode.value + ' (' + median.mode.frequency + ')';
-            median_row[column] = median.median.value;
+            median_row[column] = '[' + median.median.value.join(' |  ') + ']';
 
             variance_row[column] = dispersion.variance.toFixed(5);
             std_row[column] = dispersion.stdDeviation.toFixed(5);

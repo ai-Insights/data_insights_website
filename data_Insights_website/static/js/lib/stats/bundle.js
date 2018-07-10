@@ -35,7 +35,7 @@ var ModeMedian = function(distribution) {
     var median;
     var mid = sorted_distribution.length/2;
     if ( sorted_distribution.length%2 != 0) {
-        median = sorted_distribution[Math.floor(mid)];
+        median = [sorted_distribution[Math.floor(mid)]];
     } else {
         median = [sorted_distribution[mid-1], sorted_distribution[mid]];
     }
