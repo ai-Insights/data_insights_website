@@ -70,7 +70,6 @@
         data = {{ num_data|safe }};
         columns = {{ num_cols|safe }};
         console.log(data);
-        console.log(columns);
         var mean_row= {'stats': 'Mean'};
         var geometricMean_row = {'stats': 'Geormetric Mean'};
         var rootMeanSquare_row = {'stats': 'Root Mean Square'};
@@ -93,10 +92,13 @@
             var dist = [];
             var column = columns[i];
             var j = 0;
-            while ( data[column][j] != undefined ) {
-                dist.push(data[column][j]);
+            while ( data[column][j] !== undefined ) {
+                if ( data[column][j] !== null ) {
+                    dist.push(data[column][j]);
+                }
                 ++j;
             }
+            console.log(dist);
             mean = stats.centralTendency.Mean(dist);
             median = stats.centralTendency.Median(dist);
             dispersion = stats.dispersion.Dispersion(dist, mean);
