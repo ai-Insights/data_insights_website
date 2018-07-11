@@ -67,9 +67,11 @@
     </script>
 
     <script>
-        data = {{ num_data|safe }};
-        columns = {{ num_cols|safe }};
+        data = {{ coldata|safe }};
+        num_columns = {{ num_cols|safe }};
+        columns = {{ cols |safe }};
         console.log(data);
+        console.log(columns)
         var mean_row= {'stats': 'Mean'};
         var geometricMean_row = {'stats': 'Geormetric Mean'};
         var rootMeanSquare_row = {'stats': 'Root Mean Square'};
@@ -99,25 +101,30 @@
                 ++j;
             }
             console.log(dist);
-            mean = stats.centralTendency.Mean(dist);
+
             median = stats.centralTendency.Median(dist);
-            dispersion = stats.dispersion.Dispersion(dist, mean);
 
-
-            mean_row[column] = mean.mean;
-            geometricMean_row[column] = mean.geometricMean;
-            rootMeanSquare_row[column] = mean.rootMeanSquare;
             mode_row[column] = median.mode.value + ' (' + median.mode.frequency + ')';
             median_row[column] = '[' + median.median.value.join(' |  ') + ']';
 
-            variance_row[column] = dispersion.variance.toFixed(5);
-            std_row[column] = dispersion.stdDeviation.toFixed(5);
-            skew_row[column] = dispersion.skew.value.toFixed(5);
-            kurtosis_row[column] = dispersion.kurtosis.value.toFixed(5);
-            excessKurtosis_row[column] = dispersion.excessKurtosis.toFixed(5);
-            skurtorsis_row[column] = dispersion.sampleExcessKurtosis.toFixed(5);
-            ses_row[column] = dispersion.SES.toFixed(5);
-            sek_row[column] = dispersion.SEK.toFixed(5);
+            if (num_columns.includes(column)) {
+                mean = stats.centralTendency.Mean(dist);
+                dispersion = stats.dispersion.Dispersion(dist, mean);
+
+
+                mean_row[column] = mean.mean;
+                geometricMean_row[column] = mean.geometricMean;
+                rootMeanSquare_row[column] = mean.rootMeanSquare;
+
+                variance_row[column] = dispersion.variance.toFixed(5);
+                std_row[column] = dispersion.stdDeviation.toFixed(5);
+                skew_row[column] = dispersion.skew.value.toFixed(5);
+                kurtosis_row[column] = dispersion.kurtosis.value.toFixed(5);
+                excessKurtosis_row[column] = dispersion.excessKurtosis.toFixed(5);
+                skurtorsis_row[column] = dispersion.sampleExcessKurtosis.toFixed(5);
+                ses_row[column] = dispersion.SES.toFixed(5);
+                sek_row[column] = dispersion.SEK.toFixed(5);
+            }
 
             cols.push({
                 field: column,

@@ -1,7 +1,6 @@
 import pandas
 import numpy as np
 import csv
-import request
 from pandas.errors import ParserError
 from sklearn.preprocessing import Imputer
 from django.views import View
@@ -177,17 +176,18 @@ def DataView(request, data_id):
     df_num = df.columns.to_series().groupby(df.dtypes).groups
     cols = {k.name: v for k, v in df_num.items()}
 
-    df_num = df[cols.get('float64', []).append(cols.get('int64', []))]
-    for column in df_num.columns:
-        if df_num[column].isnull().sum() > 0:
-            df_num.drop(column)
 
     ctx = {
         'data': json,
         'columns': columns,
-        'num_cols': df_num.columns.tolist(),
-        'num_data': df_num.to_json(),
-        'app_menu': 0,
+        'cols': df.columns.tolist(),
+        'coldata': df.to_json(),
+        'app_menu': 0
     }
+    
+    # Numerical columns
+    num_cols = cols.get('float64', []).append(cols.get('int64', []))
+    if (isinstance(num_cols, pandas.core.indexes.base.Index)):
+        ctx['num_cols'] = num_cols.tolist()
 
     return render(request, 'pages/app_load_success.html', ctx)
