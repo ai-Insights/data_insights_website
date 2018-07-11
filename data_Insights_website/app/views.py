@@ -1,6 +1,7 @@
 import pandas
 import numpy as np
 import csv
+import request
 from pandas.errors import ParserError
 from sklearn.preprocessing import Imputer
 from django.views import View
@@ -154,18 +155,20 @@ def AppView(request, data_id):
 
 def DataView(request, data_id):
     data = DataFile.objects.get(pk=data_id)
+    header = data.header.tobytes().decode('utf8') if isinstance(
+        data.header, memoryview) else data.header
     if '.csv' in data.clean_data.name:
-        df = pandas.read_csv(data.clean_data) if data.header.tobytes().decode(
-            'utf8') == '1' else pandas.read_csv(
+        df = pandas.read_csv(
+            data.clean_data) if header == '1' else pandas.read_csv(
                 data.clean_data, header=None)
     elif any(ext in data.clean_data.name for ext in ['.xls', 'xlsx']):
-        df = pandas.read_excel(data.clean_data) if data.header.tobytes(
-        ).decode('utf8') == '1' else pandas.read_excel(
-            data.clean_data, header=None)
+        df = pandas.read_excel(
+            data.clean_data) if header == '1' else pandas.read_excel(
+                data.clean_data, header=None)
     else:
-        df = pandas.read_table(data.clean_data) if data.header.tobytes(
-        ).decode('utf8') == '1' else pandas.read_table(
-            data.clean_data, header=None)
+        df = pandas.read_table(
+            data.clean_data) if header == '1' else pandas.read_table(
+                data.clean_data, header=None)
 
     json = df.to_json(orient='records')
     columns = [{'field': f, 'title': f} for f in df.columns]
