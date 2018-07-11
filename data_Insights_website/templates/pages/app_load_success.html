@@ -67,11 +67,10 @@
     </script>
 
     <script>
-        data = {{ coldata|safe }};
-        num_columns = {{ num_cols|safe }};
-        columns = {{ cols |safe }};
-        console.log(data);
-        console.log(columns)
+        data = {{ coldata|safe }}
+        num_columns = {{ num_cols|safe }}
+        columns = {{ cols|safe }}
+        console.log(num_columns)
         var mean_row= {'stats': 'Mean'};
         var geometricMean_row = {'stats': 'Geormetric Mean'};
         var rootMeanSquare_row = {'stats': 'Root Mean Square'};
@@ -89,10 +88,11 @@
         cols = [{
             field: 'stats',
             title: 'Descriptive statistics'
-        }]
+        }];
         for(var i = 0; i < columns.length; ++i ) {
             var dist = [];
             var column = columns[i];
+            console.log(data[column]);
             var j = 0;
             while ( data[column][j] !== undefined ) {
                 if ( data[column][j] !== null ) {

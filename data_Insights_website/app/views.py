@@ -189,5 +189,7 @@ def DataView(request, data_id):
     num_cols = cols.get('float64', []).append(cols.get('int64', []))
     if (isinstance(num_cols, pandas.core.indexes.base.Index)):
         ctx['num_cols'] = num_cols.tolist()
+    else:
+        ctx['num_cols'] = []
 
     return render(request, 'pages/app_load_success.html', ctx)
