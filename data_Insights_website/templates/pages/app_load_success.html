@@ -4,8 +4,15 @@
 {% block initjs %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap-table.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
     <script src="{% static 'js/bootstrap-table.min.js'%}"></script>
     <script src="{% static 'js/lib/stats/bundle.js'%}"></script>
+    <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'js/lib/charts/echarts-en.min.js'%}"></script>
+    <script src="{% static 'js/lib/charts/bundle.js'%}"></script>
+    <script src="{% static 'js/quandl_test_data.js'%}"></script>
+    <script src="{% static 'js/ohlc_test_data.js'%}"></script>
+    
     {% endblock %}
 
 {% block content %} 
@@ -24,7 +31,57 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+            <div class="row add-chart">
+                <form id="addChart" action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group" style="display: inline-block;">
+                        <select id="sel1" name="sel1" class="selectpicker">
+                            <option value="" selected hidden disabled>Add A Chart:</option>
+                            <option>Pie</option>
+                            <option>Line</option>
+                            <option>Bar</option>
+                            <option>Scatter</option>
+                            <option>Plot</option>
+                            <option>Area</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: inline-block;">
+                        <select id="sel1" name="select2" class="selectpicker">
+                            <option value="" selected hidden disabled>X-AXIS:</option>
+                            {% for columns in cols%}
+                                <option value="{{columns}}">{{columns}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: inline-block;">
+                        <select id="sel1" name="select3" class="selectpicker">
+                            <option value="" selected hidden disabled>Y-AXIS</option>
+                            {% for columns in cols%}
+                                <option value="{{columns}}">{{columns}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                    <input type="submit" class='button submit-button hvr-wobble-horizontal button-green' value="ADD" />
+                </form>
+            </div>
+        </div>
+        <div id="chart" style="height:500px; width:1200px; display: none"></div>
+    <script>
+        var addChart = document.querySelector('#addChart');
+        function myFunction(event){
+            event.preventDefault();
+            var _data  = {{ coldata|safe }}
+            console.log(_data['0']);
+            console.log("the dates");
+            document.querySelector('#chart').style.display = 'block';
+            var myChart = echarts.init(document.getElementById('chart'), charts.mime.theme);
+            var option = charts.line.chart(_data['0'], [_data['1']], ['line chart']);
+            console.log(option);
+            myChart.setOption(option);
+        };
+        addChart.addEventListener('submit', myFunction);
+    </script>
     <script>
     $(window).resize(function () {
         $('#datatable').bootstrapTable('resetView');
