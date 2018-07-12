@@ -63,8 +63,8 @@ class DataFileView(View):
 
 def AppView(request, data_id):
     data = DataFile.objects.get(pk=data_id)
-    header = data.header.tobytes().decode('utf8') if isinstance(
-        data.header, memoryview) else data.header
+    header = data.header
+    header = header.tobytes().decode('utf8') if isinstance(header, memoryview) else header
     if '.csv' in data.clean_data.name:
         df = pandas.read_csv(
             data.clean_data) if header == '1' else pandas.read_csv(
@@ -127,6 +127,7 @@ def AppView(request, data_id):
                 index=False) if header == '1' else df.read_table(
                     data.clean_data.path, header=False, index=False)
 
+        data.header = header
         data.save()
 
     json = df.to_json(orient='records')
@@ -154,8 +155,8 @@ def AppView(request, data_id):
 
 def DataView(request, data_id):
     data = DataFile.objects.get(pk=data_id)
-    header = data.header.tobytes().decode('utf8') if isinstance(
-        data.header, memoryview) else data.header
+    header = data.header
+    header = header.tobytes().decode('utf8') if isinstance(header, memoryview) else header
     if '.csv' in data.clean_data.name:
         df = pandas.read_csv(
             data.clean_data) if header == '1' else pandas.read_csv(
