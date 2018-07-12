@@ -66,7 +66,7 @@ var line = function(xAxis, yAxis, lines, chartTitle = 'line chart') {
                     'yAxis': yAxis[i][j]
                 };
                 serie.markPoint.data.push(point);
-            }
+            }console.log(serie);
             series.push(serie);
             _lines.push(lines[i]);
             if (xAxis.length < 25) {

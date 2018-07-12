@@ -248,6 +248,15 @@ th {
   left: 0;
   z-index: 100; }
 
+.add-chart {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  background-color: #2e2e2e;
+  padding: 1rem;
+  padding-top: 1.5rem;
+  justify-content: center;
+  border-radius: 2rem; }
+
 .typed-cursor {
   opacity: 0.7;
   font-size: 40px;
