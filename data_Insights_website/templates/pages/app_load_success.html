@@ -72,12 +72,17 @@
         function myFunction(event){
             event.preventDefault();
             var _data  = {{ coldata|safe }}
-            console.log(_data['0']);
-            console.log("the dates");
             document.querySelector('#chart').style.display = 'block';
             var myChart = echarts.init(document.getElementById('chart'), charts.mime.theme);
-            var option = charts.line.chart(_data['0'], [_data['1']], ['line chart']);
-            console.log(option);
+            x = [];
+            y = [];
+            j = 0
+            while ( _data['Date'][j] !== undefined ) {
+                x.push(_data['Date'][j]);
+                y.push(_data['Cash Buyer'][j]);
+                j += 1;
+            }
+            var option = charts.line.chart(x, [y], ['line chart']);
             myChart.setOption(option);
         };
         addChart.addEventListener('submit', myFunction);
@@ -149,7 +154,6 @@
         for(var i = 0; i < columns.length; ++i ) {
             var dist = [];
             var column = columns[i];
-            console.log(data[column]);
             var j = 0;
             while ( data[column][j] !== undefined ) {
                 if ( data[column][j] !== null ) {
@@ -157,7 +161,6 @@
                 }
                 ++j;
             }
-            console.log(dist);
 
             median = stats.centralTendency.Median(dist);
 
