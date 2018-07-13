@@ -228,7 +228,8 @@ div.buttons > button#no {
   font-family: "quicksand", sans-serif; }
 
 .table-responsive {
-  width: 60% !important; }
+  margin-top: 50px;
+  margin-bottom: 40px; }
 
 th {
   border-color: #2098d1 !important; }

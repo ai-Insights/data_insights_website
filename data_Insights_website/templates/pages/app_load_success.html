@@ -20,13 +20,10 @@
     {% include 'includes/particles-bg.html' %}
     <div class="container-fluid">
         <div class="row dataTable">
-            <div class='table-responsive' style="display: inline-block">
+            <div class='table-responsive col-lg-7' style="display: inline-block" >
                 <table id="datatable"></table>
             </div>
-        </div>
-
-        <div class="row dataTable">
-             <div class='table-responsive'>
+            <div class='table-responsive col-lg-5'>
                 <table id="stats"></table>
             </div>
         </div>
@@ -226,7 +223,7 @@
                         "font-family":"'quicksand', sans-serif"}
                 };
               },
-              pageSize: 20,
+              pageSize: 13,
               columns: cols,  // here is where we use the column content from our Django View
               data: result, // here is where we use the data content from our Django View. we escape the content with the safe tag so the raw JSON isn't shown.
             });
