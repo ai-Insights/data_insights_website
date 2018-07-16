@@ -77,6 +77,42 @@
         $(window).resize(function() {
             $('#datatable').bootstrapTable('resetView');
         });
+
+        // Remove options already selected in missing_mean that are present in id_missing_median
+        // and id_missing_value
+        $('#missing_mean').on('changed.bs.select', function(e){
+            var values = $('#missing_mean').val();
+            for ( var i = 0; i < values.length; ++i ) {
+                $('#id_missing_median').find('[value='+values[i]+']').remove();
+                $('#id_missing_value').find('[value='+values[i]+']').remove();
+                $('#id_missing_median').selectpicker('refresh');
+                $('#id_missing_value').selectpicker('refresh');
+            }
+        })
+
+        // Remove options already selected in id_missing_median that are present in missing_mean
+        // and id_missing_value
+        $('#id_missing_median').on('changed.bs.select', function(e){
+            var values = $('#id_missing_median').val();
+            for ( var i = 0; i < values.length; ++i ) {
+                $('#missing_mean').find('[value='+values[i]+']').remove();
+                $('#id_missing_value').find('[value='+values[i]+']').remove();
+                $('#missing_mean').selectpicker('refresh');
+                $('#id_missing_value').selectpicker('refresh');
+            }
+        })
+
+        // Remove options already selected in id_missing_value that are present in missing_mean
+        // and id_missing_median
+        $('#id_missing_value').on('changed.bs.select', function(e){
+            var values = $('#id_missing_value').val();
+            for ( var i = 0; i < values.length; ++i ) {
+                $('#missing_mean').find('[value='+values[i]+']').remove();
+                $('#id_missing_median').find('[value='+values[i]+']').remove();
+                $('#id_missing_median').selectpicker('refresh');
+                $('#missing_mean').selectpicker('refresh');
+            }
+        })
         $('#datatable').bootstrapTable({
             striped: true,
             search: true,
