@@ -372,7 +372,7 @@ var line = function(xAxis, yAxis, lines, chartTitle = 'line chart') {
                     'yAxis': yAxis[i][j]
                 };
                 serie.markPoint.data.push(point);
-            }
+            }console.log(serie);
             series.push(serie);
             _lines.push(lines[i]);
             if (xAxis.length < 25) {
@@ -505,16 +505,19 @@ module.exports = {
 },{}],8:[function(require,module,exports){
 var pie = function(ecParams) {
     series = [];
+    selected = [];
     for (var i = 0; i < ecParams.categories.length; ++i) {
         series.push({
             value: ecParams.values[i],
             name: ecParams.categories[i]
         });
+        selected[ecParams.categories] = i < 10;
     }
     var option = {
         title: {
             text: ecParams.title,
         },
+        selected: selected,
         tooltip: {
             trigger: 'item',
             formatter: "{b} : {c} ({d}%)"
@@ -1175,16 +1178,16 @@ var Mean = function (distribution) {
     }
     var mean = 0; var geometricMean = 1; var rootMeanSquare = 0;
     for (var i = 0; i < size; ++i ){
-        mean += distribution[i];
-        geometricMean *= distribution[i];
+        mean += (distribution[i]/size);
+        geometricMean *= Math.pow(distribution[i], 1/size);
         rootMeanSquare += Math.pow(distribution[i], 2);
     }
-    var mean = (mean/size).toFixed(5);
-    var meanDiff = distribution.map(el => (el - mean).toFixed(5));
+    var mean = mean.toFixed(5);
+    var meanDiff = distribution.map(el => parseFloat((el - mean).toFixed(5)));
     return {
-        'mean': mean,
-        'geometricMean': (Math.pow(geometricMean, 1/size)).toFixed(5),
-        'rootMeanSquare': Math.pow(rootMeanSquare/size, 1/2).toFixed(5),
+        'mean': parseFloat(mean),
+        'geometricMean': parseFloat(geometricMean.toFixed(5)),
+        'rootMeanSquare': parseFloat(Math.pow(rootMeanSquare/size, 1/2).toFixed(5)),
         'meanDiff': meanDiff
     }
 }
@@ -1202,7 +1205,7 @@ var ModeMedian = function(distribution) {
     var median;
     var mid = sorted_distribution.length/2;
     if ( sorted_distribution.length%2 != 0) {
-        median = sorted_distribution[Math.floor(mid)];
+        median = [sorted_distribution[Math.floor(mid)]];
     } else {
         median = [sorted_distribution[mid-1], sorted_distribution[mid]];
     }
@@ -1215,7 +1218,7 @@ var ModeMedian = function(distribution) {
             mode = frequencies[frequencies.length -1][1] > mode[1] ? frequencies[frequencies.length -1]: mode;
         }
     }
-    if (frequencies.length/distribution.length > 0.85 && typeof distribution[0] === number) {
+    if (frequencies.length/distribution.length > 0.85 && typeof distribution[0] === typeof 1) {
         frequencies = 'It might not be appropriate to consider this random variable' +
                       ' as categorical in your analysis: ' + (frequencies.length*100/distribution.length).toFixed(2) +
                       '% values are unique.' ;
