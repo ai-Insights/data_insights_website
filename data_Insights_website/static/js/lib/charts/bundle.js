@@ -505,19 +505,18 @@ module.exports = {
 },{}],8:[function(require,module,exports){
 var pie = function(ecParams) {
     series = [];
-    selected = [];
+    selected = {};
     for (var i = 0; i < ecParams.categories.length; ++i) {
         series.push({
             value: ecParams.values[i],
             name: ecParams.categories[i]
         });
-        selected[ecParams.categories] = i < 10;
+        selected[ecParams.categories[i]] = i < 10;
     }
     var option = {
         title: {
             text: ecParams.title,
         },
-        selected: selected,
         tooltip: {
             trigger: 'item',
             formatter: "{b} : {c} ({d}%)"
@@ -529,6 +528,9 @@ var pie = function(ecParams) {
             top: 30,
             bottom: 20,
             data: ecParams.categories,
+
+
+            selected: selected,
         },
         series: [{
             type: 'pie',

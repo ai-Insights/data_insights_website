@@ -18,7 +18,8 @@
 {% block content %} 
     {% include 'includes/navigationbar.html' %} 
     {% include 'includes/particles-bg.html' %}
-    <div class="container-fluid">
+    <div id="reference">
+    <div  class="container-fluid">
         <div class="row dataTable">
             <div class='table-responsive col-lg-7' style="display: inline-block" >
                 <table id="datatable"></table>
@@ -30,59 +31,154 @@
     </div>
     <div class="container">
             <div class="row add-chart">
-                <form id="addChart" action="" method="post">
-                    {% csrf_token %}
+                <div id="new-chart">
                     <div class="form-group" style="display: inline-block;">
-                        <select id="sel1" name="sel1" class="selectpicker">
-                            <option value="" selected hidden disabled>Add A Chart:</option>
-                            <option>Pie</option>
-                            <option>Line</option>
-                            <option>Bar</option>
-                            <option>Scatter</option>
-                            <option>Plot</option>
-                            <option>Area</option>
+                        <label for="sel1" id="chart_type-label" style="display:block; color: white; ">CHART NAME</label>
+                        <select id="chart_type" name="sel1" class="selectpicker">
+                            <option value="pie">Pie</option>
+                            <option value="line">Line</option>
+                            <option value="bar">Bar</option>
+                            <option value="scatter">Scatter</option>
+                            <option value="area">Area</option>
                         </select>
                     </div>
+                    <button type="button" onclick="filterCols('event')" class='button submit-button hvr-wobble-horizontal' style="background: blue; border: blue; color: white;">Choose Chart</button>
+                </div>
+                <div id="addChart" style="display:none">
+                    <div class="chart-name" style="display: inline-block; color: white; margin-right: 1rem; background:teal; padding-left: 2rem; padding-right: 2rem; border-radius: 1rem; text-transform:uppercase; font-size: 1.5rem;"></div>
                     <div class="form-group" style="display: inline-block;">
-                        <select id="sel1" name="select2" class="selectpicker">
-                            <option value="" selected hidden disabled>X-AXIS:</option>
-                            {% for columns in cols%}
-                                <option value="{{columns}}">{{columns}}</option>
-                            {%endfor%}
+                        <label for="select2" id="xaxis-label" style="display:block; color: white;">X-AXIS:</label>
+                        <select id="xaxis" name="select2" class="selectpicker">
                         </select>
                     </div>
-                    <div class="form-group" style="display: inline-block;">
-                        <select id="sel1" name="select3" class="selectpicker">
+                    <div style="display: inline-block;">
+                        <label for="select3" id="yaxis-label" style="display:block; color: white;">Y-AXIS:</label>
+                        <select id="yaxis" name="select3" class="selectpicker">
                             <option value="" selected hidden disabled>Y-AXIS</option>
-                            {% for columns in cols%}
-                                <option value="{{columns}}">{{columns}}</option>
-                            {%endfor%}
                         </select>
                     </div>
-                    <input type="submit" class='button submit-button hvr-wobble-horizontal button-green' value="ADD" />
-                </form>
+                    <button type="button" class="button submit-button hvr-wobble-horizontal" style="background:rgb(65, 199, 83); border: rgb(65, 199, 83); color: white;" onclick="myFunction()">ADD</button>
+                    <button type="button" class="button submit-button hvr-wobble-horizontal" style="background:tomato; border: tomato; color: white;" onclick="goback()">BACK</button>
+                </div>
             </div>
         </div>
-        <div id="chart" style="height:500px; width:1200px; display: none"></div>
+        <div id="chart"></div>
+        </div>
     <script>
-        var addChart = document.querySelector('#addChart');
-        function myFunction(event){
-            event.preventDefault();
+        var id = 0;
+        var newChart = document.querySelector('#new-chart');
+        function add_chart(arg){
+            if(arg.chartName == 'scatter'){arg.xAxis= [arg.xAxis]; charts.ecParams.ecParams._data_generator = [""];}
+            if(arg.chartName == 'pie'){arg.categories= arg.xAxis; arg.values = arg.yAxis;}
+            charts.ecParams.ecParams.title = arg.title;
+            charts.ecParams.ecParams.series = arg.series;
+            charts.ecParams.ecParams.xAxis = arg.xAxis;
+            charts.ecParams.ecParams.yAxis = [arg.yAxis];
+            charts.ecParams.ecParams.values = arg.values;
+            charts.ecParams.ecParams.categories = arg.categories;
+            //charts.ecParams.ecParams._data_generator = arg.data_generator;
+            console.log(arg.chartName);
+            if(arg.chartName == 'line' || arg.chartName == 'area'){
+                var option = charts.line.chart(arg.xAxis, [arg.yAxis], ['line chart']);
+            }else{
+                option = charts[arg.chartName].chart(charts.ecParams.ecParams);
+            }
+            var myChart = echarts.init(document.getElementById(arg.chart_id), charts.mime.theme);
+            myChart.setOption(option);
+            //the following functions empties the select options before new ones are reloaded
+            $('#xaxis').empty();
+            $('#yaxis').empty();
+        }
+        function goback(){
+            $('#xaxis').empty();
+            $('#yaxis').empty();
+            document.querySelector('#new-chart').style.display = 'block';
+            document.querySelector('#addChart').style.display = 'none';
+        }
+        function create_chart(chartId){
+            var chart_holder = document.createElement('div');
+            console.log("I am here adding");
+            chart_holder.setAttribute('id', chartId);
+            chart_holder.style.height = '500px';
+            chart_holder.style.width = '1000px';
+            document.querySelector('#chart').appendChild(chart_holder);
+        }
+        function myFunction(){
             var _data  = {{ coldata|safe }}
-            document.querySelector('#chart').style.display = 'block';
-            var myChart = echarts.init(document.getElementById('chart'), charts.mime.theme);
+            //document.querySelector('#chart').style.display = 'block';
+            xaxis = document.querySelector('#xaxis').value;
+            yaxis = document.querySelector('#yaxis').value;
             x = [];
             y = [];
             j = 0
-            while ( _data['Date'][j] !== undefined ) {
-                x.push(_data['Date'][j]);
-                y.push(_data['Cash Buyer'][j]);
+            while ( _data[xaxis][j] !== undefined ) {
+                x.push(_data[xaxis][j]);
+                y.push(_data[yaxis][j]);
                 j += 1;
             }
-            var option = charts.line.chart(x, [y], ['line chart']);
-            myChart.setOption(option);
+            chart_type = document.querySelector('#chart_type').value;
+            var id_holder = chart_type+id;
+            id += 1;
+            create_chart(id_holder);
+            add_chart({title:chart_type, series: [chart_type+"test"], chartName: chart_type, chart_id: id_holder, xAxis: x, yAxis: y});
+            document.querySelector('#new-chart').style.display = 'block';
+            document.querySelector('#addChart').style.display = 'none';
+            $('#xaxis').selectpicker('refresh');
+            $('#yaxis').selectpicker('refresh');
         };
-        addChart.addEventListener('submit', myFunction);
+        function filterCols(event){
+            chart = document.querySelector('#chart_type').value;
+            console.log("chart name ");
+            console.log(chart);
+            var _cols = {{cols|safe}}
+            var _data = {{coldata|safe}}
+            j = 0;
+            if(chart == "line" || chart == "scatter"){
+                while(_cols[j] !== undefined){
+                    if(typeof _data[_cols[j]][0] =='string' || _data[_cols[j]][0] instanceof String){
+                        j += 1;
+                        
+                        continue;
+                    }else {
+                        $('#xaxis').append('<option value="'+_cols[j]+'">'+_cols[j]+'</option>');
+                        $('#xaxis').selectpicker("refresh");
+                        $('#yaxis').append('<option value="'+_cols[j]+'">'+_cols[j]+'</option>');
+                        $('#yaxis').selectpicker("refresh");
+                    }
+                    j += 1;
+                }
+                document.querySelector('#xaxis-label').innerHTML = 'X-AXIS: NUMBER';
+                document.querySelector('#yaxis-label').innerHTML = 'Y-AXIS: NUMBER';
+            }
+            if(chart == "area" || chart == "pie" || chart == "bar"){
+                while(_cols[j] !== undefined){
+                    if(typeof _data[_cols[j]][0] ==='string' || _data[_cols[j]][0] instanceof String){
+                        $('#xaxis').append('<option value="'+_cols[j]+'">'+_cols[j]+'</option>');
+                        $('#xaxis').selectpicker("refresh");
+                    }else {
+                        $('#yaxis').append('<option value="'+_cols[j]+'">'+_cols[j]+'</option>');
+                        $('#yaxis').selectpicker("refresh");
+                    }
+                    j += 1;
+                }
+                document.querySelector('#xaxis-label').innerHTML = 'X-AXIS: CATEGORY';
+                document.querySelector('#yaxis-label').innerHTML = 'Y-AXIS: NORMAL';
+            }else{
+                while(_cols[j] !== undefined){
+                    $('#yaxis').append('<option value="'+_cols[j]+'">'+_cols[j]+'</option>');
+                    $('#yaxis').selectpicker("refresh");
+                    $('#xaxis').append('<option value="'+_cols[j]+'">'+_cols[j]+'</option>');
+                    $('#xaxis').selectpicker("refresh");
+                    j += 1;
+                }
+                document.querySelector('#xaxis-label').innerHTML = 'X-AXIS: NORMAL';
+                document.querySelector('#yaxis-label').innerHTML = 'Y-AXIS: NORMAL';
+            }
+            document.querySelector('#new-chart').style.display = 'none';
+            document.querySelector('.chart-name').innerHTML = chart;
+            document.querySelector('#addChart').style.display = 'block';
+        }
+        newChart.addEventListener('submit', filterCols);
     </script>
     <script>
     $(window).resize(function () {
