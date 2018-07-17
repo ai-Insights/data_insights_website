@@ -59,14 +59,23 @@
         //console.log(d)
         return d;
     };
-
-    var myChart2 = echarts.init(document.getElementById('chart3'), charts.mime.theme);
-    charts.ecParams.ecParams.title = 'SCATTER';
-    charts.ecParams.ecParams.series = ['test1', 'test2'];
-    charts.ecParams.ecParams._data_generator = [func, func1];
-    option = charts.scatter.chart(charts.ecParams.ecParams);
-    myChart2.setOption(option);
-
+    function add_chart(arg){
+        if(arg.chartName == 'scatter'){arg.xAxis= [arg.xAxis];}
+        charts.ecParams.ecParams.title = arg.title;
+        charts.ecParams.ecParams.series = arg.series;
+        charts.ecParams.ecParams.xAxis = arg.xAxis;
+        charts.ecParams.ecParams.yAxis = [arg.yAxis];
+        charts.ecParams.ecParams.values = arg.values;
+        charts.ecParams.ecParams.categories = arg.categories;
+        charts.ecParams.ecParams._data_generator = arg.data_generator;
+        if(arg.chartName == 'line'){
+            var option = charts.line.chart(xAxis, [yAxis], ['line chart']);
+        }else{
+            option = charts[arg.chartName].chart(charts.ecParams.ecParams);
+        }
+        var myChart = echarts.init(document.getElementById(arg.chart_id), charts.mime.theme);
+        myChart.setOption(option);
+    }
 
     option = charts.line.chart([-1.5, -0.75, 0, 0.75, 1.5, 2, 3.2], [
         [-14.1014, -0.931596, 0, 0.931596, 14.1014, 10.152, 9.12]
@@ -75,34 +84,15 @@
     myChart3.setOption(option);
 
 
-    charts.ecParams.ecParams.title = 'BAR';
-    charts.ecParams.ecParams.series = ['bar1'];
-    charts.ecParams.ecParams.xAxis = x;
-    charts.ecParams.ecParams.yAxis = [y];
-    option = charts.bar.chart(charts.ecParams.ecParams);
-    var myChart0 = echarts.init(document.getElementById('chart0'), charts.mime.theme);
-    myChart0.setOption(option);
-
-
-    charts.ecParams.ecParams.title = 'PIE';
-    charts.ecParams.ecParams.values = [212, 651, 198, 178, 291, 335, 65, 96.664, 426.78, 998, 978, 98];
-    charts.ecParams.ecParams.categories = ['That', 'This', 'Hey', 'Damn', 'it', 'g', 'qsnel', 'asnel', 'qk', 'mc', 'mcq', 'paranoia'];
-    option = charts.pie.chart(charts.ecParams.ecParams);
-    var myChart4 = echarts.init(document.getElementById('chart4'), charts.mime.theme);
-    myChart4.setOption(option);
-
+    var bar = new add_chart({title:'BAR', series: ['test1'], chartName: 'bar', chart_id: 'chart0', xAxis: x, yAxis: y});
+    var pie = new add_chart({title:'PIE', chartName: 'pie', chart_id: 'chart4', values: [212, 651, 198, 178, 291, 335, 65, 96.664, 426.78, 998, 978, 98], categories: ['That', 'This', 'Hey', 'Damn', 'it', 'g', 'qsnel', 'asnel', 'qk', 'mc', 'mcq', 'paranoia']});
+    var scatter1 = new add_chart({title: 'SCATTER', series:['test1', 'test2'], data_generator: [func, func1], chart_id: 'chart3', chartName: 'scatter'})
 
     charts.ecParams.ecParams.title = 'SCATTER';
-    charts.ecParams.ecParams.series = ['test1', 'test2'];
+    charts.ecParams.ecParams.series = ['test1'];
     charts.ecParams.ecParams._data_generator = [""];
-    charts.ecParams.ecParams.xAxis = [
-        [8, 2, 11, 6, 5, 4, 12, 9, 6, 1], 
-        [14.2, 16.4, 11.9, 15.2, 18.5, 22.1, 19.4, 25.1, 23.4, 18.1, 22.6, 17.2]
-    ];
-    charts.ecParams.ecParams.yAxis = [
-        [3, 10, 3, 6, 8, 12, 1, 4, 9, 14], 
-        [215, 325, 185, 332, 406, 522, 412, 614, 544, 421, 445, 408]
-    ];
+    charts.ecParams.ecParams.xAxis = [x];
+    charts.ecParams.ecParams.yAxis = [y];
     option = charts.scatter.chart(charts.ecParams.ecParams);
     console.log(option);
     var myChart5 = echarts.init(document.getElementById('chart5'), charts.mime.theme);

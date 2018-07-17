@@ -82,14 +82,13 @@ def AppView(request, data_id):
 
     imputer_median = Imputer(missing_values=np.nan, strategy='median', axis=0)
     imputer_mean = Imputer(missing_values=np.nan, strategy='mean', axis=0)
+    
     if request.method == 'POST':
 
         missing_mean = request.POST.getlist('missing_mean')
         missing_median = request.POST.getlist('missing_median')
         missing_value = request.POST.getlist('missing_value')
         value = request.POST.get('uvalue')
-
-        print(value)
 
         for column in missing_mean:
             for columnIndex in df.columns.tolist():
@@ -188,9 +187,23 @@ def DataView(request, data_id):
     
     # Numerical columns
     num_cols = cols.get('float64', []).append(cols.get('int64', []))
+    obj_cols = cols.get('object', [])
     if (isinstance(num_cols, pandas.core.indexes.base.Index)):
         ctx['num_cols'] = num_cols.tolist()
     else:
         ctx['num_cols'] = []
 
+        if request.method == 'POST':
+            value = request.POST.get('sel1')
+            if value == 'pie' or value == 'bar' or value == 'area':
+                xaxis = num_cols
+                yaxis = obj_cols
+            if value == 'scatter':
+                xaxis = num_cols
+                yaxis = num_cols 
+            ctx['xaxis'] = xaxis
+            ctx['yaxis'] = yaxis
+
+            print(ctx['xaxis'])
     return render(request, 'pages/app_load_success.html', ctx)
+

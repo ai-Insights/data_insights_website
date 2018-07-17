@@ -33,6 +33,7 @@ var scatter = function(ecParams) {
             serie.data = ecParams._data_generator[i]();
             series.push(serie);
         }
+        console.log(serie);
     }
     var option = {
         title: {
