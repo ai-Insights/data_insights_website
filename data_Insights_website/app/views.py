@@ -82,12 +82,14 @@ def AppView(request, data_id):
 
     imputer_median = Imputer(missing_values=np.nan, strategy='median', axis=0)
     imputer_mean = Imputer(missing_values=np.nan, strategy='mean', axis=0)
+    imputer_most_frequent = Imputer(missing_values=np.nan, strategy='most_frequent', axis=0)
     
     if request.method == 'POST':
 
         missing_mean = request.POST.getlist('missing_mean')
         missing_median = request.POST.getlist('missing_median')
         missing_value = request.POST.getlist('missing_value')
+        missing_most_frequent = request.POST.getlist('missing_most_frequent')
         value = request.POST.get('uvalue')
 
         for column in missing_mean:
@@ -99,8 +101,13 @@ def AppView(request, data_id):
         for column in missing_median:
             for columnIndex in df.columns.tolist():
                 if str(columnIndex) == str(column):
-                    df[[columnIndex]] = imputer_mean.fit_transform(df[
+                    df[[columnIndex]] = imputer_meadian.fit_transform(df[
                         [columnIndex]])
+
+        for column in missing_most_frequent:
+            for columnIndex in df.columns().tolist():
+                if str(columnIndex) == str(column):
+                    df[[columnIndex]] = imputer_most_frequent.fit_transform(df[[columnIndex]])
 
         for column in missing_value:
             for columnIndex in df.columns.tolist():
