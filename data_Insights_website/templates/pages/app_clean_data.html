@@ -5,21 +5,23 @@
 <script src="{% static 'js/bootstrap-table.min.js'%}"></script>
 <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
-{% endblock %} {% block content %} {% include 'includes/navigationbar.html' %}
-{% include 'includes/particles-bg.html'%}
+{% endblock %} 
+{% block content %}
+    {% include 'includes/navigationbar.html' %}
+    {% include 'includes/particles-bg.html'%}
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3" style='color: white; font-family: "quicksand", sans-serif;'>
             
-            <div style="background-color: #2e2e2e; padding: 15px; border-radius: 5px; margin-top: {% if dfcolumns|length > 0 %} 200px {% else %} 300px {% endif %}">
+            <div style="background-color: #2e2e2e; padding: 15px; border-radius: 5px; margin-top: {% if dfcolumns|length > 0 %} 150px {% else %} 300px {% endif %}">
             
                 <div style="text-align: center; background-color: #171717; padding: 5px; margin-bottom: 20px;"> <span class="text-md" ><i class="fas fa-cogs" style="color: #2098d1"></i> Data wrangling</span></div>
                 {% if dfcolumns|length > 0 %}
                 <form action='{{request.path}}' method='post'>
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="missing_mean">Fill missing value with mean</label>
+                        <label for="missing_mean">Fill missing value(s) with mean</label>
                         <select id="missing_mean" name='missing_mean' class="selectpicker form-control" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
                             <optgroup label='Columns with missing values'>
                                 <option value="" selected hidden disabled>Select Column</option>
@@ -30,7 +32,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="id_missing_median">Fill missing value with median</label>
+                        <label for="id_missing_median">Fill missing value(s) with median</label>
                         <select id="id_missing_median" name="missing_median" class="selectpicker form-control" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
                             <option value="" selected hidden disabled>Select Column</option>
                             <optgroup label='Columns with missing values'>
@@ -41,7 +43,18 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="id_missing_value">Fill missing value with value</label>
+                        <label for="id_missing_most_frequent">Fill missing value(s) with most frequent value</label>
+                        <select id="id_missing_most_frequent" name="missing_most_frequent" class="selectpicker form-control" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
+                            <option value="" selected hidden disabled>Select Column</option>
+                            <optgroup label='Columns with missing values'>
+                                {% for column in numeric_dfcolumns %}
+                                    <option value={{column}}>{{column}}</option>
+                                {%endfor%}
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_missing_value">Fill missing value(s) with value</label>
                         <select id="id_missing_value" name="missing_value" class="selectpicker" multiple data-selected-text-format="count" data-live-search="true" data-actions-box="true">
                             <option value="" selected hidden disabled>Select Column</option>
                             <optgroup label='Columns with missing values'>
@@ -58,25 +71,26 @@
                     <input type="submit" class='button submit-button hvr-wobble-horizontal button-green' value="Clean Data" />
                 </form>
                 {% else %}
-                <div style='text-align: center'><span class="text-sm"><i class="fas fa-check-circle" style='color: #ff0000'></i> Great data succesfully parsed. <br> No missing value.</span></div> 
+                <div style='text-align: center'><span class="text-sm"><i class="fas fa-check-circle" style='color: #ff0000'></i> Great data succesfully parsed. <br> With no missing value.</span></div> 
                 {% endif %}
                 <br><br>
                 <div style="text-align: center;"><button class="button submit-button hvr-wobble-horizontal button-red" id='proceed'>Proceed</button></div>
             </div> 
         </div>
-        <div class="col-lg-9">
-            <div class='table-responsive' style='color: white; width: 100% !important; margin-top: 80px; margin-bottom: 120px'>
+        <div class="col-lg-9" style='color: white; width: 100% !important; margin-top: 80px; font-family: quicksand, sans-serif' >
+            <div class='table-responsive'>
                 <table id="datatable"></table>
             </div>
         </div>
     </div>
+
+
+    {% include 'includes/footer.html' %}
+</div>
     <script>
         document.getElementById('proceed').onclick = function() {
             location.href = ("{{request.path}}" + '/proceed')
         }
-        $(window).resize(function() {
-            $('#datatable').bootstrapTable('resetView');
-        });
 
         // Remove options already selected in missing_mean that are present in id_missing_median
         // and id_missing_value
@@ -85,6 +99,9 @@
             for ( var i = 0; i < values.length; ++i ) {
                 $('#id_missing_median').find('[value='+values[i]+']').remove();
                 $('#id_missing_value').find('[value='+values[i]+']').remove();
+                $('#id_missing_most_frequent').find('[value='+values[i]+']').remove();
+
+                $('#id_missing_most_frequent').selectpicker('refresh');
                 $('#id_missing_median').selectpicker('refresh');
                 $('#id_missing_value').selectpicker('refresh');
             }
@@ -96,7 +113,10 @@
             var values = $('#id_missing_median').val();
             for ( var i = 0; i < values.length; ++i ) {
                 $('#missing_mean').find('[value='+values[i]+']').remove();
-                $('#id_missing_value').find('[value='+values[i]+']').remove();
+                $('#id_missing_value').find('[value='+values[i]+']').remove();   
+                $('#id_missing_most_frequent').find('[value='+values[i]+']').remove();
+
+                $('#id_missing_most_frequent').selectpicker('refresh');             
                 $('#missing_mean').selectpicker('refresh');
                 $('#id_missing_value').selectpicker('refresh');
             }
@@ -108,7 +128,23 @@
             var values = $('#id_missing_value').val();
             for ( var i = 0; i < values.length; ++i ) {
                 $('#missing_mean').find('[value='+values[i]+']').remove();
-                $('#id_missing_median').find('[value='+values[i]+']').remove();
+                $('#id_missing_median').find('[value='+values[i]+']').remove();             
+                $('#id_missing_most_frequent').find('[value='+values[i]+']').remove();
+
+                $('#id_missing_most_frequent').selectpicker('refresh');
+                $('#id_missing_median').selectpicker('refresh');
+                $('#missing_mean').selectpicker('refresh');
+            }
+        })
+
+        $('#id_missing_most_frequent').on('changed.bs.select', function(e) {
+            var values = $('#id_missing_most_frequent').val();
+            for ( var i = 0; i < values.length; ++i ) {
+                $('#missing_mean').find('[value='+values[i]+']').remove();
+                $('#id_missing_median').find('[value='+values[i]+']').remove();  
+                $('#id_missing_value').find('[value='+values[i]+']').remove(); 
+
+                $('#id_missing_value').selectpicker('refresh');
                 $('#id_missing_median').selectpicker('refresh');
                 $('#missing_mean').selectpicker('refresh');
             }
@@ -152,6 +188,4 @@
         });
 
     </script>
-
-</div>
-{% include 'includes/footer.html' %} {% endblock %}
+{% endblock %}
